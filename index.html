@@ -11,18 +11,20 @@
     
     <!--Style file-->
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
 
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!--Javascript file-->
-    <script src="./main.js"></script>
+    <script src="./js/main.js"></script>
+    <script defer src="./js/login.js"></script>
 
     <!--Title-->
     <title>HomePage | Meridian Urgent Care System</title>
 </head>
 <body>
-
     <!--NAVBAR-->
     <nav>
         <div class="container nav_container">
@@ -34,7 +36,8 @@
             <ul class="nav_menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="#" onclick="document.getElementById('id01').style.display='block'" >Login</a></li>
+                <li><a href="home.html">Book an Appointment</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
@@ -54,8 +57,6 @@
             </figure>
         </div>
     </div>
-            
-
     <!--HEADER-->
     <header>
         <div class="header_container">
@@ -73,6 +74,52 @@
         </div>
     </header>
 
+    <div id="id01" class="modal" style="margin: 0 auto; " width: 300px; height: 400px;>
+        <form class="modal-content animate" action="/action_page.php" method="post" id="login-form">
+          <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+          </div>
+          <div id="login-error-msg-holder">
+            <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+          </div>
+          <div class="container">
+            <label for="uname" style="color: black;"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username-field" required>
+      
+            <div class="password-container">
+                <label for="psw" style="color: black;"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" id="password-field" required>
+                <i class="fa-solid fa-eye" id="eye" type="password"></i>
+           </div>
+            <div>
+                <label style="color: black;">Please select the user role</label>
+                <label class="containerCheck" style="color: black;">Patient
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="containerCheck" style="color: black;">Admin
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="containerCheck" style="color: black;">Doctor
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="containerCheck" style="color: black;">Lab techinician
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+            </div>
+            <button type="submit" style="margin-top: 50px;" id="login-form-submit">Login</button>
+            <a class="forgotPassword" href="./html/ForgotPassword.html" style="text-decoration: underline; ">Forgot password?</a>
+          </div>
+          <div class="container" >
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: #2196F3; float: right;" href="createAccount.html">Create an Account</button>
+          </div>
+        </form>
+      </div>
     <!--Footer-->
     <footer class="footer">
         <div class="footer_container">
@@ -117,6 +164,5 @@
             <small>Copyright &copy; Meridian UC 2022</small>
         </div>
     </footer>
-
 </body>
 </html>
