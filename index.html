@@ -10,16 +10,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     
     <!--Style file-->
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/login.css">
 
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!--Javascript file-->
-    <script src="./js/main.js"></script>
-    <script defer src="./js/login.js"></script>
+    <script type ="module" src="./src/js/main.js"></script>
+    <script type ="module" src="./src/js/login.js"></script>
+    <script type ="module" src="./src/js/PatientDashboard.js"></script>
 
     <!--Title-->
     <title>HomePage | Meridian Urgent Care System</title>
@@ -29,16 +30,16 @@
     <nav>
         <div class="container nav_container">
             <div class="title">
-            <a href="index.html"><img src="./img/logo.png" alt="logo image"/></a>
+            <a href="index.html"><img src="./src/img/logo.png" alt="logo image"/></a>
             <a href="index.html"><h4>Meridian Urgent Care</h4></a>
             </div>
             
             <ul class="nav_menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./src/html/about.html">About</a></li>
                 <li><a href="#" onclick="document.getElementById('id01').style.display='block'" >Login</a></li>
                 <li><a href="home.html">Book an Appointment</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="./src/html/contact.html">Contact</a></li>
             </ul>
             <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
             <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
@@ -49,11 +50,11 @@
     <div class="slider_container">
         <div class="slider">
             <figure>
-                <img src= "./img/slide-1.jpg" alt="slide-1 in slider" />
-                <img src= "./img/slide-2.jpg" alt="slide-2 in slider" />
-                <img src= "./img/slide-3.jpg" alt="slide-3 in slider" />
-                <img src= "./img/slide-4.jpg" alt="slide-4 in slider" />
-                <img src= "./img/slide-1.jpg" alt="slide-1 in slider" />
+                <img src= "./src/img/slide-1.jpg" alt="slide-1 in slider" />
+                <img src= "./src/img/slide-2.jpg" alt="slide-2 in slider" />
+                <img src= "./src/img/slide-3.jpg" alt="slide-3 in slider" />
+                <img src= "./src/img/slide-4.jpg" alt="slide-4 in slider" />
+                <img src= "./src/img/slide-1.jpg" alt="slide-1 in slider" />
             </figure>
         </div>
     </div>
@@ -63,19 +64,19 @@
             <div class="header_left">
                 <h1>More than Health Care, Human Care</h1>
                 <p>Provide Affordable Healthcare Of International Standard with human care.</p>
-                <a href="about.html" class="btn btn-primary">About</a>
+                <a href="./src/html/about.html" class="btn btn-primary">About</a>
             </div>
 
             <div class="header_right">
                 <div class="header_right image">
-                    <img src="./img/showcase.png" alt="showcase image"/>
+                    <img src="./src/img/showcase.png" alt="showcase image"/>
                 </div>
             </div>
         </div>
     </header>
 
     <div id="id01" class="modal" style="margin: 0 auto; " width: 300px; height: 400px;>
-        <form class="modal-content animate" action="/action_page.php" method="post" id="login-form">
+        <form class="modal-content animate" action="./src/html/about.html" id="login-form">
           <div class="imgcontainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
           </div>
@@ -112,11 +113,11 @@
 
             </div>
             <button type="submit" style="margin-top: 50px;" id="login-form-submit">Login</button>
-            <a class="forgotPassword" href="./html/ForgotPassword.html" style="text-decoration: underline; ">Forgot password?</a>
+            <a class="forgotPassword" href="./src/html/ForgotPassword.html" style="text-decoration: underline; ">Forgot password?</a>
           </div>
           <div class="container" >
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: #2196F3; float: right;" href="createAccount.html">Create an Account</button>
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: #2196F3; float: right;" href="./src/html/createAccount.html">Create an Account</button>
           </div>
         </form>
       </div>
@@ -124,16 +125,16 @@
     <footer class="footer">
         <div class="footer_container">
             <div class="footer_1">
-                <a href="index.html"><img src="./img/logo.png" alt="logo image"/></a>
+                <a href="index.html"><img src="./src/img/logo.png" alt="logo image"/></a>
             </div>
 
             <div class="footer_2">
                 <h4>Permalinks</h4>
                 <ul class="permalinks">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="./src/html/about.html">About</a></li>
+                    <li><ahref="#" onclick="document.getElementById('id01').style.display='block'">Login</a></li>
+                    <li><a href="./src/html/contact.html">Contact</a></li>
                 </ul>
             </div>
 

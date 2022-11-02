@@ -1,0 +1,32 @@
+{
+  "name": "Software Engineering Final Project",
+  "version": "1.0.1",
+  "description": "Software Engineering Final Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "keywords": [
+    "live server",
+    "html/css",
+    "javascript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utkarshjha1994/Urgent_Care"
+  },
+  "author": "serpient",
+  "license": "",
+  "homepage": "https://github.com/utkarshjha1994/Urgent_Care",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "live-server": "^1.2.1"
+  },
+  "dependencies": {
+    "mdb-ui-kit": "^6.0.0"
+  }
+}
