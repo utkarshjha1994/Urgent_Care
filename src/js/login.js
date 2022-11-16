@@ -22,7 +22,10 @@ loginButton.addEventListener("click", (e) => {
     validateCredentials(username, password).then((result) => {
             console.log(result);
             alert("You have successfully logged in.")
-            updateCurrentUserType("patient")
+
+            updateCurrentUserType("doctor")
+
+            console.log(currentUserType)
             location.reload()
             window.location="/src/html/PatientDashboard.html"
         }).catch((error) => {

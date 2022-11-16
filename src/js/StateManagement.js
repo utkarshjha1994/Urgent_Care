@@ -1,16 +1,21 @@
 export const UserType = {
   patient : "patient",
   doctor : "doctor",
-  labTechinician : "LabTechnician",
+  labTechinician : "labTechnician",
   admin : "admin",
   guest : "Guest"
 }
 
-var currentUserType = "guest";
+var appointmentsState = "";
+var currentUserType = UserType.patient;
 
 function updateCurrentUserType(userType) {
   currentUserType = userType;
 }
 
-export {updateCurrentUserType, currentUserType };
+function updateAppointments(appointments) {
+  appointmentsState = appointments  
+}
+
+export { updateCurrentUserType, currentUserType, appointmentsState, updateAppointments };
 

@@ -1,5 +1,5 @@
 body{
-    background:#eee;
+    background:#89C4F4;
 }
 
 .card{
@@ -8,6 +8,28 @@ body{
     overflow:hidden;
     border-radius:8px;
     cursor:pointer;
+    background-color: #F2F1EF;
+}
+
+.card-text {
+    color: #1F4788;
+    margin-top: 40px; 
+    margin-bottom: 40px
+}
+
+.icon {
+    font-size:48px; 
+    color: #1F4788
+}
+
+.information {
+    padding-left:200px;
+    color: #1F4788
+}
+
+.title {
+    padding-left:20px;
+    color: #1F4788
 }
 
 /* .card:before{
@@ -31,7 +53,7 @@ body{
     top:0;
     width:4px;
     height:100%;
-    background-color:#8E24AA;
+    background-color:#ffffff;
     transform:scaleY(0);
     transition:all 0.5s;
     transform-origin: bottom
@@ -61,21 +83,21 @@ body{
 
 
 .buttons button:nth-child(1){
-       border:1px solid #8E24AA !important;
-       color:#8E24AA;
-       height:40px;
+       border:1px solid #1F4788 !important;
+       color:#1F4788;
+       height:60px;
 }
 
 .buttons button:nth-child(1):hover{
-       border:1px solid #8E24AA !important;
+       border:1px solid #1F4788 !important;
        color:#fff;
-       height:40px;
-       background-color:#8E24AA;
+       height:60px;
+       background-color:#1F4788;
 }
 
 .buttons button:nth-child(2){
-       border:1px solid #8E24AA !important;
-       background-color:#8E24AA;
+       border:1px solid #1F4788 !important;
+       background-color:#1F4788;
        color:#fff;
-        height:40px;
+    height:60px;
 }
