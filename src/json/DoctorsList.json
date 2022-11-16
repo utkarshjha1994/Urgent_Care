@@ -1,149 +1,38 @@
-{
-    "results": [
-        {
-            "id": 11,
-            "name": "Alex Parrish",
-            "gender": "Female",
-            "dob": "1982-07-18T04:00:00.000Z",
-            "email": "alexparrish8282@gmail.com",
-            "phone": 2086034384,
-            "address": "56 Paterson Street, New Brunswick, NJ 08901",
-            "speciality": "Urologist",
-            "username": "alexparrish82",
-            "password": "12356",
-            "status": "inactive"
-        },
-        {
-            "id": 12,
-            "name": "Jack McLaughlin",
-            "gender": "Male",
-            "dob": "1982-07-10T04:00:00.000Z",
-            "email": "mclaughlin25896@gmail.com",
-            "phone": 2147483647,
-            "address": "31 Chambers Street, New York, NY 10007",
-            "speciality": "Cardiologist",
-            "username": "jackmc_1982",
-            "password": "23467",
-            "status": "active"
-        },
-        {
-            "id": 13,
-            "name": "Johana Braddy",
-            "gender": "Female",
-            "dob": "1987-08-30T04:00:00.000Z",
-            "email": "braddyjohana364@gmail.com",
-            "phone": 2147483647,
-            "address": "27 George Street, Avenel, NJ 07001",
-            "speciality": "Neonatologist",
-            "username": "jcbraddydoc22",
-            "password": "34578",
-            "status": "active"
-        },
-        {
-            "id": 14,
-            "name": "Yasmine Al Massri",
-            "gender": "Female",
-            "dob": "1978-11-21T05:00:00.000Z",
-            "email": "alyasmine123@gmail.com",
-            "phone": 2147483647,
-            "address": "27 George Street, Avenel, NJ 07095",
-            "speciality": "Neurologist",
-            "username": "yasmineal.massri",
-            "password": "45689",
-            "status": "active"
-        },
-        {
-            "id": 15,
-            "name": "Russell Tovey",
-            "gender": "Other",
-            "dob": "1981-11-14T05:00:00.000Z",
-            "email": "russelllgb95158@gmail.com",
-            "phone": 2147483647,
-            "address": "891 Main Street, Fords, NJ 08863",
-            "speciality": "Dermatologist",
-            "username": "Rcrusselvuc55",
-            "password": "56790",
-            "status": "active"
-        },
-        {
-            "id": 16,
-            "name": "Anabelle Acosta",
-            "gender": "Female",
-            "dob": "1987-02-28T05:00:00.000Z",
-            "email": "stiffeacosta56@gmail.com",
-            "phone": 2147483647,
-            "address": "326 Smith Street, Keasbey, NJ 08832",
-            "speciality": "Gynecologist",
-            "username": "Acostiffecnco22",
-            "password": "78912",
-            "status": "active"
-        },
-        {
-            "id": 17,
-            "name": "Li Jun Li",
-            "gender": "Female",
-            "dob": "1988-03-20T05:00:00.000Z",
-            "email": "lilijun1988@gmail.com",
-            "phone": 2147483647,
-            "address": "561 U.S. 1, Edison, NJ 08817",
-            "speciality": "General Practitioner",
-            "username": "lijun.li",
-            "password": "89023",
-            "status": "active"
-        },
-        {
-            "id": 18,
-            "name": "Griffen Wells",
-            "gender": "Male",
-            "dob": "1975-12-31T05:00:00.000Z",
-            "email": "wellsgriff1231@gmail.com",
-            "phone": 2147483647,
-            "address": "95 Joyce Kilmer Avenue, Piscataway, NJ 08854",
-            "speciality": "ENT Specialist",
-            "username": "Gcowellsglrco77",
-            "password": "13434",
-            "status": "active"
-        },
-        {
-            "id": 19,
-            "name": "Mark Pellegrino",
-            "gender": "Male",
-            "dob": "1965-09-04T04:00:00.000Z",
-            "email": "pellegrinomarkjun9898@gmail.com",
-            "phone": 2147483647,
-            "address": "40 Hardenberg Street, New Brunswick, NJ 08901",
-            "speciality": "Dentist",
-            "username": "Mcpelleggac77",
-            "password": "24545",
-            "status": "active"
-        },
-        {
-            "id": 20,
-            "name": "Peter Michael Dillon",
-            "gender": "Male",
-            "dob": "1968-01-06T05:00:00.000Z",
-            "email": "dillompeter14863@gmail.com",
-            "phone": 2147483647,
-            "address": "293 Somerset Street, New Brunswick, NJ 08990",
-            "speciality": "Ophthalmologist",
-            "username": "petermichael.dillon",
-            "password": "35632",
-            "status": "active"
-        },
-        {
-            "id": 2147483647,
-            "name": "Alex Parrish2",
-            "gender": "Female",
-            "dob": "1982-07-18T04:00:00.000Z",
-            "email": "alexparrish8282@gmail.com",
-            "phone": 2086034384,
-            "address": "56 Paterson Street, New Brunswick, NJ 08901",
-            "speciality": "Urologist",
-            "username": "alexparrish8282@gmail.com",
-            "password": "12356",
-            "status": null
-        }
-    ],
-    "error": null,
-    "time": 11
-}
+[
+    {
+        "doctor_id": 2,
+        "doctor_name": "Dr. Jane",
+        "doctor_gender": "Female",
+        "doctor_speciality": "family medicine physician"
+    },
+    {
+        "doctor_id": 3,
+        "doctor_name": "Dr. Jill",
+        "doctor_gender": "Female",
+        "doctor_speciality": "sports medicine physician"
+    },
+    {
+        "doctor_id": 4,
+        "doctor_name": "Dr. James",
+        "doctor_gender": "Male",
+        "doctor_speciality": "emergency medicine physician"
+    },
+    {
+        "doctor_id": 6,
+        "doctor_name": "Dr. Joshua",
+        "doctor_gender": "Male",
+        "doctor_speciality": "family medicine physician"
+    },
+    {
+        "doctor_id": 7,
+        "doctor_name": "Alex",
+        "doctor_gender": "Male",
+        "doctor_speciality": "COVID Test"
+    },
+    {
+        "doctor_id": 8,
+        "doctor_name": "Dr. Kane",
+        "doctor_gender": "Male",
+        "doctor_speciality": "sports medicine physician"
+    }
+]

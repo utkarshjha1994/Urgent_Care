@@ -1,14 +1,14 @@
 // Authenticate user - by passing username and password
 const credsValidationRequest = (username, password) => {
-  return fetch("http://localhost:3000/login/patients", {
-    mode: "cors",
+  return fetch("http://localhost:3000/api/users/login", {
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
-      mode: "cors",
+      mode: "no-cors",
     },
-
+    
     method: "POST",
-    body: JSON.stringify({ username: username, password: password }),
+    body: JSON.stringify({ "email": username, "password": password }),
   })
     .then((response) => response.text())
     .then((responseText) => {
@@ -22,7 +22,7 @@ const validateCredentials = async (username, password) => {
 
 // GET Doctors
 async function getUsers() {
-  let url = "../json/viewDoctors.json";
+  let url = "http://localhost:3000/api/users/viewDoctors";
   try {
     let res = await fetch(url);
     return await res.json();

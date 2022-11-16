@@ -19,12 +19,13 @@ loginButton.addEventListener("click", (e) => {
     // Get the values input by the user in the form fields
     const username = loginForm.username.value;
     const password = loginForm.password.value;
-    validateCredentials(username, password).then((result) => {
+
+    location.reload()
+    window.location="/src/html/PatientDashboard.html"
+    validateCredentials('john@email.com', '87654321').then((result) => {
             console.log(result);
             alert("You have successfully logged in.")
-
             updateCurrentUserType("doctor")
-
             console.log(currentUserType)
             location.reload()
             window.location="/src/html/PatientDashboard.html"
@@ -42,6 +43,42 @@ eyeIcon.addEventListener("click", function(){
     const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
     passwordField.setAttribute("type", type);
 })
+
+
+const container = document.querySelector(".container"),
+      pwShowHide = document.querySelectorAll(".showHidePw"),
+      pwFields = document.querySelectorAll(".password"),
+      signUp = document.querySelector(".signup-link"),
+      login = document.querySelector(".login-link");
+
+    //   js code to show/hide password and change icon
+    pwShowHide.forEach(eyeIcon =>{
+        eyeIcon.addEventListener("click", ()=>{
+            pwFields.forEach(pwField =>{
+                if(pwField.type ==="password"){
+                    pwField.type = "text";
+
+                    pwShowHide.forEach(icon =>{
+                        icon.classList.replace("uil-eye-slash", "uil-eye");
+                    })
+                }else{
+                    pwField.type = "password";
+
+                    pwShowHide.forEach(icon =>{
+                        icon.classList.replace("uil-eye", "uil-eye-slash");
+                    })
+                }
+            }) 
+        })
+    })
+
+    // js code to appear signup and login form
+    signUp.addEventListener("click", ( )=>{
+        container.classList.add("active");
+    });
+    login.addEventListener("click", ( )=>{
+        container.classList.remove("active");
+    });
 
 
 
