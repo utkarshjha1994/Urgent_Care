@@ -1,4 +1,4 @@
-const { viewDoctors, createUser, checkIfEmailExists, getUserByEmail, getPatient, getDoctor, getLabTechs, updatePatientProfile, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment } = require("./user.service");
+const { viewDoctors, createUser, checkIfEmailExists, getUserByEmail, getPatient, getDoctor, getLabTechs, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment } = require("./user.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
@@ -265,6 +265,23 @@ module.exports = {
         }
 
         
+    },
+    viewAvailableAppointments: (req, res) => {
+        const body = req.body;
+        viewAvailableAppointments(body,(err, results) => {
+            if(err){
+                console.log(err);
+                return res.status(500).json({
+                    success: 0,
+                    message: "Internal Server Error"
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                data: results,
+                message: "Available Appointment Slots"
+            });
+        });
     },
     bookAppointment: (req, res) => {
         let body = req.body; //get appt_date, charges, patient_id, doctor_id, insuranceNo, speciality

@@ -174,8 +174,22 @@ module.exports = {
         });
         
     },
+    viewAvailableAppointments: (data, callBack) => {
+        db.query('SELECT slots FROM appointments WHERE doctor_id = ? AND appt_date = ? ',
+        [
+            data.doctor_id,
+            data.appt_date
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            console.log(results); //role also included
+            return callBack(null, results);
+        });
+    },
     bookAppointment: (data, callBack) => {
-        db.query('SELECT * FROM insuranceNW where insurance_company = ? AND coverage_description = ?',
+        db.query('SELECT * FROM insuranceNW WHERE insurance_company = ? AND coverage_description = ?',
         [
             data.insurance_company,
             data.description //doctor_speciality

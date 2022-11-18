@@ -3,7 +3,7 @@ const db = require("../../config/DBconnection");
 module.exports = {
     checkIfDoctorEmailExists: (data, callBack) => {
         //can lookup in UCusers table too
-        db.query('SELECT doctor_email from labtechs where doctor_email=?', 
+        db.query('SELECT doctor_email from doctors where doctor_email=?', 
         [
             data.email
         ],
@@ -93,7 +93,7 @@ module.exports = {
         });
     },
     addLabTech: (data, callBack) => {
-        db.query('INSERT INTO doctors(labtech_name,labtech_email,labtech_password,labtech_username,labtech_gender,labtech_dob,labtech_phone,labtech_address,labtech_speciality,labtech_estatus) values(?,?,?,?,?,?,?,?,?,?)', 
+        db.query('INSERT INTO labtechs(labtech_name,labtech_email,labtech_password,labtech_username,labtech_gender,labtech_dob,labtech_phone,labtech_address,labtech_speciality,labtech_estatus) values(?,?,?,?,?,?,?,?,?,?)', 
         [
             data.name,
             data.email,
