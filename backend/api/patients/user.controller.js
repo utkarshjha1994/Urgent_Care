@@ -141,7 +141,8 @@ module.exports = {
                                     message: "Login Successful",
                                     token: jsonwebtoken,
                                     userRole: results.user_role, //pass role from DB to JSON struct
-                                    user: results2
+                                    user: results2,
+                                    image: "https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" //insert user image
                                 });
                             }
                         });

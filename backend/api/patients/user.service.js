@@ -232,13 +232,14 @@ module.exports = {
                 console.log(data.charges);
                 console.log(results[0].coverage_amount);
                 total_payment_made = data.charges - results[0].coverage_amount;
-                db.query('INSERT INTO appointments(appt_date,patient_id,doctor_id,total_payment,pending_payment) values(?,?,?,?,?)', 
+                db.query('INSERT INTO appointments(appt_date,patient_id,doctor_id,total_payment,pending_payment,slots) values(?,?,?,?,?,?)', 
                 [
                     data.appt_date,
                     data.patient_id,
                     data.doctor_id,
                     total_payment_made,
-                    0
+                    0,
+                    data.slots
                 ],
                 (error, results,fields) => {
                     if(error){
