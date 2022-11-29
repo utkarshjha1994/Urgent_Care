@@ -1,168 +1,793 @@
+<!DOCTYPE html> 
 <html lang="en">
+	
+<!-- doccure/  30 Nov 2019 04:11:34 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!--Google Fonts: Raleway-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    
-    <!--Style file-->
-    <link rel="stylesheet" href="./src/css/style.css">
-    <link rel="stylesheet" href="./src/css/login.css">
 
-    <!--Iconscout CDN-->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title>Doccure</title>
+		
+		<!-- Favicons -->
+		<link type="image/x-icon" href="assets/img/favicon.png" rel="icon">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="assets/css/style.css">
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	
+	</head>
+	<body>
 
-    <!--Javascript file-->
-    <script type ="module" src="./src/js/main.js"></script>
-    <script type ="module" src="./src/js/login.js"></script>
-    <script type ="module" src="./src/js/PatientDashboard.js"></script>
-    <!--Title-->
-    <title>HomePage | SE Urgent Care System</title>
-</head>
-<body>
-    <!--NAVBAR-->
-    <nav>
-        <div class="container nav_container">
-            <div class="title">
-            <a href="index.html"><img src="./src/img/showcase.png" alt="logo image"/></a>
-            <a href="index.html"><h4>SE Urgent Care</h4></a>
-            </div>
-            
-            <ul class="nav_menu">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./src/html/about.html">About</a></li>
-                <li><a href="#" onclick="document.getElementById('id01').style.display='block'" >Login</a></li>
-                <li><a href="./src/html/bookAppointment.html">Book an Appointment</a></li>
-                <li><a href="./src/html/loginNew.html">Contact</a></li>
-            </ul>
-            <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-            <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
-        </div>
-    </nav>
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+		
+			<!-- Header -->
+			<header class="header">
+				<nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<a href="index-2.html" class="navbar-brand logo">
+							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+						</a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="index-2.html" class="menu-logo">
+								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
+						</div>
+						<ul class="main-nav">
+							<li class="active">
+								<a href="index-2.html">Home</a>
+							</li>
+							 
+							<li class="login-link">
+								<a href="login.html">Login / Signup</a>
+							</li>
+						</ul>		 
+					</div>		 
+					<ul class="nav header-navbar-rht">
+						<li class="nav-item contact-item">
+							<div class="header-contact-img">
+								<i class="far fa-hospital"></i>							
+							</div>
+							<div class="header-contact-detail">
+								<p class="contact-header">Contact</p>
+								<p class="contact-info-header"> +1 315 369 5943</p>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link header-login" href="login.html">login / Signup </a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!-- /Header --> 
+			<!-- Clinic and Specialities -->
+			<section class="section section-specialities">
+				<div class="container-fluid">
+					<div class="section-header text-center">
+						<h2>Clinic and Specialities</h2>
+						<p class="sub-title">Ensuring ‘well being’ as a humane commitment to enliven humanity.</p>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-md-9">
+							<!-- Slider -->
+							<div class="specialities-slider slider">
+							
+								<!-- Slider Item -->
+								<div class="speicality-item text-center">
+									<div class="speicality-img">
+										<img src="assets/img/specialities/specialities-01.png" class="img-fluid" alt="Speciality">
+										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+									</div>
+									<p>Urology</p>
+								</div>	
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="speicality-item text-center">
+									<div class="speicality-img">
+										<img src="assets/img/specialities/specialities-02.png" class="img-fluid" alt="Speciality">
+										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+									</div>
+									<p>Neurology</p>	
+								</div>							
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="speicality-item text-center">
+									<div class="speicality-img">
+										<img src="assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">
+										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+									</div>	
+									<p>Orthopedic</p>	
+								</div>							
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="speicality-item text-center">
+									<div class="speicality-img">
+										<img src="assets/img/specialities/specialities-04.png" class="img-fluid" alt="Speciality">
+										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+									</div>	
+									<p>Cardiologist</p>	
+								</div>							
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="speicality-item text-center">
+									<div class="speicality-img">
+										<img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">
+										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+									</div>	
+									<p>Dentist</p>
+								</div>							
+								<!-- /Slider Item -->
+								
+							</div>
+							<!-- /Slider -->
+							
+						</div>
+					</div>
+				</div>   
+			</section>	 
+			<!-- Clinic and Specialities -->
+		  
+			<!-- Popular Section -->
+			<section class="section section-doctor">
+				<div class="container-fluid">
+				   <div class="row">
+						<div class="col-lg-4">
+							<div class="section-header ">
+								<h2>Book Our Doctor</h2>
+								
+							</div>
+							<div class="about-content">
+								<p>Hospital  is a multi/super speciality hospital located at the prime location of New Brunswick; with state-of-the-art facilities & treatments at an affordable cost, encompassing wide spectrum of accurate diagnostics and elegant therapeutics created on the philosophical edifice of patient and ethical centricity ensuring humanistic dispensation.</p>
+								<ul class="list-unstyled">
+									<li><i class="fa fa-check color-green"></i> Multiple Options For Treatment.</li>
+									<li><i class="fa fa-check color-green"></i> Full Of Latest Technologies and Equipments.</li>
+									<li><i class="fa fa-check color-green"></i> Best Hospital Of 2020 Award Winner.</li>
+									<li><i class="fa fa-check color-green"></i> 24/7 Ambulance Support.</li>
+									<li><i class="fa fa-check color-green"></i> Eminent and Experienced Doctors.</li>
+									</ul>
+								
+							</div>
+						</div>
+						<div class="col-lg-8">
+							<div class="doctor-slider slider">
+							
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-01.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Ruby Perrin</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<span class="d-inline-block average-rating">(17)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> Florida, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $300 - $1000 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+						
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-02.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Darren Elder</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(35)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> Newyork, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $50 - $300 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+						
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-03.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Deborah Angel</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(27)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> Georgia, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $100 - $400 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+						
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-04.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Sofia Brient</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(4)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> Louisiana, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $150 - $250 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Marvin Campbell</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(66)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> Michigan, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $50 - $700 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Katharine Berthold</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(52)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> Texas, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $100 - $500 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Linda Tobin</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(43)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> Kansas, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $100 - $1000 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
+										</a>
+										<a href="javascript:void(0)" class="fav-btn">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Paul Richard</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										<p class="speciality">MBBS, MD - Dermatology , Venereology & Lepros</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(49)</span>
+										</div>
+										<ul class="available-info">
+											<li>
+												<i class="fas fa-map-marker-alt"></i> California, USA
+											</li>
+											<li>
+												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+											</li>
+											<li>
+												<i class="far fa-money-bill-alt"></i> $100 - $400 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											<div class="col-6">
+												<a href="booking.html" class="btn book-btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Doctor Widget -->
+								
+							</div>
+						</div>
+				   </div>
+				</div>
+			</section>
+			<!-- /Popular Section -->
+		   
+		   <!-- Availabe Features -->
+		   <section class="section section-features">
+				<div class="container-fluid">
+				   <div class="row">
+						<div class="col-md-5 features-img">
+							<img src="assets/img/features/feature.png" class="img-fluid" alt="Feature">
+						</div>
+						<div class="col-md-7">
+							<div class="section-header">	
+								<h2 class="mt-2">Availabe Features in Our Clinic</h2>
+								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+							</div>	
+							<div class="features-slider slider">
+								<!-- Slider Item -->
+								<div class="feature-item text-center">
+									<img src="assets/img/features/feature-01.jpg" class="img-fluid" alt="Feature">
+									<p>Patient Ward</p>
+								</div>
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="feature-item text-center">
+									<img src="assets/img/features/feature-02.jpg" class="img-fluid" alt="Feature">
+									<p>Test Room</p>
+								</div>
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="feature-item text-center">
+									<img src="assets/img/features/feature-03.jpg" class="img-fluid" alt="Feature">
+									<p>ICU</p>
+								</div>
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="feature-item text-center">
+									<img src="assets/img/features/feature-04.jpg" class="img-fluid" alt="Feature">
+									<p>Laboratory</p>
+								</div>
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="feature-item text-center">
+									<img src="assets/img/features/feature-05.jpg" class="img-fluid" alt="Feature">
+									<p>Operation</p>
+								</div>
+								<!-- /Slider Item -->
+								
+								<!-- Slider Item -->
+								<div class="feature-item text-center">
+									<img src="assets/img/features/feature-06.jpg" class="img-fluid" alt="Feature">
+									<p>Medical</p>
+								</div>
+								<!-- /Slider Item -->
+							</div>
+						</div>
+				   </div>
+				</div>
+			</section>		
+			<!-- Availabe Features -->
+			
+			<!-- Footer -->
+			<footer class="footer">
+				
+				<!-- Footer Top -->
+				<div class="footer-top">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-about">
+									<div class="footer-logo">
+										<img src="assets/img/footer-logo.png" alt="logo">
+									</div>
+									<div class="footer-about-content">
+										<p>The ‘well being’ ensured by extension of Available, Accessible, Affordable, Safe, Efficacious, Professional
+											And Ethical.</p>
+										<div class="social-icon">
+											<ul>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-menu">
+									<h2 class="footer-title">For Patients</h2>
+									<ul>
+										<li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+										<li><a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
+										<li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a></li>
+										<li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
+									</ul>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-menu">
+									<h2 class="footer-title">For Doctors</h2>
+									<ul>
+										<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
+										<li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+										<li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
+										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+									</ul>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-contact">
+									<h2 class="footer-title">Contact Us</h2>
+									<div class="footer-contact-info">
+										<div class="footer-address">
+											<span><i class="fas fa-map-marker-alt"></i></span>
+											<p> 3556  Beech Street, New Brunswick,<br> New Jersey, NJ 08817 </p>
+										</div>
+										<p>
+											<i class="fas fa-phone-alt"></i>
+											+1 315 369 5943
+										</p>
+										<p class="mb-0">
+											<i class="fas fa-envelope"></i>
+											sefinalproject@project.com
+										</p>
+									</div>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- /Footer Top -->
+				
+				<!-- Footer Bottom -->
+                <div class="footer-bottom">
+					<div class="container-fluid">
+					
+						<!-- Copyright -->
+						<div class="copyright">
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="copyright-text">
+										<p>Copyright</p>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6">
+								
+									<!-- Copyright Menu -->
+									<div class="copyright-menu">
+										<ul class="policy-menu">
+											<li><a href="term-condition.html">Terms and Conditions</a></li>
+											<li><a href="privacy-policy.html">Policy</a></li>
+										</ul>
+									</div>
+									<!-- /Copyright Menu -->
+									
+								</div>
+							</div>
+						</div>
+						<!-- /Copyright -->
+						
+					</div>
+				</div>
+				<!-- /Footer Bottom -->
+				
+			</footer>
+			<!-- /Footer -->
+		   
+	   </div>
+	   <!-- /Main Wrapper -->
+	  
+		<!-- jQuery -->
+		<script src="assets/js/jquery.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- Slick JS -->
+		<script src="assets/js/slick.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/script.js"></script>
+		
+	</body>
 
-    <!--SLIDER-->
-    <div class="slider_container">
-        <div class="slider">
-            <figure>
-                <img src= "./src/img/slide-1.jpg" alt="slide-1 in slider" />
-                <img src= "./src/img/slide-2.jpg" alt="slide-2 in slider" />
-                <img src= "./src/img/slide-3.jpg" alt="slide-3 in slider" />
-                <img src= "./src/img/slide-4.jpg" alt="slide-4 in slider" />
-                <img src= "./src/img/slide-1.jpg" alt="slide-1 in slider" />
-            </figure>
-        </div>
-    </div>
-    <!--HEADER-->
-    <header>
-        <div class="header_container">
-            <div class="header_left">
-                <h1>More than Health Care, Human Care</h1>
-                <p>Provide Affordable Healthcare Of International Standard with human care.</p>
-                <a href="./src/html/about.html" class="btn btn-primary">About</a>
-            </div>
-
-            <div class="header_right">
-                <div class="header_right image">
-                    <img src="./src/img/showcase.png" alt="showcase image"/>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div id="id01" class="modal" style="margin: 0 auto; " width: 300px; height: 400px;>
-        <form class="modal-content animate" id="login-form">
-          <div class="imgcontainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-          </div>
-          <div id="login-error-msg-holder">
-            <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
-          </div>
-          <div class="container">
-            <label for="uname" style="color: black;"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" id="username-field" required>
-      
-            <div class="password-container">
-                <label for="psw" style="color: black;"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" id="password-field" required>
-                <i class="fa-solid fa-eye" id="eye" type="password"></i>
-           </div>
-            <div>
-                <label style="color: black;">Please select the user role</label>
-                <label class="containerCheck" style="color: black;">Patient
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="containerCheck" style="color: black;">Admin
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="containerCheck" style="color: black;">Doctor
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="containerCheck" style="color: black;">Lab techinician
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-
-            </div>
-            <button type="submit" style="margin-top: 50px;" id="login-form-submit">Login</button>
-            <a class="forgotPassword" href="./src/html/ForgotPassword.html" style="text-decoration: underline; ">Forgot password?</a>
-          </div>
-          <div class="container" >
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="background-color: #2196F3; float: right;" href="./src/html/createAccount.html">Create an Account</button>
-          </div>
-        </form>
-      </div>
-    <!--Footer-->
-    <footer class="footer">
-        <div class="footer_container">
-            <div class="footer_1">
-                <a href="index.html"><img src="./src/img/logo.png" alt="logo image"/></a>
-            </div>
-
-            <div class="footer_2">
-                <h4>Permalinks</h4>
-                <ul class="permalinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="./src/html/about.html">About</a></li>
-                    <li><a href="#" onclick="document.getElementById('id01').style.display='block'">Login</a></li>
-                    <li><a href="./src/html/contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer_3">
-                <h4>Privacy</h4>
-                <ul class="permalinks">
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Refund Policy</a></li>
-                </ul>
-            </div>
-
-            <div class="footer_4">
-                <h4>Contact Us</h4>
-                <div>
-                    <p>+1 123 655 9087</p>
-                    <p>merdianuc@gmail.com</p>
-                </div>
-                <ul class="footer_socials">
-                    <li><a href="#"><i class="uil uil-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="uil uil-instagram-alt"></i></a></li>
-                    <li><a href="#"><i class="uil uil-twitter"></i></a></li>
-                    <li><a href="#"><i class="uil uil-linkedin-alt"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer_copyright">
-            <small>Copyright &copy; SE UC 2022</small>
-        </div>
-    </footer>
-</body>
+<!-- doccure/  30 Nov 2019 04:11:53 GMT -->
 </html>

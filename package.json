@@ -2,7 +2,7 @@
   "name": "Software Engineering Final Project",
   "version": "1.0.1",
   "description": "Software Engineering Final Project",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "live-server"
   },
