@@ -356,7 +356,7 @@ module.exports = {
         });
     },
     viewAppointment: (data, callBack) => {
-        db.query("SELECT * FROM appointments where patient_id=?",
+        db.query("SELECT * FROM appointments INNER JOIN doctors on appointments.doctor_id=doctors.doctor_id where patient_id=?",
         [
             data.patient_id
         ],
