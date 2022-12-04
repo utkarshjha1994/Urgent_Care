@@ -1,10 +1,27 @@
-const { viewDoctors, createUser, checkIfEmailExists, getUserByEmail, getPatient, getDoctor, getLabTechs, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment } = require("./user.service");
+const { viewDoctors, viewDoctorsBySpecialty, createUser, checkIfEmailExists, getUserByEmail, getPatient, getDoctor, getLabTechs, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment } = require("./user.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
 module.exports = {
     viewDoctors: (req, res) => {
         viewDoctors((err, results) => {
+            if(err){
+                console.log(err);
+                return res.status(500).json({
+                    success: 0,
+                    message: "Internal Server Error"
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    viewDoctorsBySpecialty: (req, res) => {
+        const body = req.body;
+        //console.log(body)
+        viewDoctorsBySpecialty(body,(err, results) => {
             if(err){
                 console.log(err);
                 return res.status(500).json({

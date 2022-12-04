@@ -14,6 +14,21 @@ module.exports = {
             return callBack(null, results);
         });
     },
+    viewDoctorsBySpecialty: (data, callBack) => {
+        console.log(data.doctor_speciality)
+        db.query("SELECT doctor_id, doctor_name, doctor_gender, doctor_speciality FROM doctors where doctor_estatus = ? and doctor_speciality = ?",
+        [
+            "Active",
+            data.doctor_speciality
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            console.log(results);
+            return callBack(null, results);
+        });
+    },
     checkIfEmailExists: (data, callBack) => {
         //can lookup in UCusers table too
         db.query('SELECT patient_email from patients where patient_email=?',  
@@ -356,7 +371,7 @@ module.exports = {
         });
     },
     viewAppointment: (data, callBack) => {
-        db.query("SELECT * FROM appointments INNER JOIN doctors on appointments.doctor_id=doctors.doctor_id where patient_id=?",
+        db.query("SELECT * FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=?",
         [
             data.patient_id
         ],

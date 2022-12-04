@@ -1,35 +1,22 @@
-const { viewDoctors, createUser, login, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment, logout } = require("./user.controller");
+const { viewDoctors, viewDoctorsBySpecialty, createUser, login, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment, logout } = require("./user.controller");
 const router = require("express").Router();
-// const { checkToken } = require("../../auth/token_validation");
+const { checkToken } = require("../../auth/token_validation");
 const { checkUser } = require("../../auth/user_validation")
 
 router.get("/viewDoctors", viewDoctors);
+router.get("/viewDoctorsBySpecialty", viewDoctorsBySpecialty);
 router.post("/patientRegister",createUser);
 router.post("/login",login);
-router.patch("/updatePatientProfile", checkUser(["ROLE.PATIENT"]), updatePatientProfile);
-router.get("/viewAvailableAppointments", checkUser(["ROLE.PATIENT"]), viewAvailableAppointments);
-router.get("/bookAppt", checkUser(["ROLE.PATIENT"]), bookAppointment);
-router.post("/makePayment", checkUser(["ROLE.PATIENT"]), makePayment);
-router.get("/viewDueCharges", checkUser(["ROLE.PATIENT"]), viewDueCharges);
-router.post("/makeDuePayment", checkUser(["ROLE.PATIENT"]), makeDuePayment);
-router.get("/viewAppt", checkUser(["ROLE.PATIENT"]), viewAppointment);
-router.patch("/modifyAppt", checkUser(["ROLE.PATIENT"]), modifyAppointment);
-router.delete("/deleteAppt", checkUser(["ROLE.PATIENT"]), deleteAppointment);
-router.get("/logout",logout);
-
-// router.get("/viewDoctors", viewDoctors);
-// router.post("/patientRegister",createUser);
-// router.post("/login",login);
-// router.patch("/updatePatientProfile", checkToken, checkUser(["ROLE.PATIENT"]), updatePatientProfile);
-// router.get("/viewAvailableAppointments", checkToken, checkUser(["ROLE.PATIENT"]), viewAvailableAppointments);
-// router.get("/bookAppt", checkToken, checkUser(["ROLE.PATIENT"]), bookAppointment);
-// router.post("/makePayment", checkToken, checkUser(["ROLE.PATIENT"]), makePayment);
-// router.get("/viewDueCharges", checkToken, checkUser(["ROLE.PATIENT"]), viewDueCharges);
-// router.post("/makeDuePayment", checkToken, checkUser(["ROLE.PATIENT"]), makeDuePayment);
-// router.get("/viewAppt", checkToken, checkUser(["ROLE.PATIENT"]), viewAppointment);
-// router.patch("/modifyAppt", checkToken, checkUser(["ROLE.PATIENT"]), modifyAppointment);
-// router.delete("/deleteAppt", checkToken, checkUser(["ROLE.PATIENT"]), deleteAppointment);
-// router.get("/logout", checkToken,logout);
+router.patch("/updatePatientProfile", checkToken, checkUser(["ROLE.PATIENT"]), updatePatientProfile);
+router.get("/viewAvailableAppointments", checkToken, checkUser(["ROLE.PATIENT"]), viewAvailableAppointments);
+router.get("/bookAppt", checkToken, checkUser(["ROLE.PATIENT"]), bookAppointment);
+router.post("/makePayment", checkToken, checkUser(["ROLE.PATIENT"]), makePayment);
+router.get("/viewDueCharges", checkToken, checkUser(["ROLE.PATIENT"]), viewDueCharges);
+router.post("/makeDuePayment", checkToken, checkUser(["ROLE.PATIENT"]), makeDuePayment);
+router.get("/viewAppt", checkToken, checkUser(["ROLE.PATIENT"]), viewAppointment);
+router.patch("/modifyAppt", checkToken, checkUser(["ROLE.PATIENT"]), modifyAppointment);
+router.delete("/deleteAppt", checkToken, checkUser(["ROLE.PATIENT"]), deleteAppointment);
+router.get("/logout", checkToken,logout);
 
 
 module.exports = router;
