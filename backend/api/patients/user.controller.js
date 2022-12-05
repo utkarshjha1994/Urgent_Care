@@ -274,6 +274,7 @@ module.exports = {
                         combo.password = hashSync(combo.password, salt);
                         console.log(combo)
                         updatePatientProfile(combo, (err, results) => {
+                            //console.log("hi",combo)
                             if(err){
                                 console.log(err);
                                 if(err.code == "ER_DUP_ENTRY"){
@@ -297,7 +298,8 @@ module.exports = {
                             }
                             return res.status(200).json({
                                 success: 1,
-                                message: "User Updated Successfully!"
+                                message: "User Updated Successfully!",
+                                //test: combo
                             });
                         });
                     }
@@ -392,7 +394,9 @@ module.exports = {
                             }
                             return res.status(200).json({
                                 success: 1,
-                                message: "User Updated Successfully!"
+                                message: "User Updated Successfully!",
+                                result: results,
+                                data: combo
                             });
                         });
                     }
