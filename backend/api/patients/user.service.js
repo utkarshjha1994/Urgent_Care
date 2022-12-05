@@ -43,12 +43,16 @@ module.exports = {
         });
     },
     createUser: (data, callBack) => {
-        db.query('INSERT INTO patients(patient_name,patient_email,patient_password,patient_username) values(?,?,?,?)', 
+        db.query('INSERT INTO patients(patient_name,patient_email,patient_password,patient_username,patient_gender,patient_dob=?,patient_phone=?,patient_address=?) values(?,?,?,?,?,?,?,?)', 
         [
             data.name,
             data.email,
             data.password,
-            data.email
+            data.email,
+            data.patient_gender,
+            data.patient_dob,
+            data.patient_phone,
+            data.patient_address
         ],
         (error, results,fields) => {
             if(error){
@@ -140,18 +144,10 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    updatePatientProfile: (data, callBack) => {
-        db.query("UPDATE patients SET patient_name=?, patient_email=?, patient_username=?, patient_password=?, patient_gender=?, patient_dob=?, patient_phone=?, patient_address=?, patient_insuranceNo=?  where patient_id=?",
+    changePassword: (data, callBack) => {
+        db.query("UPDATE patients SET patient_password=? where patient_id=?",
         [
-            data.name,
-            data.email,
-            data.email,
             data.password,
-            data.patient_gender,
-            data.patient_dob,
-            data.patient_phone,
-            data.patient_address,
-            data.patient_insuranceNo,
             data.patient_id
         ],
         (error, results, fields) => {
@@ -196,11 +192,29 @@ module.exports = {
                         });
                     }
                 });
-                //return callBack(null, results);
             }
-            //return callBack(null, results);
         });
-        
+    },
+    updatePatientProfile: (data, callBack) => {
+        db.query("UPDATE patients SET patient_gender=?, patient_dob=?, patient_phone=?, patient_address=?, patient_insuranceNo=?  where patient_id=?",
+        [
+            data.patient_gender,
+            data.patient_dob,
+            data.patient_phone,
+            data.patient_address,
+            data.patient_insuranceNo,
+            data.patient_id
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            else{
+                console.log(results);
+                return callBack(null, results);
+            };
+                //return callBack(null, results);
+        });
     },
     viewAvailableAppointments: (data, callBack) => {
         db.query('SELECT slots FROM appointments WHERE doctor_id = ? AND appt_date = ? ',

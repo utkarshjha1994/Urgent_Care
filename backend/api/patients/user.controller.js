@@ -1,4 +1,4 @@
-const { viewDoctors, viewDoctorsBySpecialty, createUser, checkIfEmailExists, getUserByEmail, getPatient, getDoctor, getLabTechs, getUserDetailsFromDB, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment } = require("./user.service");
+const { viewDoctors, viewDoctorsBySpecialty, createUser, checkIfEmailExists, getUserByEmail, getPatient, getDoctor, getLabTechs, getUserDetailsFromDB, changePassword, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment } = require("./user.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
@@ -40,18 +40,28 @@ module.exports = {
         //Validate fields [Server-side validation]
         //Are fields empty?, if so, send relevant message to client
         console.log(body.password.length);
-        if( !body.name || !body.email || !body.password || !body.passwordConfirm ){
+        if( !body.name || !body.email || !body.password || !body.passwordConfirm || !body.patient_address || !body.patient_dob || !body.patient_gender || !body.patient_phone ){
             return res.status(500).json({
                 message: 'Please fill all the fields in order to register!',
+                //send form data back
                 name: body.name,
-                email: body.email //send form data back
+                email: body.email, 
+                patient_address: body.patient_address,
+                patient_dob: body.patient_dob,
+                patient_gender: body.patient_gender,
+                patient_phone: body.patient_phone
             });
         }
         else if( body.password !== body.passwordConfirm ){
             return res.status(500).json({
                 message: 'Password and Confirm Password Fields Do Not Match!',
+                //send form data back
                 name: body.name,
-                email: body.email //send form data back
+                email: body.email, 
+                patient_address: body.patient_address,
+                patient_dob: body.patient_dob,
+                patient_gender: body.patient_gender,
+                patient_phone: body.patient_phone
             });
         }
         
@@ -59,8 +69,13 @@ module.exports = {
             console.log(body.password.length);
             return res.status(500).json({
                 message: 'Password must be atleast 8 characters and at most 12 characters!',
+                //send form data back
                 name: body.name,
-                email: body.email //send form data back
+                email: body.email, 
+                patient_address: body.patient_address,
+                patient_dob: body.patient_dob,
+                patient_gender: body.patient_gender,
+                patient_phone: body.patient_phone
             });
         }
         else{
@@ -228,14 +243,9 @@ module.exports = {
         });
     },
     updatePatientProfile: (req, res) => {
-        const body = req.body; //body will have all patient details including name,email,password,confirm password from update Profile HTML page
-        //Validate fields [Server-side validation]
-        //Are fields empty?, if so, send relevant message to client
+        const body = req.body; 
+        //server side validation for whether data is null, if null then fetch data from DB and store the same again
 
-        //check if other fields are empty
-        //if empty then, dont update null values in DB
-        //instead fetch data from DB and update those in DB
-        console.log(body.patient_dob)
         if( !body.patient_gender && !body.patient_dob && !body.patient_phone && !body.patient_address && !body.patient_insuranceNo ){ 
             getUserDetailsFromDB(body, (err, results) => {
                 if(err){
@@ -246,161 +256,127 @@ module.exports = {
                     });
                 }
                 else{
-                    combo = Object.assign(body, results[0])
-
-                    if( !combo.name || !combo.email || !combo.password || !combo.passwordConfirm ){ //Necessary fields, cannot update NULL fields to DB, These fields should be populated initially!
-                        return res.status(500).json({
-                            message: 'You cannot leave out name,email and password fields empty!',
-                            name: combo.name,
-                            email: combo.email //send form data back
-                        });
-                    }
-                    else if(combo.password.length > 12 || combo.password.length < 8){
-                        return res.status(500).json({
-                            message: 'Password must be atleast 8 characters and atmost 12 characters!',
-                            name: combo.name,
-                            email: combo.email //send form data back
-                        });
-                    }
-                    else if( combo.password !== combo.passwordConfirm ){
-                        return res.status(500).json({
-                            message: 'Password and Confirm Password Fields Do Not Match!',
-                            name: combo.name,
-                            email: combo.email //send form data back
-                        });
-                    }
-                    else{
-                        const salt = genSaltSync(10);
-                        combo.password = hashSync(combo.password, salt);
-                        console.log(combo)
-                        updatePatientProfile(combo, (err, results) => {
-                            //console.log("hi",combo)
-                            if(err){
-                                console.log(err);
-                                if(err.code == "ER_DUP_ENTRY"){
-                                    return res.status(500).json({
-                                        success: 0,
-                                        message: "Email already Exists!"
-                                    });
-                                }
-                                else{
-                                    return res.status(500).json({
-                                        success: 0,
-                                        message: "Internal Server Error"
-                                    });
-                                }
-                            }
-                            if(!results){
+                    combo = results[0]
+                    //console.log("hi",combo)
+                    updatePatientProfile(combo, (err, results) => {
+                        if(err){
+                            console.log(err);
+                            if(err.code == "ER_DUP_ENTRY"){ //Not required now!
                                 return res.status(500).json({
                                     success: 0,
-                                    message: "Failed to Update User!"
+                                    message: "Email already Exists!"
                                 });
                             }
-                            return res.status(200).json({
-                                success: 1,
-                                message: "User Updated Successfully!",
-                                //test: combo
+                            else{
+                                return res.status(500).json({
+                                    success: 0,
+                                    message: "Internal Server Error"
+                                });
+                            }
+                        }
+                        if(!results){
+                            return res.status(500).json({
+                                success: 0,
+                                message: "Failed to Update User!"
                             });
+                        }
+                        return res.status(200).json({
+                            success: 1,
+                            message: "User Updated Successfully!",
+                            result: results,
+                            data: combo
                         });
-                    }
+                    });
                 }
             });
         }
-        else if( body.patient_gender || body.patient_dob || body.patient_phone || body.patient_address || body.patient_insuranceNo ){
-            //if one of these fields has to be updated then check for nullity of each field if empty then don't replace existing value
+        else if( body.patient_gender && body.patient_dob && body.patient_phone && body.patient_address || body.patient_insuranceNo ){
+            //insuranceNo can be optional
             console.log("Hi")
-            getUserDetailsFromDB(body, (err, results) => {
+            updatePatientProfile(body, (err, results) => {
                 if(err){
                     console.log(err);
-                    return res.status(500).json({
-                        success: 0,
-                        message: "Internal Server Error"
-                    });
-                }
-                else{
-                    if(body.patient_gender){
-                        console.log("available gender")
-                        delete results[0].patient_gender
-                        combo = Object.assign(body, results[0])
-                    }
-                    else if(body.patient_dob){
-                        console.log("available dob")
-                        delete results[0].patient_dob
-                        combo = Object.assign(body, results[0])
-                    }
-                    else if(body.patient_phone){
-                        console.log("available phone")
-                        delete results[0].patient_phone
-                        combo = Object.assign(body, results[0])
-                    }
-                    else if(body.patient_address){
-                        console.log("available address")
-                        delete results[0].patient_address
-                        combo = Object.assign(body, results[0])
-                    }
-                    else if(body.patient_insuranceNo){
-                        console.log("available insuranceNo")
-                        delete results[0].patient_insuranceNo
-                        combo = Object.assign(body, results[0])
-                    }
-                    
-
-                    if( !combo.name || !combo.email || !combo.password || !combo.passwordConfirm ){ //Necessary fields, cannot update NULL fields to DB, These fields should be populated initially!
+                    if(err.code == "ER_DUP_ENTRY"){ //Not required now!
                         return res.status(500).json({
-                            message: 'You cannot leave out name,email and password fields empty!',
-                            name: combo.name,
-                            email: combo.email //send form data back
-                        });
-                    }
-                    else if(combo.password.length > 12 || combo.password.length < 8){
-                        return res.status(500).json({
-                            message: 'Password must be atleast 8 characters and atmost 12 characters!',
-                            name: combo.name,
-                            email: combo.email //send form data back
-                        });
-                    }
-                    else if( combo.password !== combo.passwordConfirm ){
-                        return res.status(500).json({
-                            message: 'Password and Confirm Password Fields Do Not Match!',
-                            name: combo.name,
-                            email: combo.email //send form data back
+                            success: 0,
+                            message: "Email already Exists!"
                         });
                     }
                     else{
-                        const salt = genSaltSync(10);
-                        combo.password = hashSync(combo.password, salt);
-                        console.log(combo)
-                        updatePatientProfile(combo, (err, results) => {
-                            if(err){
-                                console.log(err);
-                                if(err.code == "ER_DUP_ENTRY"){
-                                    return res.status(500).json({
-                                        success: 0,
-                                        message: "Email already Exists!"
-                                    });
-                                }
-                                else{
-                                    return res.status(500).json({
-                                        success: 0,
-                                        message: "Internal Server Error"
-                                    });
-                                }
-                            }
-                            if(!results){
-                                return res.status(500).json({
-                                    success: 0,
-                                    message: "Failed to Update User!"
-                                });
-                            }
-                            return res.status(200).json({
-                                success: 1,
-                                message: "User Updated Successfully!",
-                                result: results,
-                                data: combo
-                            });
+                        return res.status(500).json({
+                            success: 0,
+                            message: "Internal Server Error"
                         });
                     }
                 }
+                if(!results){
+                    return res.status(500).json({
+                        success: 0,
+                        message: "Failed to Update User!"
+                    });
+                }
+                return res.status(200).json({
+                    success: 1,
+                    message: "User Updated Successfully!",
+                    result: results,
+                    data: body
+                });
+            });       
+        }
+    },
+    changePassword: (req, res) => {
+        const body = req.body; //body must have patient_id, email, password, confirm password fields (email field preferred to be uneditable)
+
+        if(!body.password || !body.passwordConfirm ){
+            return res.status(500).json({
+                success: '0',
+                message: 'You cannot leave out password fields empty!',
+            });
+        }
+        else if(body.password.length > 12 || body.password.length < 8){
+            return res.status(500).json({
+                success: '0',
+                message: 'Password must be atleast 8 characters and atmost 12 characters!'
+            });
+        }
+        else if( body.password !== body.passwordConfirm ){
+            return res.status(500).json({
+                success: '0',
+                message: 'Password and Confirm Password Fields Do Not Match!'
+            });
+        }
+        else{
+            const salt = genSaltSync(10);
+            body.password = hashSync(body.password, salt);
+            console.log(body)
+            changePassword(body, (err, results) => {
+                //console.log("hi",combo)
+                if(err){
+                    console.log(err);
+                    if(err.code == "ER_DUP_ENTRY"){
+                        return res.status(500).json({
+                            success: 0,
+                            message: "Email already Exists!"
+                        });
+                    }
+                    else{
+                        return res.status(500).json({
+                            success: 0,
+                            message: "Internal Server Error"
+                        });
+                    }
+                }
+                if(!results){
+                    return res.status(500).json({
+                        success: 0,
+                        message: "Failed to Update User!"
+                    });
+                }
+                return res.status(200).json({
+                    success: 1,
+                    message: "Password Updated Successfully!",
+                    result: body
+                });
             });
         }
     },
