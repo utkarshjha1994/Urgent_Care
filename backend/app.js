@@ -8,7 +8,12 @@ const adminRouter = require("./api/admin/admin.router");
 const labtechRouter = require("./api/labtech/labtech.router");
 const bodyParser = require("body-parser");
 const app = express();
-
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
+app.use(cors(corsOptions));
 app.use(express.json()); //Parse JSON bodies (as sent by API clients)
 app.use(express.urlencoded({extended: false})); //Parse URL encoded bodies (as sent by HTML forms)
 app.use(cookieParser()); //use cookie parser
@@ -16,12 +21,6 @@ app.use("/api/users",userRouter);
 app.use("/api/doctors",doctorRouter);
 app.use("/api/admins",adminRouter);
 app.use("/api/labtechs",labtechRouter);
-const corsOptions ={
-    origin:'*', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200,
- }
-app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

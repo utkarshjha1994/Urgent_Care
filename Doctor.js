@@ -1,14 +1,13 @@
 // GET Doctors
 renderUsers();
 
-
-
-  async function renderUsers() {
+async function renderUsers() {
     let result = await getUsers();
     console.log(result.data)
-  }
+    return result.data
+}
 
-  async function getUsers() {
+async function getUsers() {
     let url = "http://localhost:3000/api/users/viewDoctors";
     try {
       let res = await fetch(url);
@@ -17,3 +16,9 @@ renderUsers();
       alert("Unable to load doctor's list at this moment");
     }
   }
+  const data = await renderUsers()
+
+  
+export{data}
+
+

@@ -1,4 +1,4 @@
-import { renderUsers, validateCredentials } from "./APIManager.js";
+import { validateCredentials } from "./APIManager.js";
 
 const loginForm = document.getElementById("login-form");
 const loginButton = document.getElementById("login-form-submit");
@@ -11,17 +11,25 @@ loginButton.addEventListener("click", (e) => {
   const username = loginForm.userid.value;
   const password = loginForm.usrpsw.value;
 
-  validateCredentials('rasikapunde@gmail.com', '12345678')
+  if (username === "" || password === "") {
+    alert("Please enter valid username and password")
+  } else {
+    validateCredentials(username, password)
     .then((result) => {
-      console.log((result.user));
-      console.log((result.token));
-      sessionStorage.setItem("jwt", result.token);
-      sessionStorage.setItem("userRole", result.userRole);
-      sessionStorage.setItem("userDetails", JSON.stringify(result.user));
-      // let jwt = sessionStorage.getItem("jwt");
-      window.location = "patient-dashboard.html";
+      if (result.success === 1) {
+        sessionStorage.setItem("jwt", result.token);
+        sessionStorage.setItem("userRole", result.userRole);
+        sessionStorage.setItem("userDetails", JSON.stringify(result.user));
+        sessionStorage.setItem("userImage", result.image)
+        let jwt = sessionStorage.getItem("jwt");
+        window.location = "patient-dashboard.html";
+      } else {
+        alert(result.message);
+      }
     })
     .catch((error) => {
       alert(error);
     });
+  }
+  
 });

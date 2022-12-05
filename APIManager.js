@@ -65,4 +65,39 @@ const registerUser =  (name, email, password, passwordConfirm) => {
   return registerUserRequest(name, email, password, passwordConfirm);
 };
 
-export { renderUsers, validateCredentials, registerUser};
+
+// Authenticate user - by passing username and password
+const updateUserRequest = (patient_id, name, email, password, passwordConfirm, gender, dob, user_role, patient_address) => {
+  let url = "http://localhost:3000/api/users/updatePatientProfile";
+  let data = {
+    patient_id: patient_id,
+    name: name,
+    email: email,
+    password: password,
+    passwordConfirm: passwordConfirm,
+    gender: gender,
+    dob: dob,
+    user_role: user_role,
+    patient_address: patient_address
+  };
+
+  return fetch(url, {
+    headers: {
+      "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+      "Content-Type": "application/json",
+      mode: "cors",
+    },
+
+    method: "PATCH",
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .catch((error) => error);
+};
+
+const updateUser =  (patient_id, name, email, password, passwordConfirm, gender, dob, user_role, patient_address) => {
+  console.log(name, email, password)
+  return updateUserRequest(patient_id, name, email, password, passwordConfirm, gender, dob, user_role, patient_address);
+};
+
+export { renderUsers, validateCredentials, registerUser, updateUser};
