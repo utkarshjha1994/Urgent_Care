@@ -127,6 +127,19 @@ module.exports = {
             return callBack(null, results[0]);
         });
     },
+    getUserDetailsFromDB: (data, callBack) => {
+        db.query("SELECT patient_gender, patient_dob, patient_phone, patient_address, patient_insuranceNo FROM patients where patient_id=?",
+        [
+            data.patient_id
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            console.log(results);
+            return callBack(null, results);
+        });
+    },
     updatePatientProfile: (data, callBack) => {
         db.query("UPDATE patients SET patient_name=?, patient_email=?, patient_username=?, patient_password=?, patient_gender=?, patient_dob=?, patient_phone=?, patient_address=?, patient_insuranceNo=?  where patient_id=?",
         [
@@ -134,11 +147,11 @@ module.exports = {
             data.email,
             data.email,
             data.password,
-            data.gender,
-            data.dob,
-            data.phone,
-            data.address,
-            data.insuranceNo,
+            data.patient_gender,
+            data.patient_dob,
+            data.patient_phone,
+            data.patient_address,
+            data.patient_insuranceNo,
             data.patient_id
         ],
         (error, results, fields) => {
