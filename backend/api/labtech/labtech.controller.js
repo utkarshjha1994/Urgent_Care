@@ -1,4 +1,4 @@
-const { getTests, modifyTests, updateLabTechProfile } = require("./labtech.service");
+const { getTests, modifyTests, updateLabTechProfile, changePassword, getUserDetailsFromDB } = require("./labtech.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
@@ -37,36 +37,33 @@ module.exports = {
             });
         });
     },
-    updateLabTechProfile: (req, res) => {
-        const body = req.body; //body will have all doctor details including name,email,password,confirm password from update Profile HTML page
-        //Validate fields [Server-side validation]
-        //Are fields empty?, if so, send relevant message to client
-        
-        if( !body.name || !body.email || !body.password || !body.passwordConfirm ){ //Necessary fields, cannot update NULL fields to DB, These fields should be populated initially!
+    changePassword: (req, res) => {
+        const body = req.body; //body must have patient_id, email, password, confirm password fields (email field preferred to be uneditable)
+
+        if(!body.password || !body.passwordConfirm ){
             return res.status(500).json({
-                message: 'You cannot leave out name,email and password fields empty!',
-                name: body.name,
-                email: body.email //send form data back
+                success: '0',
+                message: 'You cannot leave out password fields empty!',
             });
         }
-        else if(body.password.length >= 12 && body.password.length <= 8){
+        else if(body.password.length > 12 || body.password.length < 8){
             return res.status(500).json({
-                message: 'Password must be atleast 8 characters and atmost 12 characters!',
-                name: body.name,
-                email: body.email //send form data back
+                success: '0',
+                message: 'Password must be atleast 8 characters and atmost 12 characters!'
             });
         }
         else if( body.password !== body.passwordConfirm ){
             return res.status(500).json({
-                message: 'Password and Confirm Password Fields Do Not Match!',
-                name: body.name,
-                email: body.email //send form data back
+                success: '0',
+                message: 'Password and Confirm Password Fields Do Not Match!'
             });
         }
         else{
             const salt = genSaltSync(10);
             body.password = hashSync(body.password, salt);
-            updateLabTechProfile(body, (err, results) => {
+            console.log(body)
+            changePassword(body, (err, results) => {
+                //console.log("hi",combo)
                 if(err){
                     console.log(err);
                     if(err.code == "ER_DUP_ENTRY"){
@@ -90,9 +87,94 @@ module.exports = {
                 }
                 return res.status(200).json({
                     success: 1,
-                    message: "LabTech Record Updated Successfully!"
+                    message: "Password Updated Successfully!",
+                    result: body
                 });
             });
         }
-    }
+    },
+    updateLabTechProfile: (req, res) => {
+        const body = req.body; 
+        //Validate fields [Server-side validation]
+        console.log("Hi",body)
+        if( !body.gender && !body.dob && !body.phone && !body.address && !body.speciality ){ 
+            //console.log("hi")
+            getUserDetailsFromDB(body, (err, results) => {
+                if(err){
+                    console.log(err);
+                    return res.status(500).json({
+                        success: 0,
+                        message: "Internal Server Error"
+                    });
+                }
+                else{
+                    combo = results[0]
+                    console.log("hi",combo)
+                    updateDoctorProfile(combo, (err, results) => {
+                        if(err){
+                            console.log(err);
+                            if(err.code == "ER_DUP_ENTRY"){ //Not required now!
+                                return res.status(500).json({
+                                    success: 0,
+                                    message: "Email already Exists!"
+                                });
+                            }
+                            else{
+                                return res.status(500).json({
+                                    success: 0,
+                                    message: "Internal Server Error"
+                                });
+                            }
+                        }
+                        if(!results){
+                            return res.status(500).json({
+                                success: 0,
+                                message: "Failed to Update User!"
+                            });
+                        }
+                        return res.status(200).json({
+                            success: 1,
+                            message: "LabTech Updated Successfully!",
+                            result: results,
+                            data: combo
+                        });
+                    });
+                }
+            });
+        }
+        else if(  body.gender && body.dob && body.phone && body.address && body.speciality  ){
+            console.log("Hi")
+            updateLabTechProfile(body, (err, results) => {
+                if(err){
+                    console.log(err);
+                    if(err.code == "ER_DUP_ENTRY"){ //Not required now!
+                        return res.status(500).json({
+                            success: 0,
+                            message: "Email already Exists!"
+                        });
+                    }
+                    else{
+                        return res.status(500).json({
+                            success: 0,
+                            message: "Internal Server Error"
+                        });
+                    }
+                }
+                if(!results){
+                    return res.status(500).json({
+                        success: 0,
+                        message: "Failed to Update User!"
+                    });
+                }
+                return res.status(200).json({
+                    success: 1,
+                    message: "LabTech Updated Successfully!",
+                    result: results,
+                    data: body
+                });
+            });       
+        }
+
+        
+    },
 }

@@ -29,18 +29,10 @@ module.exports = {
             return callBack(null, results);
         });
     },
-    updateLabTechProfile: (data, callBack) => {
-        db.query("UPDATE labtechs SET labtech_name=?, labtech_email=?, labtech_username=?, labtech_password=?, labtech_gender=?, labtech_dob=?, labtech_phone=?, labtech_address=?, labtech_speciality=?  where labtech_id=?",
+    changePassword: (data, callBack) => {
+        db.query("UPDATE labtechs SET labtech_password=? where labtech_id=?",
         [
-            data.name,
-            data.email,
-            data.email,
             data.password,
-            data.gender,
-            data.dob,
-            data.phone,
-            data.address,
-            data.speciality,
             data.labtech_id
         ],
         (error, results, fields) => {
@@ -85,10 +77,42 @@ module.exports = {
                         });
                     }
                 });
-                //return callBack(null, results);
+            }
+        });
+    },
+    getUserDetailsFromDB: (data, callBack) => {
+        db.query("SELECT labtech_gender, labtech_dob, labtech_phone, labtech_address, labtech_speciality FROM labtechs where labtech_id=?",
+        [
+            data.labtech_id
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            console.log(results);
+            return callBack(null, results);
+        });
+    },
+    updateLabTechProfile: (data, callBack) => {
+        db.query("UPDATE labtechs SET labtech_gender=?, labtech_dob=?, labtech_phone=?, labtech_address=?, labtech_speciality=?  where labtech_id=?",
+        [
+            data.gender,
+            data.dob,
+            data.phone,
+            data.address,
+            data.speciality,
+            data.labtech_id
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            else{
+                console.log(results);
+                return callBack(null, results);
             }
             //return callBack(null, results);
         });
         
-    }
+    },
 }
