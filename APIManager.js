@@ -100,4 +100,61 @@ const updateUser =  (patient_id, name, email, password, passwordConfirm, gender,
   return updateUserRequest(patient_id, name, email, password, passwordConfirm, gender, dob, user_role, patient_address);
 };
 
-export { renderUsers, validateCredentials, registerUser, updateUser};
+const updatePassword = (newPass, confirmPass) => {
+  let url = "http://localhost:3000/api/users/changePassword";
+  let data = {
+    patient_id: sessionStorage.getItem("userDetails").patient_id,
+    email: sessionStorage.getItem("userDetails").email,
+    password: newPass,
+    passwordConfirm: confirmPass,
+    user_role: sessionStorage.getItem("userRole")
+  };
+
+  return fetch(url, {
+    headers: {
+      "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+      "Content-Type": "application/json",
+      mode: "cors",
+    },
+
+    method: "PATCH",
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .catch((error) => error);
+};
+
+const updatePasswordReq =  (newPass, confirmPass) => {
+  return updatePassword(newPass, confirmPass);
+};
+
+
+const getpatients = () => {
+  let url = "http://localhost:3000/api/doctors/getAllMyPatients";
+  var getUser = sessionStorage.getItem("userDetails");
+  var user = JSON.parse(getUser);
+  let data = {
+    doctor_id: user.doctor_id,
+    user_role: sessionStorage.getItem("userRole")
+  };
+
+  return fetch(url, {
+    headers: {
+      "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+      "Content-Type": "application/json",
+      mode: "cors",
+    },
+
+    method: "POST",
+    body: JSON.stringify(data),
+  })
+    .then((response) => 
+    response.json())
+    .catch((error) => error);
+};
+
+const getpatientsRequest =  () => {
+  return getpatients();
+};
+
+export { renderUsers, validateCredentials, registerUser, updateUser, updatePasswordReq, getpatientsRequest};

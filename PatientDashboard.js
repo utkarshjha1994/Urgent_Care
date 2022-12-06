@@ -1,13 +1,23 @@
 var getUser = sessionStorage.getItem("userDetails");
 var user = JSON.parse(getUser);
 document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
-document.getElementById("patientName").innerHTML = user.patient_name.toUpperCase();
+document.getElementById("patientName").innerHTML =
+  user.patient_name.toUpperCase();
 document.getElementById("patientImage").src =
   sessionStorage.getItem("userImage");
 document.getElementById("patientImage1").src =
   sessionStorage.getItem("userImage");
 document.getElementById("patientImage2").src =
   sessionStorage.getItem("userImage");
+
+document.getElementById("logout").addEventListener("click", (e) => {
+  sessionStorage.clear();
+  window.location = "login.html";
+});
+document.getElementById("logout1").addEventListener("click", (e) => {
+  sessionStorage.clear();
+  window.location = "login.html";
+});
 
 let empTab = document.getElementById("appointments");
 let result = "";
@@ -33,14 +43,14 @@ var app = {
   headers: {
     "Content-Type": "application/json",
     mode: "cors",
-    "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+    authorization: "Bearer " + sessionStorage.getItem("jwt"),
   },
   body: JSON.stringify({
     patient_id: patient_id,
     user_role: "ROLE.PATIENT",
   }),
 };
-console.log("hello")
+console.log("hello");
 fetch("http://localhost:3000/api/users/viewAppt", app)
   .then((response) => {
     return response.json();
@@ -66,9 +76,8 @@ fetch("http://localhost:3000/api/users/viewAppt", app)
     // Do something for an error here
   });
 
-
 function RenderData(result) {
-    console.log("render");
+  console.log("render");
   let rowCnt = empTab.rows.length; // get the number of rows.
   console.log("result is " + result);
   result.forEach(myFunction);
@@ -161,8 +170,6 @@ function RenderData(result) {
         h.appendChild(i);
         td.appendChild(div);
       }
-
-     
     }
   }
 }

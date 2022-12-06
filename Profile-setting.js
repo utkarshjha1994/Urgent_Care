@@ -52,8 +52,15 @@ updateButton.addEventListener("click", (e) => {
     .catch((error) => {
     alert(error);
     });
-    
-    
+  });
+
+  document.getElementById("logout").addEventListener("click", (e) => {
+    sessionStorage.clear()
+    window.location = "login.html"
+  });
+  document.getElementById("logout1").addEventListener("click", (e) => {
+    sessionStorage.clear()
+    window.location = "login.html"
   });
 
 
