@@ -71,6 +71,21 @@
 								<a href="index-2.html">Home</a>
 							</li>
 							
+							<li class="has-submenu active">
+								<a href="#">Patients <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li class="active"><a href="search.html">Search Doctor</a></li>
+									<li><a href="doctor-profile.html">Doctor Profile</a></li>
+									<li><a href="booking.html">Booking</a></li>
+									<li><a href="checkout.html">Checkout</a></li>
+									<li><a href="booking-success.html">Booking Success</a></li>
+									<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
+									<li><a href="favourites.html">Favourites</a></li>
+									<li><a href="chat.html">Chat</a></li>
+									<li><a href="profile-settings.html">Profile Settings</a></li>
+									<li><a href="change-password.html">Change Password</a></li>
+								</ul>
+							</li>
 							<li class="login-link">
 								<a href="login.html">Login / Signup</a>
 							</li>
@@ -135,71 +150,57 @@
 						
 							<!-- Search Filter -->
 							<div class="card search-filter">
+								<script type="module" >
+									import {container} from './doctorcard.js';
+									$('.nameinput').on('input', function() {
+											container()
+											});
+									$('.idinput').on('input', function() {
+											container()
+											});	
+									$('.specialityinput').on('input', function() {
+											container()
+											});	
+									$(".malecheckbox").change(function() {
+									
+										container()
+									});
+									$(".femalecheckbox").change(function() {
+										container()
+									
+								});	
+								</script>
 								<div class="card-header">
 									<h4 class="card-title mb-0">Search Filter</h4>
 								</div>
 								<div class="card-body">
-								<div class="filter-widget">
-									<div class="cal-icon">
-										<input type="text" class="form-control datetimepicker" placeholder="Select Date">
-									</div>			
+									
+									<input type="text" id ="nameinput" class="nameinput"  placeholder="Search by name"></input>
+									<div class="card-body">
+										<div class="filter-widget">
+												<input type="text" id ="idinput" class="idinput" placeholder="ID number">
+										</div>
 								</div>
 								<div class="filter-widget">
 									<h4>Gender</h4>
 									<div>
 										<label class="custom_check">
-											<input type="checkbox" name="gender_type" checked>
+											<input type="checkbox" id ="malecheckbox" class="malecheckbox" name="gender_type" >
 											<span class="checkmark"></span> Male Doctor
 										</label>
 									</div>
 									<div>
 										<label class="custom_check">
-											<input type="checkbox" name="gender_type">
+											<input type="checkbox" id ="femalecheckbox" class="femalecheckbox" name="gender_type">
 											<span class="checkmark"></span> Female Doctor
 										</label>
 									</div>
 								</div>
-								<div class="filter-widget">
-									<h4>Select Specialist</h4>
+								<h4>Specialty</h4>
 									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist" checked>
-											<span class="checkmark"></span> Urology
-										</label>
+										<div class="filter-widget">
+											<input type="text" id ="specialityinput" class="specialityinput" placeholder="Doctor Speciality">
 									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist" checked>
-											<span class="checkmark"></span> Neurology
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Dentist
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Orthopedic
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Cardiologist
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Cardiologist
-										</label>
-									</div>
-								</div>
-									<div class="btn-search">
-										<button type="button" class="btn btn-block">Search</button>
 									</div>	
 								</div>
 							</div>
@@ -212,23 +213,19 @@
 							<!-- Doctor Widget -->
 							<script type="module" src="Doctor.js"></script>
 
-							<script type="module">
-								import {getnumcards,getname,getid,getgender,getspecialty} from './doctorcard.js';													
-								</script>	
+							
 								
 								
-					
-								<script type="module" src='./doctorcard.js'></script>
-								<div class="container">
-								  
+							
+								
+								<div class="container"></div>
+									
 								</div>
 
 							
 
 							
-							<div class="load-more text-center">
-								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>	
-							</div>	
+							
 						</div>
 					</div>
 

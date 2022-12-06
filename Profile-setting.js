@@ -6,10 +6,8 @@ const updateButton = document.getElementById("update-profile-button");
 var getUser = sessionStorage.getItem("userDetails");
 var userRole = sessionStorage.getItem("userRole");
 var user = JSON.parse(getUser);
+
 let arr = user.patient_address.split(', ');
-
-
-
 
 document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
 document.getElementById("name1").innerHTML = user.patient_name.toUpperCase();

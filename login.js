@@ -17,12 +17,16 @@ loginButton.addEventListener("click", (e) => {
     validateCredentials(username, password)
     .then((result) => {
       if (result.success === 1) {
-        sessionStorage.setItem("jwt", result.token);
-        sessionStorage.setItem("userRole", result.userRole);
-        sessionStorage.setItem("userDetails", JSON.stringify(result.user));
-        sessionStorage.setItem("userImage", result.image)
-        let jwt = sessionStorage.getItem("jwt");
-        window.location = "patient-dashboard.html";
+          sessionStorage.setItem("jwt", result.token);
+          sessionStorage.setItem("userRole", result.userRole);
+          sessionStorage.setItem("userDetails", JSON.stringify(result.user));
+          sessionStorage.setItem("userImage", result.image)
+        if (result.userRole === 'ROLE.DOCTOR') {
+          window.location = "doctor-dashboard.html";
+        } else {
+          window.location = "patient-dashboard.html";
+        }
+        
       } else {
         alert(result.message);
       }

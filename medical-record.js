@@ -1,4 +1,10 @@
-let usertype = "ROLE.PATIENT"
+document.getElementById("patientImage12").src =
+  sessionStorage.getItem("userImage");
+  var getUser = sessionStorage.getItem("userDetails");
+var user = JSON.parse(getUser);
+  document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
+
+let usertype = sessionStorage.getItem("userRole")
 
 
 let params = window.location.search.substring(1).split('&');

@@ -15,8 +15,39 @@ function getspecialty(number){
 function getnumcards(){
     return Object.keys(data).length
 }
+
+//function hmtlify(){
+/*export function filtername(){
+    var input;
+    input = document.getElementById('nameinput');
+    namefilters = input.value;
+    container(namefilters)
+
+}*/
+export function container(){
+    
+    var namefilters = document.getElementById('nameinput').value;
+    var idfilters = document.getElementById('idinput').value;
+    var specialityfilters = document.getElementById('specialityinput').value;
+
+    var malefilter = $('#malecheckbox').is(':checked');
+//    if(!malefilter){
+     var   femalefilter = $('#femalecheckbox').is(':checked');
+  //  }
+    if(malefilter && femalefilter){
+        alert('Please select up to one gender for the Doctor');
+    }
+    $(".container").html("");
 for (let i = 0; i < getnumcards(); i++) {
     
+    //alert(namefilters +" "+getname(i)+" "+(namefilters!='' && (getname(i).includes(namefilters))));
+    if((namefilters!='' && (!getname(i).includes(namefilters))) 
+    || (idfilters!='' && (getid(i)!=(idfilters)))
+    || (specialityfilters!='' && (!getspecialty(i).includes(specialityfilters)))
+    ||(malefilter && (getgender(i)!='Male'))
+    ||(femalefilter && (getgender(i)!='Female'))
+    )
+       {continue}
     let card = $('<div/>').addClass('card').attr("id", "hour" + i);
        let cardbody = $('<div/>').addClass('card-body').attr("id", "hour" + i);
         card.append(cardbody);
@@ -27,7 +58,7 @@ for (let i = 0; i < getnumcards(); i++) {
                     let docimg = $('<div/>').addClass('doctor-img').attr("id", "hour" + i);
                         docinfleft.append(docimg);
                     let img = document.createElement("img");
-                        img.setAttribute("src", "./assets/img/specialities/generic_doctor.png");
+                        img.setAttribute("src", "assets/img/doctors/generic_doctor.png");
                         img.setAttribute("height", "150");
                         img.setAttribute("width", "150");                   
                         docimg.append(img);
@@ -36,7 +67,7 @@ for (let i = 0; i < getnumcards(); i++) {
                         let name = $('<h4/>').text(getname(i));
                             docinfcont.append(name);
                         let img2 = document.createElement("img");
-                            img2.setAttribute("src", "./assets/img/specialities/generic_doctor.png");
+                            img2.setAttribute("src", "assets/img/specialities/generic_medical_bag_2.jpg");
                             img2.setAttribute("height", "15");
                             img2.setAttribute("width", "15");
                             docinfcont.append(img2);
@@ -142,8 +173,10 @@ for (let i = 0; i < getnumcards(); i++) {
                         clinbookapt.append(apt);
 
      $(".container").append(card);
+}
    }
-export {getnumcards,getname,getid,getgender,getspecialty}
+container()
+//export {filtername}
 window.data=data
 
 

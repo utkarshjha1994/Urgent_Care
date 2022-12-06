@@ -1,7 +1,7 @@
 var getUser = sessionStorage.getItem("userDetails");
 var user = JSON.parse(getUser);
 document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
-document.getElementById("name1").innerHTML = user.patient_name.toUpperCase();
+document.getElementById("patientName").innerHTML = user.patient_name.toUpperCase();
 document.getElementById("patientImage").src =
   sessionStorage.getItem("userImage");
 document.getElementById("patientImage1").src =
