@@ -1,18 +1,10 @@
 const db = require("../../config/DBconnection");
 
 module.exports = {
-    updateDoctorProfile: (data, callBack) => {
-        db.query("UPDATE doctors SET doctor_name=?, doctor_email=?, doctor_username=?, doctor_password=?, doctor_gender=?, doctor_dob=?, doctor_phone=?, doctor_address=?, doctor_speciality=?  where doctor_id=?",
+    changePassword: (data, callBack) => {
+        db.query("UPDATE doctors SET doctor_password=? where doctor_id=?",
         [
-            data.name,
-            data.email,
-            data.email,
             data.password,
-            data.gender,
-            data.dob,
-            data.phone,
-            data.address,
-            data.speciality,
             data.doctor_id
         ],
         (error, results, fields) => {
@@ -57,7 +49,39 @@ module.exports = {
                         });
                     }
                 });
-                //return callBack(null, results);
+            }
+        });
+    },
+    getUserDetailsFromDB: (data, callBack) => {
+        db.query("SELECT doctor_gender, doctor_dob, doctor_phone, doctor_address, doctor_speciality FROM doctors where doctor_id=?",
+        [
+            data.doctor_id
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            console.log(results);
+            return callBack(null, results);
+        });
+    },
+    updateDoctorProfile: (data, callBack) => {
+        db.query("UPDATE doctors SET doctor_gender=?, doctor_dob=?, doctor_phone=?, doctor_address=?, doctor_speciality=?  where doctor_id=?",
+        [
+            data.gender,
+            data.dob,
+            data.phone,
+            data.address,
+            data.speciality,
+            data.doctor_id
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            else{
+                console.log(results);
+                return callBack(null, results);
             }
             //return callBack(null, results);
         });
