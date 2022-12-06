@@ -67,20 +67,17 @@ const registerUser =  (name, email, password, passwordConfirm) => {
 
 
 // Authenticate user - by passing username and password
-const updateUserRequest = (patient_id, name, email, password, passwordConfirm, gender, dob, user_role, patient_address) => {
+const updateUserRequest = (patient_id, patient_phone, gender, dob, user_role, patient_address) => {
   let url = "http://localhost:3000/api/users/updatePatientProfile";
   let data = {
     patient_id: patient_id,
-    name: name,
-    email: email,
-    password: password,
-    passwordConfirm: passwordConfirm,
-    gender: gender,
-    dob: dob,
+    patient_gender: gender,
+    patient_dob: "1995-10-09",
     user_role: user_role,
-    patient_address: patient_address
+    patient_address: patient_address,
+    patient_phone: patient_phone
   };
-
+console.log(data)
   return fetch(url, {
     headers: {
       "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
@@ -95,9 +92,8 @@ const updateUserRequest = (patient_id, name, email, password, passwordConfirm, g
     .catch((error) => error);
 };
 
-const updateUser =  (patient_id, name, email, password, passwordConfirm, gender, dob, user_role, patient_address) => {
-  console.log(name, email, password)
-  return updateUserRequest(patient_id, name, email, password, passwordConfirm, gender, dob, user_role, patient_address);
+const updateUser =  (patient_id, patient_phone, gender, dob, user_role, patient_address) => {
+  return updateUserRequest(patient_id, patient_phone, gender, dob, user_role, patient_address);
 };
 
 const updatePassword = (newPass, confirmPass) => {

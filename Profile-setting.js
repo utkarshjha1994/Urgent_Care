@@ -33,12 +33,10 @@ updateButton.addEventListener("click", (e) => {
     const email = submitForm.email.value;
     const address = submitForm.address.value + ', ' + submitForm.city.value + ', ' + submitForm.state.value + ', ' + submitForm.zip.value;
     
-    updateUser(user.patient_id, username, email, user.patient_password, 
-        user.patient_password, user.patient_gender, user.patient_dob
-        ,userRole, address)
+    updateUser(user.patient_id, user.patient_phone, user.patient_gender, user.patient_dob,userRole, address)
     .then((result) => {
     if (result.success === 1) {
-        console.log(result.message)
+      alert("Updated Successfully!!")
         // sessionStorage.setItem("jwt", result.token);
         // sessionStorage.setItem("userRole", result.userRole);
         // sessionStorage.setItem("userDetails", JSON.stringify(result.user));

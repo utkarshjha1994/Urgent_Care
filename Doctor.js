@@ -16,7 +16,7 @@ async function getUsers() {
       alert("Unable to load doctor's list at this moment");
     }
   }
-  const data = await renderUsers()
+const data = await renderUsers()
 
   
 export{data}
