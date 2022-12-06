@@ -1,4 +1,4 @@
-const { updateDoctorProfile, getUserDetailsFromDB, changePassword, viewDocAppointment, addDiagnosis, getMyPatientsApptHistory, getAllMyPatients } = require("./doctor.service");
+const { updateDoctorProfile, getUserDetailsFromDB, changePassword, viewDocAppointment, viewMyIndividualPatientsAppointments, addDiagnosis, getMyPatientsApptHistory, getAllMyPatients } = require("./doctor.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 
 module.exports = {
@@ -193,6 +193,22 @@ module.exports = {
     getMyPatientsApptHistory: (req, res) => {
         const body = req.body; //get doctor_id
         getMyPatientsApptHistory(body,(err, results) => {
+            if(err){
+                console.log(err);
+                return res.status(500).json({
+                    success: 0,
+                    message: "Internal Server Error"
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    viewMyIndividualPatientsAppointments: (req, res) => {
+        const body = req.body;
+        viewMyIndividualPatientsAppointments(body, (err, results) => {
             if(err){
                 console.log(err);
                 return res.status(500).json({

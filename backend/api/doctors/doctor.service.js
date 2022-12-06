@@ -115,7 +115,7 @@ module.exports = {
         });
     },
     getAllMyPatients: (data, callBack) => {
-        db.query('SELECT DISTINCT appointments.doctor_id, patients.patient_id, patients.patient_name, patients.patient_gender FROM appointments INNER JOIN patients on appointments.patient_id=patients.patient_id where doctor_id=?', 
+        db.query('SELECT DISTINCT appointments.doctor_id, patients.patient_id, patients.patient_phone, patients.patient_address, patients.patient_name, patients.patient_gender FROM appointments INNER JOIN patients on appointments.patient_id=patients.patient_id where doctor_id=?', 
         [
             data.doctor_id
         ],
@@ -135,6 +135,19 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
+            return callBack(null, results);
+        });
+    },
+    viewMyIndividualPatientsAppointments: (data, callBack) => {
+        db.query("SELECT * FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=?",
+        [
+            data.patient_id
+        ],
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            console.log(results);
             return callBack(null, results);
         });
     }
