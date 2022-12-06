@@ -417,6 +417,9 @@ module.exports = {
         let body = req.body; //get appt_date, charges, patient_id, doctor_id, insuranceNo, speciality
         let charges = body.charges;
         console.log(charges);
+
+        //if No insurance Number provided, then frontend should send full charge in makePayment!
+
         let insurance_company = body.insuranceNo.substring(0,3);
         console.log(insurance_company);
         req.body.insurance_company = insurance_company;
@@ -454,13 +457,6 @@ module.exports = {
         //if our Urgent care does not fall into any insurance network then totalPayment = charges i.e., full charge (no rebate)
 
         //only after make payment, appointment will be booked and inserted into DB!
-
-        let charges = body.charges;
-        console.log(charges);
-        let insurance_company = body.insuranceNo.substring(0,3);
-        console.log(insurance_company);
-        req.body.insurance_company = insurance_company;
-        body = req.body;
         console.log(body);
 
         makePayment(body, (err, results) => {
