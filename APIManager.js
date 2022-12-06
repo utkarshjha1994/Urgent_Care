@@ -39,13 +39,17 @@ async function renderUsers() {
 }
 
 // Authenticate user - by passing username and password
-const registerUserRequest = (name, email, password, passwordConfirm) => {
+const registerUserRequest = (name, email, password, passwordConfirm, patient_address, patient_dob, patient_gender, patient_phone) => {
   let url = "http://localhost:3000/api/users/patientRegister";
   let data = {
     name: name,
     email: email,
     password: password,
     passwordConfirm: passwordConfirm,
+    patient_address: patient_address,
+    patient_dob: patient_dob,
+    patient_gender:patient_gender,
+    patient_phone: patient_phone
   };
 
   return fetch(url, {
@@ -61,8 +65,8 @@ const registerUserRequest = (name, email, password, passwordConfirm) => {
     .catch((error) => error);
 };
 
-const registerUser =  (name, email, password, passwordConfirm) => {
-  return registerUserRequest(name, email, password, passwordConfirm);
+const registerUser =  (name, email, password, passwordConfirm, patient_address, patient_dob, patient_gender, patient_phone) => {
+  return registerUserRequest(name, email, password, passwordConfirm, patient_address, patient_dob, patient_gender, patient_phone);
 };
 
 
