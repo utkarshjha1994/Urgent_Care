@@ -1,90 +1,162 @@
-var a = "hello";
-var defaultOptions;
-import { updateAppointments, appointmentsState } from "./StateManagement.js";
 
 let dropdown  = document.getElementById('doc');
 let button = document.getElementById('book');
+let patient = document.getElementById('patient');
+let date = document.getElementById('date');
+let slots = document.getElementById('slots');
+var getUser = sessionStorage.getItem("userDetails");
 
-button.onclick = function(){book()}
+console.log(sessionStorage.getItem("bookingDoctorName"))
+let doctor_id = sessionStorage.getItem("bookingDoctorID")
+let doctor_name =  sessionStorage.getItem("bookingDoctorName")
+
+var user = JSON.parse(getUser);
+button.onclick = function(){book()};
 // dropdown.onchange(myFunc()) ;
 // res.results.forEach(myFunction);
 ////function myFunc(){
 //}
+patient.setAttribute('value',user.patient_name);
+dropdown.setAttribute('value',doctor_name);
 
-fetch('http://localhost:3000/Doctors')
-  .then((response) => {
-    return response.json()
-  })
-  .then((data) => {
-    console.log(data.results);
-    // Work with JSON data here
-    data.results.forEach((item) => {
-      console.log(item);
-         var option = document.createElement("option");
-          option.text = item.name;
-          option.id = item.id;;
-          dropdown.appendChild(option);
-    });
-    // try {
-    //   function myFunction(item){
-        
-    //   }
-    // } catch {
-    //   console.log("heree", error)
-    // }
-    
+var getUser = sessionStorage.getItem("userDetails");
+var user = JSON.parse(getUser);
 
-  })
-  .catch((err) => {
-    // Do something for an error here
-  })
 
-  var patient  = document.getElementById('pat');
-
-  fetch('http://localhost:3000/Patients')
-  .then((response) => {
-    return response.json()
-  })
-  .then((data) => {
-    // Work with JSON data here
-    data.results.forEach(myFunction);
-    function myFunction(item){
-       var  option = document.createElement("option");
-        option.text = item.name;
-        option.id = item.id;
-        patient.appendChild(option);
-    }
-  })
-  .catch((err) => {
-    // Do something for an error here
-    
-  })
-
-function book() {
-    var date = document.getElementById("date").value;
-    document.getElementById("date").setAttribute("required", '');
-    var doctor_id = dropdown.options[dropdown.selectedIndex].id;
-    var patient_id = patient.options[dropdown.selectedIndex].id
-    var data = JSON.stringify({ "date": date,"patient_id": patient_id,"doctor_id":doctor_id,total_payment:"4000"  
-});
-
-var appointments1 = {
-  method: "POST", 
-  mode: "cors",
-  headers: {
-      "Content-Type": "application/json",
-      mode:"cors",
-  },
-  body: data
-}
   
-/*  fetch('http://localhost:3000/appointments/book/', defaultOptions)
-.then(response => response.json())
-.then(response => console.log(JSON.stringify(response))).catch(error=>console.log(error))*/
-updateAppointments("123");
-// console.log(appointmentsState)
-window.location = "../html/payment.html";
+function book() {
+  let e = slots
+  console.log("Length is"+e.options[e.selectedIndex].text);
+
+  if(date.value.length == 0 || e.options[e.selectedIndex].text == "Select a Slot--"){
+    alert("Please Enter Appointments dates and slots");
+  }
+  else{
+      
+      
+
+
+
+  let Payment_Details = async () => {
+    const location = window.location.hostname;
+    const settings = {
+      method: "POST", 
+      mode: "cors",
+      headers: {
+          "Content-Type": "application/json",
+          mode:"cors",
+          "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+    
+      },
+      body: JSON.stringify({
+        patient_id: patient_id,
+        doctor_id: doctor_id,
+        appt_date: dat,
+        user_role: "ROLE.PATIENT",
+        charges:"300",
+        insuranceNo:"GHI",
+        description:sessionStorage.getItem("bookingDoctorSpeciality")
+    
+    
+      })
+    };
+    try {
+        const fetchResponse = await fetch('http://localhost:3000/appointments/book/', settings);
+        const data = await fetchResponse.json();
+        return data;
+    } catch (e) {
+        alert("Appointment Could not be booked, Please try again")
+        return e;
+    }    
+
+  }
+
+  /*var defaultOptions = 
+    
+    fetch('http://localhost:3000/appointments/book/', defaultOptions)
+  .then(response => response.json())
+  .then(response => console.log(JSON.stringify(response))).catch(error=>console.log(error))
+  // console.log(appointmentsState)
+  */
+  if(Payment_Details.success==1){
+    sessionStorage.setItem("Payment_Details",JSON.stringify(Payment_Details));
+    let appointment_details = JSON.stringify({
+      patient_id: patient_id,
+      doctor_id: doctor_id,
+      appt_date: dat,
+      user_role: "ROLE.PATIENT",
+      charges:"300",
+      insuranceNo:"GHI",
+      description:sessionStorage.getItem("bookingDoctorSpeciality"),
+      slots: slots.value
+  
+    })
+    window.location = "payment.html";
+  }
+
+
+}
+}
+var refresh = slots.innerHTML
+const inputHandler = function(e) {
+  
+
+  var options = document.querySelectorAll('#slots option');
+    options.forEach(o => o.remove());
+
+  slots.innerHTML = refresh
+  console.log(e.target.value)
+  slots.disabled = false
+  console.log("value is"+slots.value)
+ 
+  showAvailableSlots(e.target.value)
 
 }
 
+date.addEventListener('input', inputHandler);
+
+
+function showAvailableSlots(item){
+
+  var defaultOptions = {
+    method: "POST", 
+    mode: "cors",
+    headers: {
+        "Content-Type": "application/json",
+        mode:"cors",
+        "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+
+    },
+    body: JSON.stringify({"doctor_id":doctor_id,
+    "appt_date":item,
+    
+    "user_role":"ROLE.PATIENT"})
+  }
+   console.log(defaultOptions) ;
+    fetch('http://localhost:3000/api/users/viewAvailableAppointments', defaultOptions)
+  .then(response => response.json())
+  .then(response =>{ 
+   // data =  JSON.stringify(response)
+    response.data.forEach(myFunction)
+
+    function myFunction(item){
+      slots.removeChild(document.getElementById(item.slots))
+    }
+
+    console.log(response)
+    if(response.success==1){
+      //alert("Diagnosis Successfully Updated")
+    }
+    else{
+     // alert("Diagnosis Update Failed, Please Try Again")
+    }
+    
+  
+  }).catch(error=>{
+   // alert("Diagnosis Update Failed, Please Try Again")
+    console.log(error)
+  })
+
+
+}
 

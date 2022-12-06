@@ -188,4 +188,31 @@ const updateDoctorProfile =  (name, phoneNumber) => {
   return updateDoctorRequest(name, phoneNumber);
 };
 
-export { renderUsers, validateCredentials, registerUser, updateUser, updatePasswordReq, getpatientsRequest, updateDoctorProfile};
+
+const getMyPatientsList = (patient_id) => {
+  let url = "http://localhost:3000/api/doctors/viewMyIndividualPatientsAppointments";
+  let data = {
+    patient_id: patient_id,
+    user_role:"ROLE.DOCTOR"
+  };
+
+  return fetch(url, {
+    headers: {
+      "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+      "Content-Type": "application/json",
+      mode: "cors",
+    },
+
+    method: "POST",
+    body: JSON.stringify(data),
+  })
+    .then((response) => 
+    response.json())
+    .catch((error) => error);
+};
+
+const getMyPatientsListRequest =  (patient_id) => {
+  return getMyPatientsList(patient_id);
+};
+
+export { renderUsers, validateCredentials, registerUser, updateUser, updatePasswordReq, getpatientsRequest, updateDoctorProfile, getMyPatientsListRequest };

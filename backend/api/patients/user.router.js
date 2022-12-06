@@ -9,15 +9,15 @@ router.post("/patientRegister",createUser);
 router.post("/login",login);
 router.patch("/changePassword", checkToken, checkUser(["ROLE.PATIENT"]),changePassword);
 router.patch("/updatePatientProfile", checkToken, checkUser(["ROLE.PATIENT"]), updatePatientProfile);
-router.get("/viewAvailableAppointments", checkToken, checkUser(["ROLE.PATIENT"]), viewAvailableAppointments);
-router.get("/bookAppt", checkToken, checkUser(["ROLE.PATIENT"]), bookAppointment);
+router.post("/viewAvailableAppointments", checkToken, checkUser(["ROLE.PATIENT"]), viewAvailableAppointments);
+router.post("/bookAppt", checkToken, checkUser(["ROLE.PATIENT"]), bookAppointment);
 router.post("/makePayment", checkToken, checkUser(["ROLE.PATIENT"]), makePayment);
-router.get("/viewDueCharges", checkToken, checkUser(["ROLE.PATIENT"]), viewDueCharges);
+router.post("/viewDueCharges", checkToken, checkUser(["ROLE.PATIENT"]), viewDueCharges);
 router.post("/makeDuePayment", checkToken, checkUser(["ROLE.PATIENT"]), makeDuePayment);
-router.get("/viewAppt", checkToken, checkUser(["ROLE.PATIENT"]), viewAppointment);
+router.post("/viewAppt", checkUser(["ROLE.PATIENT"]), viewAppointment);
 router.patch("/modifyAppt", checkToken, checkUser(["ROLE.PATIENT"]), modifyAppointment);
 router.delete("/deleteAppt", checkToken, checkUser(["ROLE.PATIENT"]), deleteAppointment);
-router.get("/logout", checkToken,logout);
+router.post("/logout", checkToken,logout);
 
 
 module.exports = router;

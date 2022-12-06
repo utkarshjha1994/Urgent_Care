@@ -1,442 +1,233 @@
-<!DOCTYPE html> 
-<html lang="en">
+
+<html>
 	
-<!-- doccure/booking.html  30 Nov 2019 04:12:16 GMT -->
-<head>
-		<meta charset="utf-8">
-		<title>Doccure</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-		
-		<!-- Favicons -->
-		<link href="assets/img/favicon.png" rel="icon">
-		
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		
-		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-		
-		<!-- Main CSS -->
-		<link rel="stylesheet" href="assets/css/style.css">
-		
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-			<script src="assets/js/html5shiv.min.js"></script>
-			<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
-	
-	</head>
 	<body>
-
-		<!-- Main Wrapper -->
-		<div class="main-wrapper">
+		<div class = "formbold-wrapper">
+			<button class="formbold-back" id = "back">Go Back</button>
+		  </div>
+	
+	<div class="formbold-main-wrapper" background = "../img/5101.jpg_wh860.jpg">
 		
-			<!-- Header -->
-			<header class="header">
-				<nav class="navbar navbar-expand-lg header-nav">
-					<div class="navbar-header">
-						<a id="mobile_btn" href="javascript:void(0);">
-							<span class="bar-icon">
-								<span></span>
-								<span></span>
-								<span></span>
-							</span>
-						</a>
-						<a href="index-2.html" class="navbar-brand logo">
-							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-						</a>
-					</div>
-					<div class="main-menu-wrapper">
-						<div class="menu-header">
-							<a href="index-2.html" class="menu-logo">
-								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-							</a>
-							<a id="menu_close" class="menu-close" href="javascript:void(0);">
-								<i class="fas fa-times"></i>
-							</a>
-						</div>
-						<ul class="main-nav">
-							<li>
-								<a href="index-2.html">Home</a>
-							</li>
-							    
-							<li class="login-link">
-								<a href="login.html">Login / Signup</a>
-							</li>
-						</ul>	 
-					</div>		 
-					<ul class="nav header-navbar-rht">
-						<li class="nav-item contact-item">
-							<div class="header-contact-img">
-								<i class="far fa-hospital"></i>							
-							</div>
-							<div class="header-contact-detail">
-								<p class="contact-header">Contact</p>
-								<p class="contact-info-header"> +1 315 369 5943</p>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link header-login" href="login.html">login / Signup </a>
-						</li>
-					</ul>
-				</nav>
-			</header>
-			<!-- /Header -->
+		
+		<div class="formbold-form-wrapper">
 			
-			<!-- Breadcrumb -->
-			<div class="breadcrumb-bar">
-				<div class="container-fluid">
-					<div class="row align-items-center">
-						<div class="col-md-12 col-12">
-							<nav aria-label="breadcrumb" class="page-breadcrumb">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Booking</li>
-								</ol>
-							</nav>
-							<h2 class="breadcrumb-title">Booking</h2>
-						</div>
-					</div>
-				</div>
+			
+			<div class="formbold-mb-5"  >
+				
+				<p style="background-image: url('../img/5101.jpg_wh860.jpg');">
+	
+				<h1 class = "title_appointment" id = "title">Book an Appointment</h1>
+			  <label for="name" class="formbold-form-label" id = "patient_name"  > Patient Name </label>
+			  <input
+				type="text"
+				name="name"
+				id="patient"
+				placeholder="Patient Name"
+				class="formbold-form-input"
+				readonly
+			  >
+	
+				</input >
 			</div>
-			<!-- /Breadcrumb -->
+			<div class="formbold-mb-5">
+			  <label for="Doctor" class="formbold-form-label"> Doctor Name </label>
+			  
+			  <input
+				type="text"
+				name="Doctor"
+				id="doc"
+				placeholder="Doctor Name"
+				class="formbold-form-input"
+				readonly
+			  >
+			</input>
+			  
+			</div>
 			
-			<!-- Page Content -->
-			<div class="content">
-				<div class="container">
-				
-					<div class="row">
-						<div class="col-12">
-						
-							<div class="card">
-								<div class="card-body">
-									<div class="booking-doc-info">
-										<a href="doctor-profile.html" class="booking-doc-img">
-											<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
-										</a>
-										<div class="booking-info">
-											<h4><a href="doctor-profile.html">Dr. Darren Elder</a></h4>
-											<div class="rating">
-												<i class="fas fa-star filled"></i>
-												<i class="fas fa-star filled"></i>
-												<i class="fas fa-star filled"></i>
-												<i class="fas fa-star filled"></i>
-												<i class="fas fa-star"></i>
-												<span class="d-inline-block average-rating">35</span>
-											</div>
-											<p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<!-- Schedule Widget -->
-							<div class="card booking-schedule schedule-widget">
-							
-								<!-- Schedule Header -->
-								<div class="schedule-header">
-									<div class="row">
-										<div class="col-md-12">
-										
-											<!-- Day Slot -->
-											<div class="day-slot">
-												<ul>
-													<li class="left-arrow">
-														<a href="#">
-															<i class="fa fa-chevron-left"></i>
-														</a>
-													</li>
-													<li>
-														<span>Mon</span>
-														<span class="slot-date">11 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Tue</span>
-														<span class="slot-date">12 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Wed</span>
-														<span class="slot-date">13 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Thu</span>
-														<span class="slot-date">14 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Fri</span>
-														<span class="slot-date">15 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Sat</span>
-														<span class="slot-date">16 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li>
-														<span>Sun</span>
-														<span class="slot-date">17 Nov <small class="slot-year">2019</small></span>
-													</li>
-													<li class="right-arrow">
-														<a href="#">
-															<i class="fa fa-chevron-right"></i>
-														</a>
-													</li>
-												</ul>
-											</div>
-											<!-- /Day Slot -->
-											
-										</div>
-									</div>
-								</div>
-								<!-- /Schedule Header -->
-								
-								<!-- Schedule Content -->
-								<div class="schedule-cont">
-									<div class="row">
-										<div class="col-md-12">
-										
-											<!-- Time Slot -->
-											<div class="time-slot">
-												<ul class="clearfix">
-													<li>
-														<a class="timing" href="#">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing" href="#">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing" href="#">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing" href="#">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing" href="#">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing selected" href="#">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing" href="#">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-													<li>
-														<a class="timing" href="#">
-															<span>9:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>10:00</span> <span>AM</span>
-														</a>
-														<a class="timing" href="#">
-															<span>11:00</span> <span>AM</span>
-														</a>
-													</li>
-												</ul>
-											</div>
-											<!-- /Time Slot -->
-											
-										</div>
-									</div>
-								</div>
-								<!-- /Schedule Content -->
-								
-							</div>
-							<!-- /Schedule Widget -->
-							
-							<!-- Submit Section -->
-							<div class="submit-section proceed-btn text-right">
-								<a href="checkout.html" class="btn btn-primary submit-btn">Proceed to Pay</a>
-							</div>
-							<!-- /Submit Section -->
-							
-						</div>
-					</div>
+			<div class="flex flex-wrap formbold--mx-3">
+				<div class="formbold-mb-5 w-full">
+				  <label for="date" class="formbold-form-label"> Date </label>
+				  <input
+					type="date"
+					name="date"
+					id="date"
+					class="formbold-form-input"
+					required
+				  />
 				</div>
 
-			</div>		
-			<!-- /Page Content -->
-   
-			<!-- Footer -->
-			<footer class="footer">
 				
-				<!-- Footer Top -->
-				<div class="footer-top">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-about">
-									<div class="footer-logo">
-										<img src="assets/img/footer-logo.png" alt="logo">
-									</div>
-									<div class="footer-about-content">
-										<p>The ‘well being’ ensured by extension of Available, Accessible, Affordable, Safe, Efficacious, Professional and Ethical. </p>
-										<div class="social-icon">
-											<ul>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-												</li>
-												<li>
-													<a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							  
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Doctors</h2>
-									<ul>
-										<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
-									
-										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										 
-										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
-									</ul>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-							<div class="col-lg-3 col-md-6">
-							
-								<!-- Footer Widget -->
-								<div class="footer-widget footer-contact">
-									<h2 class="footer-title">Contact Us</h2>
-									<div class="footer-contact-info">
-										<div class="footer-address">
-											<span><i class="fas fa-map-marker-alt"></i></span>
-											<p> 3556  Beech Street, New Brunswick,<br> New Jersey, NJ 08817 </p>
-										</div>
-										<p>
-											<i class="fas fa-phone-alt"></i>
-											+1 315 369 5943
-										</p>
-										<p class="mb-0">
-											<i class="fas fa-envelope"></i>
-											sefinalproject@project.com
-										</p>
-									</div>
-								</div>
-								<!-- /Footer Widget -->
-								
-							</div>
-							
-						</div>
-					</div>
-				</div>
-				<!-- /Footer Top -->
+			  
+			</div>
+
+			<div class="formbold-mb-5">
+				<label for="Doctor" class="formbold-form-label"> Slots </label>
 				
-				<!-- Footer Bottom -->
-                <div class="footer-bottom">
-					<div class="container-fluid">
-					
-						<!-- Copyright -->
-						<div class="copyright">
-							<div class="row">
-								<div class="col-md-6 col-lg-6">
-									<div class="copyright-text">
-										<p class="mb-0">Copyrights</p>
-									</div>
-								</div>
-								<div class="col-md-6 col-lg-6">
-								
-									<!-- Copyright Menu -->
-									<div class="copyright-menu">
-										<ul class="policy-menu">
-											<li><a href="term-condition.html">Terms and Conditions</a></li>
-											<li><a href="privacy-policy.html">Policy</a></li>
-										</ul>
-									</div>
-									<!-- /Copyright Menu -->
-									
-								</div>
-							</div>
-						</div>
-						<!-- /Copyright -->
-						
-					</div>
-				</div>
-				<!-- /Footer Bottom -->
+				<select
+				  type="text"
+				  name="Slots"
+				  id="slots"
+				  placeholder="Doctor Name"
+				  class="formbold-form-input"
+				  disabled
+				>
+				<option>Select a Slot--</option>
+				<option id ="1" value ="1">9AM - 10AM</option>				
+				<option id ="2" value ="2">10AM - 11AM</option>
+				<option id ="3" value ="3">11AM - 12PM</option>
+				<option id ="4" value ="4">12PM - 1PM</option>
+				<option id ="5" value ="5">1PM - 2PM</option>
+				<option id ="6" value ="6">2PM - 3PM</option>
+
+				<option id ="7" value ="7">3PM - 4PM</option>
+				<option id ="8" value ="8">4PM - 5PM</option>
+				<option id ="9" value ="9">5PM - 6PM</option>
+
+
+
+
+				</select>
 				
-			</footer>
-			<!-- /Footer -->
-		   
-		</div>
-		<!-- /Main Wrapper -->
+			  </div>
 	  
-		<!-- jQuery -->
-		<script src="assets/js/jquery.min.js"></script>
-		
-		<!-- Bootstrap Core JS -->
-		<script src="assets/js/popper.min.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		
-		<!-- Custom JS -->
-		<script src="assets/js/script.js"></script>
-		
+			
+			<div>
+			  <button class="formbold-btn" id = "book">Book</button>
+			</div>
+		  
+		</div>
+	  </div>
+	  <script type="module" src="BookAppointment.js"></script>
 	</body>
+	</html>
+	
+	
+	  <style>
+		* {
+		  margin: 0;
+		  padding: 0;
+		  box-sizing: border-box;
+		  background-color:white;
+		}
+		body {
+		  font-family: "Inter", Arial, Helvetica, sans-serif;
+		}
+		
+		.formbold-mb-5 {
+		  margin-bottom: 20px;
+		}
+		.formbold-pt-3 {
+		  padding-top: 12px;
+		}
+		.formbold-main-wrapper {
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  padding: 120px;
+		  background-image: url("./assets/img/book.jpg");
+		  
+		}
+	  
+		.formbold-form-wrapper {
+	
+		  margin: 0 auto;
+		  max-width: 450px;
+		  width: 100%;
+		  background: white;
+		  margin-right: -50px;
+		}
+		.formbold-form-label {
+			margin-left:10%;
+	
+		  display: block;
+		  font-weight: 500;
+		  font-size: 16px;
+		  color: #07074d;
+		  margin-bottom: 12px;
+		}
+		.formbold-form-label-2 {
+		  font-weight: 600;
+		  font-size: 20px;
+		  margin-bottom: 20px;
+		}
+	  
+		.formbold-form-input {
+		  width: 80%;
+		  margin:5px;
+		  margin-left:10%;
+		  padding: 12px 24px;
+		  border-radius: 6px;
+		  border: 1px solid #e0e0e0;
+		  background: white;
+		  font-weight: 500;
+		  font-size: 16px;
+		  color: #6b7280;
+		  outline: none;
+		  resize: none;
+		}
+		.formbold-form-input:focus {
+		  border-color: #6a64f1;
+		  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+		}
+	  
+		.formbold-btn {
+		  text-align: center;
+		  font-size: 16px;
+		  border-radius: 6px;
+		  padding: 14px 32px;
+		  border: none;
+		  font-weight: 600;
+		  background-color:black;
+		  color: white;
+		  width: 40%;
+		  cursor: pointer;
+		  margin-left:30%;
+		  margin-bottom: 5px
+		}
 
-<!-- doccure/booking.html  30 Nov 2019 04:12:16 GMT -->
-</html>
+		.formbold-back {
+		  font-size: 16px;
+		  border-radius: 6px;
+		  padding: 14px 32px;
+		  border: none;
+		  font-weight: 600;
+		  background-color:lightblue;
+		  color: white;
+		  width: 10%;
+		  cursor: pointer;
+		  margin-left:0;
+		  margin-bottom: 5px
+		}
+		.formbold-btn:hover {
+		  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+		}
+	  
+		.formbold--mx-3 {
+		  
+		}
+		.formbold-px-3 {
+		  padding-left: 12px;
+		  padding-right: 12px;
+		}
+		.flex {
+		  display: flex;
+		}
+		.flex-wrap {
+		  flex-wrap: wrap;
+		}
+		.w-full {
+		  width: 100%;
+		}
+		#title{
+			margin-top:50px ;
+			margin-bottom: 40px;
+			color: blue;
+			text-align: center;
+			text-shadow: #6b7280;
+			}
+	
+		
+	
+		  
+		
+	  </style>

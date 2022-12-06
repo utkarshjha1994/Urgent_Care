@@ -48,6 +48,7 @@ for (let i = 0; i < getnumcards(); i++) {
     ||(femalefilter && (getgender(i)!='Female'))
     )
        {continue}
+    
     let card = $('<div/>').addClass('card').attr("id", "hour" + i);
        let cardbody = $('<div/>').addClass('card-body').attr("id", "hour" + i);
         card.append(cardbody);
@@ -58,7 +59,7 @@ for (let i = 0; i < getnumcards(); i++) {
                     let docimg = $('<div/>').addClass('doctor-img').attr("id", "hour" + i);
                         docinfleft.append(docimg);
                     let img = document.createElement("img");
-                        img.setAttribute("src", "assets/img/doctors/generic_doctor.png");
+                        img.setAttribute("src", "assets/img/generic_doctor.png");
                         img.setAttribute("height", "150");
                         img.setAttribute("width", "150");                   
                         docimg.append(img);
@@ -104,34 +105,37 @@ for (let i = 0; i < getnumcards(); i++) {
                         clindet.append(location);
                     let clinser = $('<div/>').addClass('clinic-services').attr("id", "hour" + i);                    
                     docinfcont.append(clinser);
-                        let sp2 = $('<span/>').text('Dental Fillings');
-                        clinser.append(sp2);
-                        let sp3 = $('<span/>').text('Whitening');
-                        clinser.append(sp3);
+                        
                     
                 let docinfright = $('<div/>').addClass('doc-info-right').attr("id", "hour" + i);                    
                 docwid.append(docinfright);
                     let clininf = $('<div/>').addClass('clini-infos').attr("id", "hour" + i);                    
                     docinfright.append(clininf);
-                    let genderid = $('<small/>').text(getgender(i)); 
+                    let genderid = $('<p/>').text(getgender(i)); 
                     clininf.append(genderid);
-                    let br = $('<br/>')
-                    clininf.append(br);
-                    let id = $('<small/>').text('Id #: '+getid(i)); 
+                    
+                    let id = $('<p/>').text('Id #: '+getid(i)); 
                     clininf.append(id);
                         let l1 = $('<li/>').attr("id", "hour" + i);
                         l1.css('list-style', 'none');
                         clininf.append(l1);
                             let thumb = $('<i/>');
                                 thumb.addClass('far fa-thumbs-up');
-                            let n1 = $('<p/>').text("99%");
+                                thumb.css('display', 'inline-block');
+                                thumb.css('margin-right', '10px')
+                            thumb.append("&nbsp; &nbsp;");
+                            
+                            let n1 = $('<p/>').text(" 99%");
+                                n1.css('display', 'inline-block')
+
                                 thumb.append(n1);
+                                
                                 l1.append(thumb);
 
-                                let l2 = $('<li/>').attr("id", "hour" + i);
+                              /*  let l2 = $('<li/>').attr("id", "hour" + i);
                                 l2.css('list-style', 'none');               
                                          clininf.append(l2);
-                            /*let comment = $('<i/>');
+                            let comment = $('<i/>');
                                 comment.addClass('far fa-comment');
                             let n2 = $('<p/>').text("35 Feedback");
                                 comment.append(n2);
@@ -142,8 +146,17 @@ for (let i = 0; i < getnumcards(); i++) {
                                                clininf.append(l3);
                             let altloc = $('<i/>');
                                 altloc.addClass('fas fa-map-marker-alt');
-                                
-                            let n3 = $('<p/>').text("Newyork, USA");
+                                altloc.css('display', 'inline-block');
+                                altloc.css('margin-right', '10px')
+                                //let sp1 = $('<p/>').text("&nbsp;");
+                                //sp1.css('display', 'inline-block')
+    
+                                altloc.append("&nbsp; &nbsp;");
+
+
+                            let n3 = $('<p/>').text(" Newyork, USA");
+                            n3.css('display', 'inline-block')
+
                             altloc.append(n3);
                             l3.append(altloc);
                             let l4 = $('<li/>').attr("id", "hour" + i);
@@ -151,24 +164,41 @@ for (let i = 0; i < getnumcards(); i++) {
                                                    clininf.append(l4);
                             let money = $('<i/>');
                                 money.addClass('far fa-money-bill-alt');
+                                money.css('display', 'inline-block');
+                                money.css('margin-right', '10px')
+                                money.append("&nbsp; &nbsp;");
+
                             let n4 = $('<p/>').text("$300");
-                            money.append(n4);
+                            n4.css('display', 'inline-block')
                             l4.append(money);
+                            money.append(n4);
 
                     let clinbook = $('<div/>').addClass('clinic-services').attr("id", "hour" + i);                    
                     docinfright.append(clinbook);
                         let prof = document.createElement("a");
-                        prof.setAttribute("href", "doctor-profile.html");
-                            let link = document.createTextNode("View Profile");
-                                prof.append(link); 
-                        prof.class = 'view-pro-btn';
-                        clinbook.append(prof);
+                       // prof.setAttribute("href", "doctor-profile.html?"+id+"&");
+                        //    let link = document.createTextNode("View Profile");
+                           //     prof.append(link); 
+                       // prof.class = 'view-pro-btn';
+                     //   clinbook.append(prof);
                     let clinbookapt = $('<div/>').addClass('clinic-services-apt').attr("id", "hour" + i);                    
                         docinfright.append(clinbookapt);                       
-                        let apt = document.createElement("a");
-                        apt.setAttribute("href", "booking.html");
-                            let link2 = document.createTextNode("Book Appointment");
-                                apt.append(link2);
+                        let apt = document.createElement("button");
+                     //   apt.setAttribute("href", "booking.html?"+JSON.stringify(data));
+                         apt.addEventListener("click", function () {
+                            book()
+                         });
+                         apt.innerHTML = 'Book Appointment'
+
+                                function book(){
+                                    sessionStorage.setItem("bookingDoctorID",getid(i));
+
+                                    sessionStorage.setItem("bookingDoctorName",getname(i));
+
+                                    sessionStorage.setItem("bookingDoctorSpeciality",getspecialty(i));
+                                    window.open("booking.html")
+                                }
+
                         apt.class = 'apt-btn';
                         clinbookapt.append(apt);
 
@@ -178,5 +208,3 @@ for (let i = 0; i < getnumcards(); i++) {
 container()
 //export {filtername}
 window.data=data
-
-

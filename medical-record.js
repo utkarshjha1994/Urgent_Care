@@ -6,6 +6,8 @@ var user = JSON.parse(getUser);
 
 let usertype = sessionStorage.getItem("userRole")
 
+//usertype = "ROLE.DOCTOR"
+
 
 let params = window.location.search.substring(1).split('&');
 //console.log("what is this"+sessionStorage.getItem("appointments"));
@@ -48,12 +50,12 @@ doctor_name.setAttribute('value',item.doctor_name.toUpperCase());
 
 let doctor_notes = document.getElementById("doctor_notes");
 let test_name = document.getElementById("test_name");
-if(usertype == "ROLE.DOCTOR"){
-    doctor_notes.readOnly = false
-    test_name.disabled = false
+let test_result = document.getElementById("test_result");
+if(test_result!=null){
+  test_result.innerHTML = item.test_report;
 
 }
-
+doctor_notes.innerHTML = item.doctor_notes
 
 
 
@@ -66,8 +68,80 @@ if(usertype == "ROLE.PATIENT"){
 
 
 upd.onclick = function(){update()}
+var e = document.getElementById("test_name");
+//e.innerHTML = item.test_name
+if(item.test_name!=null)
+e.value = item.test_name
+var test_nam = null
+test_nam = e.options[e.selectedIndex].value;
+
+if(usertype == "ROLE.DOCTOR"&& test_nam=="Select"){
+  doctor_notes.readOnly = false
+  test_name.disabled = false
+
+}
+
 
 function update(){
 
+  test_nam = e.options[e.selectedIndex].text;
+
+  if(usertype == "ROLE.DOCTOR"){
+  
+
+    if(doctor_notes.value.length==0){
+
+
+      alert("Please Enter prescription")
+    }
+    else{
+      updatePrescription();
+
+    }
+    
+
+  }
+    
 }
+
+function updatePrescription(){
+
+
+  var defaultOptions = {
+    method: "PUT", 
+    mode: "cors",
+    headers: {
+        "Content-Type": "application/json",
+        mode:"cors",
+        "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+
+    },
+    body: JSON.stringify({"appt_id":item.appt_id,
+    "doctor_notes":doctor_notes.value,
+    "test_name":test_nam,
+    "chargesForTest":"10",
+    "user_role":"ROLE.DOCTOR"})
+  }
+   console.log(defaultOptions) ;
+    fetch('http://localhost:3000/api/doctors/addDiagnosis', defaultOptions)
+  .then(response => response.json())
+  .then(response =>{ 
+    data =  JSON.stringify(response)
+    console.log(response.success)
+    if(response.success==1){
+      alert("Diagnosis Successfully Updated")
+      window.location = "patient-dashboard.html";
+    }
+    else{
+      alert("Diagnosis Update Failed, Please Try Again")
+    }
+    
+  
+  }).catch(error=>{
+    alert("Diagnosis Update Failed, Please Try Again")
+    console.log(error)
+  })
+}
+
+
 

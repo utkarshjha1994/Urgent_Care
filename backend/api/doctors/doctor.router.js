@@ -5,10 +5,10 @@ const { checkUser } = require("../../auth/user_validation");
 
 router.patch("/changePasswordDoc", checkToken, checkUser(["ROLE.DOCTOR"]),changePassword);
 router.patch("/updateDoctorProfile", checkToken, checkUser(["ROLE.DOCTOR"]), updateDoctorProfile); 
-router.get("/viewDocAppt", checkToken, checkUser(["ROLE.DOCTOR"]), viewDocAppointment);
+router.post("/viewDocAppt", checkToken, checkUser(["ROLE.DOCTOR"]), viewDocAppointment);
 router.put("/addDiagnosis", checkToken, checkUser(["ROLE.DOCTOR"]), addDiagnosis);
 router.post("/getAllMyPatients", checkToken, checkUser(["ROLE.DOCTOR"]), getAllMyPatients);
-router.get("/getMyPatientsApptHistory", checkToken, checkUser(["ROLE.DOCTOR"]), getMyPatientsApptHistory); 
-router.get("/viewMyIndividualPatientsAppointments", checkToken, checkUser(["ROLE.DOCTOR"]), viewMyIndividualPatientsAppointments);
+router.post("/getMyPatientsApptHistory", checkToken, checkUser(["ROLE.DOCTOR"]), getMyPatientsApptHistory); 
+router.post("/viewMyIndividualPatientsAppointments", checkToken, checkUser(["ROLE.DOCTOR"]), viewMyIndividualPatientsAppointments);
 
 module.exports = router;
