@@ -14,7 +14,7 @@ router.get("/bookAppt", checkToken, checkUser(["ROLE.PATIENT"]), bookAppointment
 router.post("/makePayment", checkToken, checkUser(["ROLE.PATIENT"]), makePayment);
 router.get("/viewDueCharges", checkToken, checkUser(["ROLE.PATIENT"]), viewDueCharges);
 router.post("/makeDuePayment", checkToken, checkUser(["ROLE.PATIENT"]), makeDuePayment);
-router.post("/viewAppt", checkToken, checkUser(["ROLE.PATIENT"]), viewAppointment);
+router.get("/viewAppt", checkToken, checkUser(["ROLE.PATIENT"]), viewAppointment);
 router.patch("/modifyAppt", checkToken, checkUser(["ROLE.PATIENT"]), modifyAppointment);
 router.delete("/deleteAppt", checkToken, checkUser(["ROLE.PATIENT"]), deleteAppointment);
 router.get("/logout", checkToken,logout);

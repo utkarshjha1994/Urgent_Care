@@ -39,8 +39,25 @@ module.exports = {
         const body = req.body; //name,email,password,confirm password fields from register page
         //Validate fields [Server-side validation]
         //Are fields empty?, if so, send relevant message to client
-        console.log(body.password.length);
-        if( !body.name || !body.email || !body.password || !body.passwordConfirm || !body.patient_address || !body.patient_dob || !body.patient_gender || !body.patient_phone ){
+
+        //email validator
+        var validator = require("email-validator");
+        isValidEmail = validator.validate(body.email);
+        
+        if(!isValidEmail){
+            return res.status(500).json({
+                message: 'Please enter Valid Email address!',
+                //send form data back
+                name: body.name,
+                email: body.email, 
+                patient_address: body.patient_address,
+                patient_dob: body.patient_dob,
+                patient_gender: body.patient_gender,
+                patient_phone: body.patient_phone
+            });
+        }
+        //console.log(body.password.length);
+        else if( !body.name || !body.email || !body.password || !body.passwordConfirm || !body.patient_address || !body.patient_dob || !body.patient_gender || !body.patient_phone ){
             return res.status(500).json({
                 message: 'Please fill all the fields in order to register!',
                 //send form data back
@@ -64,7 +81,6 @@ module.exports = {
                 patient_phone: body.patient_phone
             });
         }
-        
         else if(body.password.length > 12 || body.password.length < 8){
             console.log(body.password.length);
             return res.status(500).json({

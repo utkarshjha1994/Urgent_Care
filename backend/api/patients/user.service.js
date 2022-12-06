@@ -43,7 +43,7 @@ module.exports = {
         });
     },
     createUser: (data, callBack) => {
-        db.query('INSERT INTO patients(patient_name,patient_email,patient_password,patient_username,patient_gender,patient_dob=?,patient_phone=?,patient_address=?) values(?,?,?,?,?,?,?,?)', 
+        db.query('INSERT INTO patients(patient_name,patient_email,patient_password,patient_username,patient_gender,patient_dob,patient_phone,patient_address) values(?,?,?,?,?,?,?,?)', 
         [
             data.name,
             data.email,
