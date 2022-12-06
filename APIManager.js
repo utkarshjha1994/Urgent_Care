@@ -69,8 +69,6 @@ const registerUser =  (name, email, password, passwordConfirm, patient_address, 
   return registerUserRequest(name, email, password, passwordConfirm, patient_address, patient_dob, patient_gender, patient_phone);
 };
 
-
-// Authenticate user - by passing username and password
 const updateUserRequest = (patient_id, patient_phone, gender, dob, user_role, patient_address) => {
   let url = "http://localhost:3000/api/users/updatePatientProfile";
   let data = {
@@ -128,7 +126,6 @@ const updatePasswordReq =  (newPass, confirmPass) => {
   return updatePassword(newPass, confirmPass);
 };
 
-
 const getpatients = () => {
   let url = "http://localhost:3000/api/doctors/getAllMyPatients";
   var getUser = sessionStorage.getItem("userDetails");
@@ -157,4 +154,38 @@ const getpatientsRequest =  () => {
   return getpatients();
 };
 
-export { renderUsers, validateCredentials, registerUser, updateUser, updatePasswordReq, getpatientsRequest};
+
+// Authenticate user - by passing username and password
+const updateDoctorRequest = (name, phone) => {
+  let url = "http://localhost:3000/api/doctors/updateDoctorProfile";
+  var getUser = sessionStorage.getItem("userDetails");
+  var user = JSON.parse(getUser);
+  let data = {
+    doctor_id: user.doctor_id,
+    speciality: user.speciality,
+    gender: gender,
+    dob: "1995-10-09",
+    user_role: "ROLE.DOCTOR",
+    address: user.address,
+    phone: phone
+  };
+console.log(data)
+  return fetch(url, {
+    headers: {
+      "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+      "Content-Type": "application/json",
+      mode: "cors",
+    },
+
+    method: "PATCH",
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .catch((error) => error);
+};
+
+const updateDoctorProfile =  (name, phoneNumber) => {
+  return updateDoctorRequest(name, phoneNumber);
+};
+
+export { renderUsers, validateCredentials, registerUser, updateUser, updatePasswordReq, getpatientsRequest, updateDoctorProfile};
