@@ -67,7 +67,7 @@ module.exports = {
 
         if(!isvalidphonenumber){
             return res.status(500).json({
-                message: 'Please enter Valid Phone Number! Should be >=8 and <=10',
+                message: 'Please enter Valid Phone Number!',
                 //send form data back
                 patient_address: body.patient_address,
                 patient_dob: body.patient_dob,
@@ -235,7 +235,8 @@ module.exports = {
                                     message: "Login Successful",
                                     token: jsonwebtoken,
                                     userRole: results.user_role, //pass role from DB to JSON struct
-                                    user: results2
+                                    user: results2,
+                                    image: "https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" //insert user image
                                 });
                             }
                         });
@@ -255,7 +256,8 @@ module.exports = {
                                     message: "Login Successful",
                                     token: jsonwebtoken,
                                     userRole: results.user_role, //pass role from DB to JSON struct
-                                    user: results2
+                                    user: results2,
+                                    image: "https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" //insert user image
                                 });
                             }
                         });
@@ -266,7 +268,8 @@ module.exports = {
                             message: "Login Successful",
                             token: jsonwebtoken,
                             userRole: results.user_role, //pass role from DB to JSON struct
-                            user: results //can get admin ID,name,password,email from here (can get user_role from here too)
+                            user: results, //can get admin ID,name,password,email from here (can get user_role from here too)
+                            image: "https://www.nicepng.com/png/full/128-1280406_user-icon-png.png" //insert user image
                         });
                     }
                 }
@@ -283,21 +286,6 @@ module.exports = {
         const body = req.body; 
         //server side validation for whether data is null, if null then fetch data from DB and store the same again
 
-        //email validator
-        var validator = require("email-validator");
-        isValidEmail = validator.validate(body.email);
-        
-        if(!isValidEmail){
-            return res.status(500).json({
-                message: 'Please enter Valid Email address!',
-                //send form data back
-                patient_address: body.patient_address,
-                patient_dob: body.patient_dob,
-                patient_gender: body.patient_gender,
-                patient_phone: body.patient_phone
-            });
-        }
-
         //phone validator
         console.log(body.patient_phone.length) 
         const isNumeric = (value) => {
@@ -308,7 +296,7 @@ module.exports = {
 
         if(!isvalidphonenumber){
             return res.status(500).json({
-                message: 'Please enter Valid Phone Number! Should be >=8 and <=10',
+                message: 'Please enter Valid Phone Number!',
                 //send form data back
                 patient_address: body.patient_address,
                 patient_dob: body.patient_dob,
@@ -464,7 +452,7 @@ module.exports = {
             return res.status(200).json({
                 success: 1,
                 data: results,
-                message: "Available Appointment Slots"
+                message: "Booked Appointment Slots"
             });
         });
     },
