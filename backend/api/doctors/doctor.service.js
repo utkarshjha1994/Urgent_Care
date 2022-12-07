@@ -100,12 +100,14 @@ module.exports = {
         });
     },
     addDiagnosis: (data, callBack) => {
-        db.query("UPDATE appointments SET doctor_notes=?, test_name=?, pending_payment=? where appt_id=?",
+        console.log(data)
+        db.query("UPDATE appointments SET doctor_notes=?, test_name=?, pending_payment=?, test_status=? where appt_id=?",
         [
             data.doctor_notes,
             data.test_name,
             data.chargesForTest,
-            data.appt_id
+            "Pending",
+            data.appt_id            
         ],
         (error, results, fields) => {
             if(error){
@@ -139,7 +141,7 @@ module.exports = {
         });
     },
     viewMyIndividualPatientsAppointments: (data, callBack) => {
-        db.query("SELECT * FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=?",
+        db.query("SELECT appointments.*, doctors.doctor_name, doctors.doctor_gender, doctors.doctor_phone, doctors.doctor_email, doctors.doctor_speciality, patients.patient_name, patients.patient_gender, patients.patient_dob, patients.patient_email, patients.patient_phone, patients.patient_address FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=?",
         [
             data.patient_id
         ],
