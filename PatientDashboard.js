@@ -50,14 +50,14 @@ var app = {
     user_role: "ROLE.PATIENT",
   }),
 };
-console.log("hello");
+
 fetch("http://localhost:3000/api/users/viewAppt", app)
   .then((response) => {
     return response.json();
   })
   .then((data) => {
     result = data.data;
-    console.log(result);
+    console.log("Returned Result is"+result);
     RenderData(result);
 
     // Work with JSON data here

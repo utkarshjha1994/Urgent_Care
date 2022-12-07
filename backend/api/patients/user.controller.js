@@ -56,6 +56,27 @@ module.exports = {
                 patient_phone: body.patient_phone
             });
         }
+
+        //phone validator
+        console.log(body.patient_phone.length) 
+        const isNumeric = (value) => {
+            return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
+          }
+        isvalidphonenumber = isNumeric(body.patient_phone)
+        console.log(isvalidphonenumber)
+
+        if(!isvalidphonenumber){
+            return res.status(500).json({
+                message: 'Please enter Valid Phone Number! Should be >=8 and <=10',
+                //send form data back
+                patient_address: body.patient_address,
+                patient_dob: body.patient_dob,
+                patient_gender: body.patient_gender,
+                patient_phone: body.patient_phone
+            });
+        }
+
+
         //console.log(body.password.length);
         else if( !body.name || !body.email || !body.password || !body.passwordConfirm || !body.patient_address || !body.patient_dob || !body.patient_gender || !body.patient_phone ){
             return res.status(500).json({
@@ -262,6 +283,40 @@ module.exports = {
         const body = req.body; 
         //server side validation for whether data is null, if null then fetch data from DB and store the same again
 
+        //email validator
+        var validator = require("email-validator");
+        isValidEmail = validator.validate(body.email);
+        
+        if(!isValidEmail){
+            return res.status(500).json({
+                message: 'Please enter Valid Email address!',
+                //send form data back
+                patient_address: body.patient_address,
+                patient_dob: body.patient_dob,
+                patient_gender: body.patient_gender,
+                patient_phone: body.patient_phone
+            });
+        }
+
+        //phone validator
+        console.log(body.patient_phone.length) 
+        const isNumeric = (value) => {
+            return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
+          }
+        isvalidphonenumber = isNumeric(body.patient_phone)
+        console.log(isvalidphonenumber)
+
+        if(!isvalidphonenumber){
+            return res.status(500).json({
+                message: 'Please enter Valid Phone Number! Should be >=8 and <=10',
+                //send form data back
+                patient_address: body.patient_address,
+                patient_dob: body.patient_dob,
+                patient_gender: body.patient_gender,
+                patient_phone: body.patient_phone
+            });
+        }
+
         if( !body.patient_gender && !body.patient_dob && !body.patient_phone && !body.patient_address && !body.patient_insuranceNo ){ 
             getUserDetailsFromDB(body, (err, results) => {
                 if(err){
@@ -417,6 +472,9 @@ module.exports = {
         let body = req.body; //get appt_date, charges, patient_id, doctor_id, insuranceNo, speciality
         let charges = body.charges;
         console.log(charges);
+
+        //if No insurance Number provided, then frontend should send full charge in makePayment!
+
         let insurance_company = body.insuranceNo.substring(0,3);
         console.log(insurance_company);
         req.body.insurance_company = insurance_company;
@@ -454,13 +512,6 @@ module.exports = {
         //if our Urgent care does not fall into any insurance network then totalPayment = charges i.e., full charge (no rebate)
 
         //only after make payment, appointment will be booked and inserted into DB!
-
-        let charges = body.charges;
-        console.log(charges);
-        let insurance_company = body.insuranceNo.substring(0,3);
-        console.log(insurance_company);
-        req.body.insurance_company = insurance_company;
-        body = req.body;
         console.log(body);
 
         makePayment(body, (err, results) => {
