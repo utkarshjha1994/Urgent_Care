@@ -7,6 +7,39 @@ module.exports = {
         const body = req.body; //name,email,password,confirm password fields from register page
         //Validate fields [Server-side validation]
         //Are fields empty?, if so, send relevant message to client
+
+        //email validator
+        var validator = require("email-validator");
+        isValidEmail = validator.validate(body.email);
+        
+        if(!isValidEmail){
+            return res.status(500).json({
+                message: 'Please enter Valid Email address!',
+                //send form data back
+                email: body.email
+            });
+        }
+
+        //phone validator
+        console.log(body.phone.length) 
+        const isNumeric = (value) => {
+            return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
+          }
+        isvalidphonenumber = isNumeric(body.phone)
+        console.log(isvalidphonenumber)
+
+        if(!isvalidphonenumber){
+            return res.status(500).json({
+                message: 'Please enter Valid Phone Number!',
+                //send form data back
+                address: body.address,
+                dob: body.dob,
+                gender: body.gender,
+                phone: body.phone
+            });
+        }
+
+
         if( !body.name || !body.email || !body.password || !body.passwordConfirm || !body.gender || !body.dob || !body.phone || !body.address || !body.speciality ){
             return res.status(500).json({
                 message: 'Please fill all the fields in order to register!',
@@ -21,7 +54,7 @@ module.exports = {
                 email: body.email //send form data back
             });
         }
-        else if(body.password.length >= 12 && body.password.length <= 8){
+        else if(body.password.length > 12 || body.password.length < 8){
             return res.status(500).json({
                 message: 'Password must be atleast 8 characters and at most 12 characters!',
                 name: body.name,
@@ -71,24 +104,34 @@ module.exports = {
         const body = req.body; //email,password,confirm password fields from register page
         //Validate fields [Server-side validation]
         //Are fields empty?, if so, send relevant message to client
+
+        //email validator
+        var validator = require("email-validator");
+        isValidEmail = validator.validate(body.email);
+        
+        if(!isValidEmail){
+            return res.status(500).json({
+                message: 'Please enter Valid Email address!',
+                //send form data back
+                email: body.email
+            });
+        }
+
         if( !body ){
             return res.status(500).json({
                 message: 'Please fill all the fields in order to register!',
-                name: body.name,
                 email: body.email //send form data back
             });
         }
         else if( body.password !== body.passwordConfirm ){
             return res.status(500).json({
                 message: 'Password and Confirm Password Fields Do Not Match!',
-                name: body.name,
                 email: body.email //send form data back
             });
         }
-        else if(body.password.length >= 12 && body.password.length <= 8){
+        else if(body.password.length > 12 || body.password.length < 8){
             return res.status(500).json({
                 message: 'Password must be atleast 8 characters and at most 12 characters!',
-                name: body.name,
                 email: body.email //send form data back
             });
         }
@@ -135,6 +178,38 @@ module.exports = {
         const body = req.body; //name,email,password,confirm password fields from register page
         //Validate fields [Server-side validation]
         //Are fields empty?, if so, send relevant message to client
+
+        //email validator
+        var validator = require("email-validator");
+        isValidEmail = validator.validate(body.email);
+        
+        if(!isValidEmail){
+            return res.status(500).json({
+                message: 'Please enter Valid Email address!',
+                //send form data back
+                email: body.email
+            });
+        }
+
+        //phone validator
+        console.log(body.phone.length) 
+        const isNumeric = (value) => {
+            return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
+          }
+        isvalidphonenumber = isNumeric(body.phone)
+        console.log(isvalidphonenumber)
+
+        if(!isvalidphonenumber){
+            return res.status(500).json({
+                message: 'Please enter Valid Phone Number!',
+                //send form data back
+                address: body.address,
+                dob: body.dob,
+                gender: body.gender,
+                phone: body.phone
+            });
+        }
+
         if( !body.name || !body.email || !body.password || !body.passwordConfirm || !body.gender || !body.dob || !body.phone || !body.address || !body.speciality ){
             return res.status(500).json({
                 message: 'Please fill all the fields in order to register!',
@@ -149,7 +224,7 @@ module.exports = {
                 email: body.email //send form data back
             });
         }
-        else if(body.password.length >= 12 && body.password.length <= 8){
+        else if(body.password.length > 12 || body.password.length < 8){
             return res.status(500).json({
                 message: 'Password must be atleast 8 characters and at most 12 characters!',
                 name: body.name,
@@ -261,6 +336,19 @@ module.exports = {
         const body = req.body; //name,email,password,confirm password fields from register page
         //Validate fields [Server-side validation]
         //Are fields empty?, if so, send relevant message to client
+
+        //email validator
+        var validator = require("email-validator");
+        isValidEmail = validator.validate(body.email);
+        
+        if(!isValidEmail){
+            return res.status(500).json({
+                message: 'Please enter Valid Email address!',
+                //send form data back
+                email: body.email
+            });
+        }
+
         if( !body.email || !body.password || !body.passwordConfirm ){
             return res.status(500).json({
                 message: 'Please fill all the fields in order to update profile!',
@@ -275,7 +363,7 @@ module.exports = {
                 email: body.email //send form data back
             });
         }
-        else if(body.password.length >= 12 && body.password.length <= 8){
+        else if(body.password.length > 12 || body.password.length < 8){
             return res.status(500).json({
                 message: 'Password must be atleast 8 characters and at most 12 characters!',
                 name: body.name,
