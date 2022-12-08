@@ -1,3 +1,4 @@
+import { logoutRequest } from "./APIManager.js";
 var getUser = sessionStorage.getItem("userDetails");
 var user = JSON.parse(getUser);
 document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
@@ -114,7 +115,7 @@ function RenderData(result) {
         let h = document.createElement("h2");
         h.setAttribute("class", "table-avatar");
         let a = document.createElement("a");
-        a.innerHTML = item.doctor_id;
+        a.innerHTML = '#SEDID' + item.doctor_id;
         h.appendChild(a);
         td.appendChild(h);
       }

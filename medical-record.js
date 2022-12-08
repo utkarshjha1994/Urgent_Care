@@ -17,7 +17,7 @@ let item = JSON.parse(sessionStorage.getItem("appointments"));
 let patient  = params[0].split('=');
 console.log(item.patient_id);
 let  patient_id = document.getElementById("patient_id");
-patient_id.setAttribute('value',"#SEUC"+item.patient_id);
+patient_id.setAttribute('value',"#SEPID"+item.patient_id);
 
 
 let first_name = document.getElementById("first");
@@ -43,7 +43,7 @@ let dob = document.getElementById("patient_dob");
 
 dob.setAttribute('value',item.patient_dob)
 let doctor_id = document.getElementById("doctor_id");
-doctor_id.setAttribute('value',"SEUCEMPDOC"+item.doctor_id);
+doctor_id.setAttribute('value',"#SEDID"+item.doctor_id);
 let doctor_name = document.getElementById("doctor_name");
 
 doctor_name.setAttribute('value',item.doctor_name.toUpperCase());

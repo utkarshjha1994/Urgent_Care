@@ -17,7 +17,7 @@ document.getElementById("email").value = user.patient_email;
 document.getElementById("phone").value = user.patient_phone;
 document.getElementById("insurance").value = user.patient_phone;
 if (user.patient_insuranceNo != null) {
-  document.getElementById("insurance").value = user.patient_phone;
+  document.getElementById("insurance").value = user.patient_insuranceNo;
 } else {
   document.getElementById("insurance").value = "";
 }
@@ -40,11 +40,12 @@ updateButton.addEventListener("click", (e) => {
     const email = submitForm.email.value
 
     const insurance = submitForm.insurance.value;
-    console.log(insurance[0])
-    if (insurance != '' && insurance[0].toLowerCase() != 'A' && insurance[0].toLowerCase() != 'D' && insurance[0].toLowerCase() != 'G') {
-      alert('Please enter valid insurance number!!')
-      return
-    }
+    // console.log(insurance[0])
+    // if (insurance != '' && insurance[0].toLowerCase() != 'A' && insurance[0].toLowerCase() != 'D' && insurance[0].toLowerCase() != 'G') {
+    //   console.log(insurance)
+    //   alert('Please enter valid insurance number!!')
+    //   return
+    // }
 
     updateUser(user.patient_id, email, phone, insurance, user.patient_gender, user.patient_dob,userRole, address)
     .then((result) => {

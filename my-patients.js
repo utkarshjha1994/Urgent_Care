@@ -70,7 +70,7 @@ export function container() {
     pd.setAttribute("class", "patient-details");
     piw.appendChild(pd);
     let patid = document.createElement("h5");
-    patid.innerHTML = "Patient ID : SEPID # " + String(getpatientid(i));
+    patid.innerHTML = "Patient ID : #SEPID" + String(getpatientid(i));
     pd.appendChild(patid);
 
     let l3 = document.createElement("li");
