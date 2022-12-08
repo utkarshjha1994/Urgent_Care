@@ -24,14 +24,14 @@ key functionalities to improve patient experience.
 
 To run the backend, follow the steps below -
 
-Step 1 - Download the folder from GitHub repository - https://github.com/utkarshjha1994/Urgent_Care
-Step 2 - Open VS Code and go to backend folder from terminal using command: cd backend
-Step 3 - Once inside the backend folder, run the command in the terminal window of VS Code: node app.js and after this server would be up and running on Port 3000
-Step 4 (Optional) – If in case you face any issue while doing the step 3 then delete node_modules folder and from terminal run command: npm install
+1. Step 1 - Download the folder from GitHub repository - https://github.com/utkarshjha1994/Urgent_Care 
+2. Step 2 - Open VS Code and go to backend folder from terminal using command: cd backend
+3. Step 3 - Once inside the backend folder, run the command in the terminal window of VS Code: node app.js and after this server would be up and running on Port 3000
+4. Step 4 (Optional) – If in case you face any issue while doing the step 3 then delete node_modules folder and from terminal run command: npm install
 Now, try step 3.
 
 
 To run the frontend, follow the steps below -
 
-Step 1 - If backend is already running from the termial then open anoher terminal
-Step 2 - Run command - npm start
+1. Step 1 - If backend is already running from the termial then open anoher terminal
+2. Step 2 - Run command - npm start
