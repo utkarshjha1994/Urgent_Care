@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+  <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/blank-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-    <title>Doccure - Doctor List Page</title>
+    <title>Doccure - Add New Doctor</title>
 
     <!-- Favicon -->
     <link
@@ -24,12 +24,6 @@
 
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="assets/css/feathericon.min.css" />
-
-    <!-- Datatables CSS -->
-    <link
-      rel="stylesheet"
-      href="assets/plugins/datatables/datatables.min.css"
-    />
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -100,7 +94,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt="User Image"
-                            src="assets/img/doctors/doctor-thumb-01.jpg"
+                            src="assets/img/Lab Technician/doctor-thumb-01.jpg"
                           />
                         </span>
                         <div class="media-body">
@@ -255,12 +249,12 @@
               </li>
               <li class="submenu">
                 <a href="#"
-                  ><i class="fe fe-user-plus"></i> <span> Doctors</span>
+                  ><i class="fe fe-user-plus"></i> <span> Lab Technician</span>
                   <span class="menu-arrow"></span
                 ></a>
                 <ul style="display: none">
                   <li><a href="doctor-new.html">Add New Doctor</a></li>
-                  <li><a href="doctor-list.html">Doctors</a></li>
+                  <li><a href="doctor-list.html">Lab Technician</a></li>
                 </ul>
               </li>
               <li class="submenu">
@@ -332,7 +326,7 @@
                   <li><a href="error-500.html">500 Error </a></li>
                 </ul>
               </li>
-              <li>
+              <li class="active">
                 <a href="blank-page.html"
                   ><i class="fe fe-file"></i> <span>Blank Page</span></a
                 >
@@ -415,15 +409,13 @@
           <div class="page-header">
             <div class="row">
               <div class="col-sm-12">
-                <h3 class="page-title">List of Doctors</h3>
+                <h3 class="page-title">Add New Doctor</h3>
                 <ul class="breadcrumb">
                   <li class="breadcrumb-item">
                     <a href="index.html">Dashboard</a>
                   </li>
-                  <li class="breadcrumb-item">
-                    <a href="javascript:(0);">Users</a>
-                  </li>
-                  <li class="breadcrumb-item active">Doctor</li>
+                  <li class="breadcrumb-item">Lab Technician</li>
+                  <li class="breadcrumb-item active">Add New Doctor</li>
                 </ul>
               </div>
             </div>
@@ -434,24 +426,110 @@
             <div class="col-sm-12">
               <div class="card">
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table
-                      id="myTable"
-                      class="table"
-                      class="datatable table table-hover table-center mb-0"
-                    >
-                      <thead>
-                        <tr>
-                          <th>Doctor Name</th>
-                          <th>Speciality</th>
-                          <th>Member Since</th>
-                          <th>Earned</th>
-                          <th>Account Status</th>
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
-                  </div>
+                  <form>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          placeholder="Name"
+                          pattern="/[a-zA-Z]/g"
+                        />
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="gender">Gender</label>
+                        <select id="gender" class="form-control">
+                          <option selected>Choose...</option>
+                          <option value="MALE">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="dob">DOB</label>
+                        <input
+                          type="date"
+                          data-date=""
+                          data-date-format="DD MMMM YYYY"
+                          class="form-control"
+                          id="dob"
+                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          placeholder="Email"
+                          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                          title="Invalid input"
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="phone">Phone</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="phone"
+                          placeholder="phone"
+                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="password"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="username">Confirm Password </label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="passwordConfirm"
+                          placeholder="Confirm Password"
+                        />
+                      </div>
+                    </div>
+                    <div class="row pb-3">
+                      <div class="form-group col-md-6">
+                        <label for="dob">Address</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="1234 Main St"
+                          id="address"
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="speciality">Speciality</label>
+                        <select id="speciality" class="form-control">
+                          <option selected>Choose...</option>
+                          <option value="family medicine physician">
+                            family medicine physician
+                          </option>
+                          <option value="sports medicine physician">
+                            sports medicine physician
+                          </option>
+                          <option value="emergency sports physician">
+                            emergency sports physician
+                          </option>
+                          <option value="internal medicine physician">
+                            internal medicine physician
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <a onclick="addDoctor()" class="btn btn-primary">Save</a>
+                  </form>
                 </div>
               </div>
             </div>
@@ -472,14 +550,94 @@
     <!-- Slimscroll JS -->
     <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <!-- Datatables JS -->
-    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatables/datatables.min.js"></script>
-
     <!-- Custom JS -->
-    <script src="assets/js/admin.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+
+    <script>
+      // BEING CREATE DOCTOR AND SAVE INTO SERVER
+      let id = (id) => document.getElementById(id);
+
+      const validateForm = (formControls) => {
+        let formInputs = Object.keys(formControls);
+        console.log({ formInputs });
+        let formValues = {};
+        let formErrors = {};
+        let formStatus = true;
+
+        formInputs.forEach((inputName) => {
+          if (formControls[inputName]) {
+            if (!formControls[inputName].value) {
+              formControls[inputName].classList.add("is-invalid");
+              formErrors[inputName] = `${inputName} is required`;
+              formStatus = false;
+            } else {
+              formControls[inputName].classList.remove("is-invalid");
+              formErrors[inputName] = null;
+            }
+            formValues[inputName] = formControls[inputName].value;
+          }
+          if (inputName === "email") {
+            if (!formControls[inputName].value.includes("@uc.com")) {
+              formControls[inputName].classList.add("is-invalid");
+              formErrors[inputName] = `${inputName} is invalid`;
+              formStatus = false;
+            }
+          }
+        });
+
+        return { values: formValues, errors: formErrors, status: formStatus };
+      };
+
+      function addDoctor() {
+        const formValue = {
+          name: id("name"),
+          email: id("email"),
+          phone: id("phone"),
+          gender: id("gender"),
+          dob: id("dob"),
+          address: id("address"),
+          speciality: id("speciality"),
+          passwordConfirm: id("passwordConfirm"),
+          password: id("password"),
+          status: id("status"),
+        };
+
+        const { values, errors, status } = validateForm(formValue);
+        console.log({ status, values, errors });
+        if (status) {
+          // put api request code to save data
+          fetch("http://localhost:3000/Add/Lab_Technicians", {
+            method: "POST", // or 'PUT'
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              swal("Good job!", "Doctor detail has been saved", "success").then(
+                () => {
+                  window.location.reload();
+                }
+              );
+            })
+            .catch((error) => {
+              console.log({ error });
+              swal("Error!", "Detail not saved", "error");
+              console.error("Error:", error);
+            });
+        }
+      }
+
+      $(function () {
+        $("#header").load("header.html");
+      });
+
+      // BEING CREATE DOCTOR AND SAVE INTO SERVER
+    </script>
   </body>
 
-  <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+  <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/blank-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
 </html>
