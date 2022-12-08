@@ -1,4 +1,4 @@
-import { updateDoctorProfile } from "./APIManager.js";
+import { updateDoctorProfile, logoutRequest } from "./APIManager.js";
 
 var getUser = sessionStorage.getItem("userDetails");
 var userRole = sessionStorage.getItem("userRole");
@@ -13,3 +13,17 @@ document.getElementById("email").value = user.doctor_email;
 document.getElementById("doctorName").value = user.doctor_name;
 document.getElementById("phone").value = user.doctor_phone;
 
+document.getElementById("logout1").addEventListener("click", (e) => {
+    logoutRequest().then((result) => {
+      if (result.success === 1) {
+        alert("You have been logged out. To access the portal please log in again.")
+        sessionStorage.clear()
+        window.location = "login.html"
+      } else {
+          alert(result.message);
+      }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  });
