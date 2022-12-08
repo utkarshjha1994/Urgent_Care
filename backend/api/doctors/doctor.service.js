@@ -88,7 +88,7 @@ module.exports = {
         
     },
     viewDocAppointment: (data, callBack) => {
-        db.query('SELECT * from appointments where doctor_id=?', 
+        db.query('SELECT appointments.*, doctors.doctor_name, doctors.doctor_gender, doctors.doctor_email, doctors.doctor_phone, doctors.doctor_speciality, patients.* FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=?', 
         [
             data.doctor_id
         ],
