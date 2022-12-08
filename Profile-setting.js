@@ -65,20 +65,6 @@ updateButton.addEventListener("click", (e) => {
     });
   });
 
-  document.getElementById("logout").addEventListener("click", (e) => {
-    logoutRequest().then((result) => {
-      if (result.success === 1) {
-        alert("You have been logged out. To access the portal please log in again.")
-        sessionStorage.clear()
-        window.location = "login.html"
-      } else {
-          alert(result.message);
-      }
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  });
   document.getElementById("logout1").addEventListener("click", (e) => {
     logoutRequest().then((result) => {
       if (result.success === 1) {

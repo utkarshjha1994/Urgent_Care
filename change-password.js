@@ -38,10 +38,6 @@ saveButton.addEventListener("click", (e) => {
     }
   });
 
-  document.getElementById("logout").addEventListener("click", (e) => {
-    sessionStorage.clear();
-    window.location = "login.html";
-  });
   document.getElementById("logout1").addEventListener("click", (e) => {
     sessionStorage.clear();
     window.location = "login.html";
