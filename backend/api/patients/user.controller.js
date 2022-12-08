@@ -461,7 +461,23 @@ module.exports = {
         let charges = body.charges;
         console.log(charges);
 
-        //if No insurance Number provided, then frontend should send full charge in makePayment!
+        //!!!!!front can hit this API when ---->!!!!
+        //No insurance Number is provided by user at time of registration or updating the profile, 
+        //pass the insuranceNo="" field in request body as blank or null
+        //response body will then return full amount (i.e., without any insurance coverage rebate)
+
+
+        //get appt_date, charges, patient_id, doctor_id, insuranceNo, speciality, appt_id
+        //our insuranceNo for all users will be of pattern ABC-XXXXXX
+        //we get the first 3 letters of insuranceNo and compare if we have that insurance company in our InsuranceNW table in DB
+        //if user has an insurance with an insurance company ABC, and our Urgent care falls into the ABC insurance network then 
+        //lookup procedure columns (fmp_physician,imp_physician,smp_physician,emp_physician) to see rebates and deduct it from charges
+        //fmp --> family medicine physician
+        //imp --> internal medicine physician
+        //smp --> sports medicine physician
+        //emp --> emergency medicine physician
+
+        //if our Urgent care does not fall into any insurance network then totalPayment = charges i.e., full charge (no rebate)
 
         let insurance_company = body.insuranceNo.substring(0,3);
         console.log(insurance_company);
@@ -487,20 +503,15 @@ module.exports = {
         });
     },
     makePayment: (req, res) => {
-        let body = req.body; //get appt_date, charges, patient_id, doctor_id, insuranceNo, speciality, appt_id
-        //our insuranceNo for all users will be of pattern ABC-XXXXXX
-        //we get the first 3 letters of insuranceNo and compare if we have that insurance company in our InsuranceNW table in DB
-        //if user has an insurance with an insurance company ABC, and our Urgent care falls into the ABC insurance network then 
-        //lookup procedure columns (fmp_physician,imp_physician,smp_physician,emp_physician) to see rebates and deduct it from charges
-        //fmp --> family medicine physician
-        //imp --> internal medicine physician
-        //smp --> sports medicine physician
-        //emp --> emergency medicine physician
-
-        //if our Urgent care does not fall into any insurance network then totalPayment = charges i.e., full charge (no rebate)
-
+        let body = req.body; 
         //only after make payment, appointment will be booked and inserted into DB!
         console.log(body);
+
+        //if no insurance number is provided by user at time of registration or updating the profile
+        //then frontend will check this and send "full charges" through this API
+        //otherwise
+        //if insurance policy is available, then amount is calculated and provided in the response body of bookAppt API
+        //return the calculated value under "final_charges" field in request body
 
         makePayment(body, (err, results) => {
             if(err){
@@ -520,6 +531,12 @@ module.exports = {
         });
     },
     viewDueCharges: (req, res) => {
+
+        //!!!!!front can hit this API when ---->!!!!
+        //No insurance Number is provided by user at time of registration or updating the profile, 
+        //pass the insuranceNo="" field in request body as blank or null
+        //response body will then return full amount (i.e., without any insurance coverage rebate)
+
         let body = req.body; //get appt_id, insuranceNo, test_name
         let insurance_company = body.insuranceNo.substring(0,3);
         console.log(insurance_company);
@@ -547,13 +564,11 @@ module.exports = {
     makeDuePayment: (req, res) => {
         let body = req.body; //get appt_id, insuranceNo, test_name
 
-        let pending_payment = body.pending_payment;
-        console.log(pending_payment);
-        let insurance_company = body.insuranceNo.substring(0,3);
-        console.log(insurance_company);
-        req.body.insurance_company = insurance_company;
-        body = req.body;
-        console.log(body);
+        //if no insurance number is provided by user at time of registration or updating the profile
+        //then frontend will check this and send "full charges" through this API
+        //otherwise
+        //if insurance policy is available, then amount is calculated and provided in the response body of bookAppt API
+        //return the calculated value under "final_charges" field in request body
 
         makeDuePayment(body, (err, results) => {
             if(err){
