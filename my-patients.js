@@ -1,12 +1,34 @@
-import { getpatientsRequest, getMyPatientsListRequest } from "./APIManager.js";
+import { getpatientsRequest, getMyPatientsListRequest, logoutRequest } from "./APIManager.js";
 
 const result = await getpatientsRequest();
+
+var getUser = sessionStorage.getItem("userDetails");
+var user = JSON.parse(getUser);
+
+document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
+document.getElementById("name1").innerHTML = user.doctor_name.toUpperCase();
+document.getElementById("speciality").innerHTML = user.doctor_speciality;
 
 if (result.success === 1) {
   console.log(result);
 } else {
   alert(result.message);
 }
+
+document.getElementById("logout1").addEventListener("click", (e) => {
+  logoutRequest().then((result) => {
+    if (result.success === 1) {
+      alert("You have been logged out. To access the portal please log in again.")
+      sessionStorage.clear()
+      window.location = "login.html"
+    } else {
+        alert(result.message);
+    }
+    })
+    .catch((error) => {
+      alert(error);
+    });
+});
 
 var data = result.data;
 
@@ -131,6 +153,8 @@ export function container() {
   }
 }
 container();
+
+
 
 
 
