@@ -11,12 +11,32 @@ document.getElementById("patientImage2").src =
   sessionStorage.getItem("userImage");
 
 document.getElementById("logout").addEventListener("click", (e) => {
-  sessionStorage.clear();
-  window.location = "login.html";
+  logoutRequest().then((result) => {
+    if (result.success === 1) {
+      alert("You have been logged out. To access the portal please log in again.")
+      sessionStorage.clear()
+      window.location = "login.html"
+    } else {
+        alert(result.message);
+    }
+    })
+    .catch((error) => {
+      alert(error);
+    });
 });
 document.getElementById("logout1").addEventListener("click", (e) => {
-  sessionStorage.clear();
-  window.location = "login.html";
+  logoutRequest().then((result) => {
+    if (result.success === 1) {
+      alert("You have been logged out. To access the portal please log in again.")
+      sessionStorage.clear()
+      window.location = "login.html"
+    } else {
+        alert(result.message);
+    }
+    })
+    .catch((error) => {
+      alert(error);
+    });
 });
 
 let empTab = document.getElementById("appointments");

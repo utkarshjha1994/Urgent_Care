@@ -1,4 +1,20 @@
-// GET Doctors
+
+if (sessionStorage.getItem("jwt") != null) {
+  document.getElementById("loginDiv").style.display = 'none'
+  document.getElementById("profileDiv").style.display = 'block'
+} else {
+  document.getElementById("loginDiv").style.display = 'block'
+  document.getElementById("profileDiv").style.display = 'none'
+}
+
+document.getElementById("patientImage3").src = sessionStorage.getItem("userImage");
+document.getElementById("patientImage1").src = sessionStorage.getItem("userImage");
+
+var getUser = sessionStorage.getItem("userDetails");
+var user = JSON.parse(getUser);
+
+document.getElementById("name1").innerHTML = user.patient_name.toUpperCase();
+
 renderUsers();
 
 async function renderUsers() {
@@ -17,6 +33,9 @@ async function getUsers() {
     }
   }
 const data = await renderUsers()
+
+
+
 
   
 export{data}

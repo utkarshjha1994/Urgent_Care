@@ -69,15 +69,17 @@ const registerUser =  (name, email, password, passwordConfirm, patient_address, 
   return registerUserRequest(name, email, password, passwordConfirm, patient_address, patient_dob, patient_gender, patient_phone);
 };
 
-const updateUserRequest = (patient_id, patient_phone, gender, dob, user_role, patient_address) => {
+const updateUserRequest = (patient_id, email, patient_phone, insurance, gender, dob, user_role, patient_address) => {
   let url = "http://localhost:3000/api/users/updatePatientProfile";
   let data = {
     patient_id: patient_id,
     patient_gender: gender,
-    patient_dob: "1995-10-09",
+    patient_dob: dob,
     user_role: user_role,
     patient_address: patient_address,
-    patient_phone: patient_phone
+    patient_phone: patient_phone,
+    email: email, 
+    patient_insuranceNo: insurance
   };
 console.log(data)
   return fetch(url, {
@@ -94,8 +96,8 @@ console.log(data)
     .catch((error) => error);
 };
 
-const updateUser =  (patient_id, patient_phone, gender, dob, user_role, patient_address) => {
-  return updateUserRequest(patient_id, patient_phone, gender, dob, user_role, patient_address);
+const updateUser =  (patient_id, email, patient_phone, insurance, gender, dob, user_role, patient_address) => {
+  return updateUserRequest(patient_id, email, patient_phone, insurance, gender, dob, user_role, patient_address);
 };
 
 const updatePassword = (newPass, confirmPass) => {
@@ -215,4 +217,25 @@ const getMyPatientsListRequest =  (patient_id) => {
   return getMyPatientsList(patient_id);
 };
 
-export { renderUsers, validateCredentials, registerUser, updateUser, updatePasswordReq, getpatientsRequest, updateDoctorProfile, getMyPatientsListRequest };
+
+const logout = () => {
+  let url = "http://localhost:3000/api/users/logout";
+  return fetch(url, {
+    headers: {
+      "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+      "Content-Type": "application/json",
+      mode: "cors",
+    },
+
+    method: "POST",
+  })
+    .then((response) => 
+    response.json())
+    .catch((error) => error);
+};
+
+const logoutRequest =  () => {
+  return logout();
+};
+
+export { renderUsers, validateCredentials, registerUser, updateUser, updatePasswordReq, getpatientsRequest, updateDoctorProfile, getMyPatientsListRequest, logoutRequest };
