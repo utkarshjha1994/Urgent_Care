@@ -114,7 +114,7 @@ function RenderData(result) {
         let h = document.createElement("h2");
         h.setAttribute("class", "table-avatar");
         let a = document.createElement("a");
-        a.innerHTML = "#SEUC"+item.patient_id;
+        a.innerHTML = "#SEPID"+item.patient_id;
         
         
         h.appendChild(a);

@@ -160,23 +160,23 @@
 							<div class="card search-filter">
 								<script type="module" >
 									import {container} from './doctorcard.js';
-									$('.nameinput').on('input', function() {
+									document.getElementById('nameinput').addEventListener('input', function() {
 											container()
 											});
-									$('.idinput').on('input', function() {
+									document.getElementById("idinput").addEventListener('input', function() {
 											container()
-											});	
-									$('.specialityinput').on('input', function() {
-											container()
-											});	
-									$(".malecheckbox").change(function() {
-									
-										container()
 									});
-									$(".femalecheckbox").change(function() {
-										container()
+									document.getElementById("specialityinput").addEventListener('input', function() {
+											container()
+									});
+									document.getElementById("malecheckbox").addEventListener('input', function() {
+											container()
+									});
+									document.getElementById("femalecheckbox").addEventListener('input', function() {
+											container()
+									});
 									
-								});	
+									
 								</script>
 								<div class="card-header">
 									<h4 class="card-title mb-0">Search Filter</h4>
