@@ -14,6 +14,7 @@ if(usertype=="ROLE.PATIENT"){
 
 else if(usertype=="ROLE.DOCTOR"){
   document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
+  document.getElementById("speciality").innerHTML = user.doctor_speciality;
 
 }
 
