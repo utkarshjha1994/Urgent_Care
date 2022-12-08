@@ -2,6 +2,8 @@
 //import { appointmentsState } from "./StateManagement.js";
 var getUser = sessionStorage.getItem("userDetails");
 var user = JSON.parse(getUser);
+var body = sessionStorage.getItem("due_payment_body");
+var payment_info = JSON.parse(body)
 document.getElementById("patientName").innerHTML =
   user.patient_name.toUpperCase();
 
@@ -21,20 +23,16 @@ let owner = document.getElementById("owner");
 let cvv = document.getElementById("cvv");
 let date =   document.getElementById("years");
 let month = document.getElementById("months");
- 
-
+let test_name = document.getElementById("test_name");
+test_name.innerHTML = payment_info.description
 
 pay.onclick = function(){myFunction()}
- let body = sessionStorage.getItem("Booking")
 
  console.log(body)
-let booking_details = JSON.parse(sessionStorage.getItem("Booking"))
 
-let doctor = document.getElementById("doctor_name");
 let current_date = document.getElementById("date");
 let current_time = document.getElementById("time");
  let dat = new Date();
- doctor.innerHTML = sessionStorage.getItem("bookingDoctorName")
 current_date.innerHTML = (dat.getMonth()+1) +
 "-" +
 (dat.getDate() ) +
@@ -43,10 +41,9 @@ dat.getFullYear();
 current_time.innerHTML = dat.getHours()+":"+dat.getMinutes()
 
 //alert(booking_details);
-console.log("Booking Details is "+"$"+booking_details.final_charges);
 
 let ch = document.getElementById("charges")
-ch.innerHTML = "$"+booking_details.final_charges
+ch.innerHTML = "$"+sessionStorage.getItem("Due")
 
 const validateCardNumber = number => {
     //Check if the number contains only numeric value  
@@ -180,22 +177,22 @@ function makePayment(){
     };
   
   
-    fetch('http://localhost:3000/api/users/makePayment', settings)
+    fetch('http://localhost:3000/api/users/makeDuePayment', settings)
     .then(response => response.json())
     .then(response =>{ 
       console.log("Response isn "+response.data)
       if(response.success == 1){
-        alert("Booking Success");
+        alert("Payment Success");
         window.location = "patient-dashboard.html"
       }
       else{
-        alert("Booking Failed, Click Again")
+        alert("Payment Failed, Click Again")
         
 
       }
   
     }).catch(error=>{
-      alert("Booking Failed, Click Again")
+      alert("Payment Failed, Click Again")
   
     })
     

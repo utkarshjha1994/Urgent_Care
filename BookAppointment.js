@@ -5,6 +5,23 @@ let patient = document.getElementById('patient');
 let date = document.getElementById('date');
 let slots = document.getElementById('slots');
 var getUser = sessionStorage.getItem("userDetails");
+var user = JSON.parse(getUser);
+console.log(user.patient_id)
+
+
+var todayDate = new Date();
+    var month = todayDate.getMonth();
+    var year = todayDate.getUTCFullYear() - 0;
+    var tdate = todayDate.getDate();
+    if (month < 10) {
+        month = "0" + month
+    }
+    if (tdate < 10) {
+        tdate = "0" + tdate;
+    }
+    var maxDate = year + "-" + month + "-" + tdate;
+
+date.setAttribute("min", '0');
 
 console.log(sessionStorage.getItem("bookingDoctorName"))
 let doctor_id = sessionStorage.getItem("bookingDoctorID")
@@ -19,81 +36,44 @@ button.onclick = function(){book()};
 patient.setAttribute('value',user.patient_name);
 dropdown.setAttribute('value',doctor_name);
 
-var getUser = sessionStorage.getItem("userDetails");
-var user = JSON.parse(getUser);
+
 
 
   
 function book() {
   let e = slots
-  console.log("Length is"+e.options[e.selectedIndex].text);
+  console.log("Length is"+e.options[e.selectedIndex].value);
+  sessionStorage.setItem("Booking",JSON.stringify({
+    patient_id: user.patient_id,
+    doctor_id: doctor_id,
+    appt_date: date.value,
+    user_role: "ROLE.PATIENT",
+    final_charges:"300",
+    description:sessionStorage.getItem("bookingDoctorSpeciality")
+,
+    slots:e.options[e.selectedIndex].value
+  
+  
+  }))
 
   if(date.value.length == 0 || e.options[e.selectedIndex].text == "Select a Slot--"){
     alert("Please Enter Appointments dates and slots");
   }
   else{
+    BookAppointment();
       
       
+console.log("Our Data"+JSON.stringify({
+  patient_id: user.id,
+  doctor_id: doctor_id,
+  appt_date: date.value,
+  user_role: "ROLE.PATIENT",
+  charges:"300",
+  insuranceNo:"GHI",
+  description:sessionStorage.getItem("bookingDoctorSpeciality")
 
 
-
-  let Payment_Details = async () => {
-    const location = window.location.hostname;
-    const settings = {
-      method: "POST", 
-      mode: "cors",
-      headers: {
-          "Content-Type": "application/json",
-          mode:"cors",
-          "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
-    
-      },
-      body: JSON.stringify({
-        patient_id: patient_id,
-        doctor_id: doctor_id,
-        appt_date: dat,
-        user_role: "ROLE.PATIENT",
-        charges:"300",
-        insuranceNo:"GHI",
-        description:sessionStorage.getItem("bookingDoctorSpeciality")
-    
-    
-      })
-    };
-    try {
-        const fetchResponse = await fetch('http://localhost:3000/appointments/book/', settings);
-        const data = await fetchResponse.json();
-        return data;
-    } catch (e) {
-        alert("Appointment Could not be booked, Please try again")
-        return e;
-    }    
-
-  }
-
-  /*var defaultOptions = 
-    
-    fetch('http://localhost:3000/appointments/book/', defaultOptions)
-  .then(response => response.json())
-  .then(response => console.log(JSON.stringify(response))).catch(error=>console.log(error))
-  // console.log(appointmentsState)
-  */
-  if(Payment_Details.success==1){
-    sessionStorage.setItem("Payment_Details",JSON.stringify(Payment_Details));
-    let appointment_details = JSON.stringify({
-      patient_id: patient_id,
-      doctor_id: doctor_id,
-      appt_date: dat,
-      user_role: "ROLE.PATIENT",
-      charges:"300",
-      insuranceNo:"GHI",
-      description:sessionStorage.getItem("bookingDoctorSpeciality"),
-      slots: slots.value
-  
-    })
-    window.location = "payment.html";
-  }
-
+}));
 
 }
 }
@@ -114,6 +94,64 @@ const inputHandler = function(e) {
 }
 
 date.addEventListener('input', inputHandler);
+
+function BookAppointment(){
+  if(user.patient_insuranceNo==null){
+    window.location = "payment.html"
+  }
+  else{
+  const settings = {
+    method: "POST", 
+    mode: "cors",
+    headers: {
+        "Content-Type": "application/json",
+        mode:"cors",
+        "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
+  
+    },
+    body: JSON.stringify({
+      patient_id: user.patient_id,
+      doctor_id: doctor_id,
+      appt_date: date.value,
+      user_role: "ROLE.PATIENT",
+      charges:"300",
+      insuranceNo:user.patient_insuranceNo,
+     
+      description:sessionStorage.getItem("bookingDoctorSpeciality")
+  
+  
+    })
+  };
+
+
+  fetch('http://localhost:3000/api/users/bookAppt', settings)
+  .then(response => response.json())
+  .then(response =>{ 
+    console.log("Response isn "+response.data)
+    if(response.success == 1){
+      sessionStorage.setItem("Booking",JSON.stringify({
+        patient_id: user.id,
+        doctor_id: doctor_id,
+        appt_date: date.value,
+        user_role: "ROLE.PATIENT",
+        final_charges:response.data.total_charges,
+        description:sessionStorage.getItem("bookingDoctorSpeciality"),
+
+        slots:e.options[e.selectedIndex].value
+      
+      }))
+      alert(JSON.stringify(response));
+
+      window.location = "payment.html"
+    }
+
+  }).catch(error=>{
+    alert("error , click again")
+
+  })
+}
+}
+
 
 
 function showAvailableSlots(item){
@@ -149,12 +187,28 @@ function showAvailableSlots(item){
     }
     else{
      // alert("Diagnosis Update Failed, Please Try Again")
+     alert("Data cannot be retrieved, Please Try Again")
+
+     var options = document.querySelectorAll('#slots option');
+    options.forEach(o => o.remove());
     }
     
   
   }).catch(error=>{
-   // alert("Diagnosis Update Failed, Please Try Again")
-    console.log(error)
+   // alert(error)
+   let str = ""+error
+    var flag = str.includes("Failed to execute 'removeChild'");
+
+
+    alert(flag)
+
+    if(flag == false){
+      var options = document.querySelectorAll('#slots option');
+    options.forEach(o => o.remove());
+    console.log("Error is"+error)
+    }
+
+   
   })
 
 

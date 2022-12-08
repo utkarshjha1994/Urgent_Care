@@ -1,0 +1,385 @@
+<!DOCTYPE html> 
+<html lang="en">
+	
+<!-- doccure/checkout.html  30 Nov 2019 04:12:16 GMT -->
+<head>
+		<meta charset="utf-8">
+		<title>Doccure</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="assets/css/style.css">
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	
+	</head>
+	<body>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+		
+			<!-- Header -->
+			<header class="header">
+				<nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<a href="index-2.html" class="navbar-brand logo">
+							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+						</a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="index-2.html" class="menu-logo">
+								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
+						</div>
+						<ul class="main-nav">
+							 
+							
+							<li class="login-link">
+								<a href="login.html">Login / Signup</a>
+							</li>
+						</ul>		 
+					</div>		 
+					<ul class="nav header-navbar-rht">
+						<li class="nav-item contact-item">
+							<div class="header-contact-img">
+								<i class="far fa-hospital"></i>							
+							</div>
+							<div class="header-contact-detail">
+								<p class="contact-header">Contact</p>
+								<p class="contact-info-header"> +1 315 369 5943</p>
+							</div>
+						</li>
+						<li class="nav-item dropdown has-arrow logged-item">
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<span class="user-img">
+									<img id="patientImage1" class="rounded-circle" width="31" alt="Ryan Taylor">
+								</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<div class="user-header">
+									<div class="avatar avatar-sm">
+										<img id="patientImage2" alt="User Image" class="avatar-img rounded-circle">
+									</div>
+									<div class="user-text">
+										<h6 id="patientName">Richard Wilson</h6>
+										<p class="text-muted mb-0">Patient</p>
+									</div>
+								</div>
+								<a class="dropdown-item" href="patient-dashboard.html">Dashboard</a>
+								<a class="dropdown-item" href="profile-settings.html">Profile Settings</a>
+								<a class="dropdown-item" id="logout1">Logout</a>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!-- /Header -->
+			
+			<!-- Breadcrumb -->
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									 
+									<li class="breadcrumb-item active" aria-current="page">Profile</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">Payment</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			<!-- /Breadcrumb -->
+			
+			<!-- Page Content -->
+			<div class="content">
+				<div class="container">
+
+					<div class="row">
+						<div class="col-md-7 col-lg-8">
+							<div class="card">
+								<div class="card-body">
+								
+									<!-- Checkout Form -->
+									
+										
+										
+										<div class="payment-widget">
+											<h4 class="card-title">Payment Method</h4>
+											
+											<!-- Credit Card Payment -->
+											<div class="payment-list">
+												<label class="payment-radio credit-card-option">
+													<input type="radio" name="radio" id =  checked>
+													<span class="checkmark"></span>
+													Credit card
+												</label>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group card-label">
+															<label for="card_name">Name on Card</label>
+															<input class="form-control" id="owner" type="text">
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group card-label">	
+															<label for="card_number">Card Number</label>
+															<input class="form-control" id="card_no" placeholder="1234  5678  9876  5432" type="text">
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group card-label">
+															<label for="expiry_month">Expiry Month</label>
+															<input class="form-control" id="months" placeholder="MM" type="text">
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group card-label">
+															<label for="expiry_year">Expiry Year</label>
+															<input class="form-control" id="years" placeholder="YY" type="text">
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group card-label">
+															<label for="cvv">CVV</label>
+															<input class="form-control" id="cvv" type="text">
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- /Credit Card Payment -->
+											
+											
+											<!-- Terms Accept -->
+											<div class="terms-accept">
+												<div class="custom-checkbox">
+												   <input type="checkbox" id="terms_accept">
+												   <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
+												</div>
+											</div>
+											<!-- /Terms Accept -->
+											
+											<!-- Submit Section -->
+											<div class="submit-section mt-4">
+												<button  class="btn btn-primary submit-btn" id = "pay">Confirm and Pay</button>
+											</div>
+											<!-- /Submit Section -->
+											
+										</div>
+									<!-- /Checkout Form -->
+									
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="col-md-5 col-lg-4 theiaStickySidebar">
+						
+							<!-- Booking Summary -->
+							<div class="card booking-card">
+								<div class="card-header">
+									<h4 class="card-title">Booking Summary</h4>
+								</div>
+								<div class="card-body">
+								
+									
+									
+									<div class="booking-summary">
+										<div class="booking-item-wrap">
+											<ul class="booking-date">
+                                                <li>Test Name <span id = "test_name"></span></li>
+
+												<li>Date <span id = "date"></span></li>
+												<li>Time <span id="time"></span></li>
+											</ul>
+											
+											<div class="booking-total">
+												<ul class="booking-total-list">
+													<li>
+														<span>Total</span>
+														<span class="total-cost"id ="charges"></span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Booking Summary -->
+							
+						</div>
+					</div>
+
+				</div>
+
+			</div>		
+			<!-- /Page Content -->
+   
+			<!-- Footer -->
+			<footer class="footer">
+				
+				<!-- Footer Top -->
+				<div class="footer-top">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-about">
+									<div class="footer-logo">
+										<img src="assets/img/footer-logo.png" alt="logo">
+									</div>
+									<div class="footer-about-content">
+										<p>The ‘well being’ ensured by extension of Available, Accessible, Affordable, Safe, Efficacious, Professional and Ethical. </p>
+										<div class="social-icon">
+											<ul>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							  
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-menu">
+									<h2 class="footer-title">For Doctors</h2>
+									<ul>
+										<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
+										
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+										 
+										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+									</ul>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-contact">
+									<h2 class="footer-title">Contact Us</h2>
+									<div class="footer-contact-info">
+										<div class="footer-address">
+											<span><i class="fas fa-map-marker-alt"></i></span>
+											<p> 3556  Beech Street, New Brunswick,<br> New Jersey, NJ 08817 </p>
+										</div>
+										<p>
+											<i class="fas fa-phone-alt"></i>
+											+1 315 369 5943
+										</p>
+										<p class="mb-0">
+											<i class="fas fa-envelope"></i>
+											sefinalproject@project.com
+										</p>
+									</div>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- /Footer Top -->
+				
+				<!-- Footer Bottom -->
+                <div class="footer-bottom">
+					<div class="container-fluid">
+					
+						<!-- Copyright -->
+						<div class="copyright">
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="copyright-text">
+										<p class="mb-0">Copyrights</p>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6">
+								
+									<!-- Copyright Menu -->
+									<div class="copyright-menu">
+										<ul class="policy-menu">
+											<li><a href="term-condition.html">Terms and Conditions</a></li>
+											<li><a href="privacy-policy.html">Policy</a></li>
+										</ul>
+									</div>
+									<!-- /Copyright Menu -->
+									
+								</div>
+							</div>
+						</div>
+						<!-- /Copyright -->
+						
+					</div>
+				</div>
+				<!-- /Footer Bottom -->
+				
+			</footer>
+			<!-- /Footer -->
+		   
+		</div>
+		<!-- /Main Wrapper -->
+	  
+		<!-- jQuery -->
+			
+		<!-- Sticky Sidebar JS -->
+        <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+        <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="DuePayment.js"></script>
+		
+	</body>
+
+</html>

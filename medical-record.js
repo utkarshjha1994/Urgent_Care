@@ -1,10 +1,21 @@
-document.getElementById("patientImage12").src =
-  sessionStorage.getItem("userImage");
+
   var getUser = sessionStorage.getItem("userDetails");
+  console.log(getUser)
 var user = JSON.parse(getUser);
-  document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
 
 let usertype = sessionStorage.getItem("userRole")
+
+if(usertype=="ROLE.PATIENT"){
+  document.getElementById("patientImage12").src =
+  sessionStorage.getItem("userImage");
+  document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
+
+}
+
+else if(usertype=="ROLE.DOCTOR"){
+  document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
+
+}
 
 //usertype = "ROLE.DOCTOR"
 
@@ -12,7 +23,7 @@ let usertype = sessionStorage.getItem("userRole")
 let params = window.location.search.substring(1).split('&');
 //console.log("what is this"+sessionStorage.getItem("appointments"));
 let item = JSON.parse(sessionStorage.getItem("appointments"));
-//console.log((item));
+console.log((item));
 //let appointments = sessionStorge.getItem('appointments');
 let patient  = params[0].split('=');
 console.log(item.patient_id);
@@ -130,7 +141,7 @@ function updatePrescription(){
     console.log(response.success)
     if(response.success==1){
       alert("Diagnosis Successfully Updated")
-      window.location = "patient-dashboard.html";
+      window.location = "doctor-dashboard.html";
     }
     else{
       alert("Diagnosis Update Failed, Please Try Again")

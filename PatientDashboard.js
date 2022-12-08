@@ -108,7 +108,7 @@ function RenderData(result) {
     console.log("date" + date.getTime());
 
     //     else{
-    for (let c = 0; c < 6; c++) {
+    for (let c = 0; c < 7; c++) {
       let td = document.createElement("td"); // table definition.
       td = tr.insertCell(c);
       if (c == 0) {
@@ -120,6 +120,44 @@ function RenderData(result) {
         td.appendChild(h);
       }
 
+      if (c == 5) {
+        let h = document.createElement("h2");
+        h.setAttribute("class", "table-avatar");
+        let a = document.createElement("a");
+        
+        if(c==5)
+        a.innerHTML = "$"+item.total_payment;
+
+        h.appendChild(a);
+        td.appendChild(h);
+      }
+
+      if (c == 6) {
+        let h = document.createElement("h2");
+        h.setAttribute("class", "table-avatar");
+        let a = document.createElement("a");
+        
+        a.innerHTML = "$"+item.pending_payment;
+        h.onclick = function () {
+          if(item.pending_payment!=0){
+            var body = JSON.stringify({
+              appt_id:item.appt_id,
+              user_role:"ROLE.PATIENT",
+              insuranceNo:"GHI-347532",
+              description:item.test_name
+            })
+
+            sessionStorage.setItem("due_payment_body",body)
+            
+            sessionStorage.setItem("Due",item.pending_payment)
+          window.location = "due_payment.html"
+          }
+        };
+        h.appendChild(a);
+        td.appendChild(h);
+      }
+
+      
       if (c == 1) {
         let h = document.createElement("h2");
         h.setAttribute("class", "table-avatar");
@@ -177,8 +215,72 @@ function RenderData(result) {
         h.appendChild(i);
         td.appendChild(div);
       }
+
+      if (c == 4) {
+        let div = document.createElement("div");
+        div.setAttribute("class", "table-action");
+        //  td.setAttribute('class','text-right')
+        let h = document.createElement("a");
+        h.setAttribute("href", "#");
+        h.setAttribute("class", "btn btn-sm bg-danger-light");
+        let i = document.createElement("i");
+        i.setAttribute("class", "far fa-trash-alt");
+       // h.innerHTML = "Delete";
+        //  appointment_details = "hello"
+        // updateAppointments("item");
+        //  console.log("item is is sis "+sessionStorage.getItem("appointments"))
+
+        h.onclick = function () {
+          if(date.getTime() > new Date().getTime())
+            deleteAppointment(item);
+          else
+            alert("Can't delete an old appointment")
+        };
+        
+        div.appendChild(h);
+        h.appendChild(i);
+        td.appendChild(div);
+      }
     }
   }
 }
 
+
+function deleteAppointment(item){
+  if(confirm("Please Confirm Before Deleting Appointment!")){
+    var app = {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        mode: "cors",
+        authorization: "Bearer " + sessionStorage.getItem("jwt"),
+      },
+
+      body: JSON.stringify({
+        appt_id: item.appt_id,
+        user_role: "ROLE.PATIENT",
+      }),
+      
+    };
+    
+    fetch("http://localhost:3000/api/users/deleteAppt", app)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if(data.success==1){
+          alert("Deleted Successfully")
+          window.location.reload()
+        }
+        else{
+          alert("Failed to Delete")
+        }
+      })
+      .catch((err) => {
+        // Do something for an error here
+      });
+  }
+
+}
 // }
