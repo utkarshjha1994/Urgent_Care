@@ -30,7 +30,7 @@ loginButton.addEventListener("click", (e) => {
             alert(result.message)
           } else {
             alert("You have succesfully signed up!\nPlease proceed to log in!\nThank you.")
-            // window.location = "./login.html";
+            window.location = "./login.html";
           }
         })
         .catch((error) => {
@@ -40,6 +40,4 @@ loginButton.addEventListener("click", (e) => {
       alert("Please fill out all fields to proceed further!")
     }
     }
-
-    
 })

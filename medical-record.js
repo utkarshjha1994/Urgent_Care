@@ -6,8 +6,11 @@ var user = JSON.parse(getUser);
 let usertype = sessionStorage.getItem("userRole")
 
 if(usertype=="ROLE.PATIENT"){
-  document.getElementById("patientImage12").src =
-  sessionStorage.getItem("userImage");
+  document.getElementById("patientImage1").src =sessionStorage.getItem("userImage");
+  document.getElementById("patientImage2").src =sessionStorage.getItem("userImage");
+  document.getElementById("img2").src =sessionStorage.getItem("userImage");
+
+
   document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
 
 }

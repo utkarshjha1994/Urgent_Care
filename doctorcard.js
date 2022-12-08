@@ -78,31 +78,11 @@ for (let i = 0; i < getnumcards(); i++) {
                             docinfcont.append(specialty);
                        
                        
-                    let rating = $('<div/>').addClass('rating').attr("id", "hour" + i);  
-                    docinfleft.append(rating);
-                        let s1 = $('<i/>');
-                            s1.addClass ('fas fa-star filled');
-                            rating.append(s1);
-                        let s2 = $('<i/>');
-                            s2.addClass ('fas fa-star filled');
-                            rating.append(s2);
-                        let s3 = $('<i/>');
-                            s3.addClass ('fas fa-star filled');
-                            rating.append(s3);
-                        let s4 = $('<i/>');
-                            s4.addClass ('fas fa-star filled');
-                            rating.append(s4);
-                        let s5 = $('<i/>');
-                            s5.addClass ('fas fa-star');
-                            rating.append(s5);
-                        let sp = $('<p/>').text('(27)');    
-                            sp.class = 'd-inline-block average-rating';
-                            rating.append(sp);
+                    
+                        
                     let clindet = $('<div/>').addClass('clinic-details').attr("id", "hour" + i);                    
                     docinfcont.append(clindet);
-                        let location = $('<p/>').text('Georgia, USA');
-                        location.class = 'doc-location';
-                        clindet.append(location);
+                        
                     let clinser = $('<div/>').addClass('clinic-services').attr("id", "hour" + i);                    
                     docinfcont.append(clinser);
                         
@@ -114,7 +94,7 @@ for (let i = 0; i < getnumcards(); i++) {
                     let genderid = $('<p/>').text(getgender(i)); 
                     clininf.append(genderid);
                     
-                    let id = $('<p/>').text('Id #: '+getid(i)); 
+                    let id = $('<p/>').text('#SEDID: '+getid(i)); 
                     clininf.append(id);
                         let l1 = $('<li/>').attr("id", "hour" + i);
                         l1.css('list-style', 'none');
@@ -125,12 +105,12 @@ for (let i = 0; i < getnumcards(); i++) {
                                 thumb.css('margin-right', '10px')
                             thumb.append("&nbsp; &nbsp;");
                             
-                            let n1 = $('<p/>').text(" 99%");
-                                n1.css('display', 'inline-block')
+                            // let n1 = $('<p/>').text(" 99%");
+                            //     n1.css('display', 'inline-block')
 
-                                thumb.append(n1);
+                            //     thumb.append(n1);
                                 
-                                l1.append(thumb);
+                            //     l1.append(thumb);
 
                               /*  let l2 = $('<li/>').attr("id", "hour" + i);
                                 l2.css('list-style', 'none');               
@@ -145,7 +125,7 @@ for (let i = 0; i < getnumcards(); i++) {
                                 l3.css('list-style', 'none');         
                                                clininf.append(l3);
                             let altloc = $('<i/>');
-                                altloc.addClass('fas fa-map-marker-alt');
+                                // altloc.addClass('fas fa-map-marker-alt');
                                 altloc.css('display', 'inline-block');
                                 altloc.css('margin-right', '10px')
                                 //let sp1 = $('<p/>').text("&nbsp;");
@@ -154,24 +134,17 @@ for (let i = 0; i < getnumcards(); i++) {
                                 altloc.append("&nbsp; &nbsp;");
 
 
-                            let n3 = $('<p/>').text(" Newyork, USA");
-                            n3.css('display', 'inline-block')
-
-                            altloc.append(n3);
                             l3.append(altloc);
                             let l4 = $('<li/>').attr("id", "hour" + i);
-                                l4.css('list-style', 'none');     
-                                                   clininf.append(l4);
+                            l4.css('list-style', 'none');     
+                            clininf.append(l4);
                             let money = $('<i/>');
                                 money.addClass('far fa-money-bill-alt');
                                 money.css('display', 'inline-block');
                                 money.css('margin-right', '10px')
                                 money.append("&nbsp; &nbsp;");
 
-                            let n4 = $('<p/>').text("$300");
-                            n4.css('display', 'inline-block')
-                            l4.append(money);
-                            money.append(n4);
+                          
 
                     let clinbook = $('<div/>').addClass('clinic-services').attr("id", "hour" + i);                    
                     docinfright.append(clinbook);
