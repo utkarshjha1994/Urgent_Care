@@ -1,14 +1,42 @@
+var getUser = sessionStorage.getItem("userDetails");
+var userRole = sessionStorage.getItem("userRole");
+var user = JSON.parse(getUser);
+
+console.log(user)
+
+//document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
+//document.getElementById("patientName").innerHTML = user.labtech_name.toUpperCase();
+document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase())
+
+ // document.getElementById("speciality").innerHTML = user.labtech_speciality;
+ document.getElementById("patientImage").src =sessionStorage.getItem("userImage");//
+ document.getElementById("patientImage2").src =sessionStorage.getItem("userImage");//
+
+
+
+
 getDoctors();
 getPatients();
 getLabTechs();
+
+
+
+
 async function getDoctors() {
+
+
+  const bod = {
+    
+    "user_role":"ROLE.ADMIN"
+  
+  }
+
   await axios
-    .get(`http://localhost:3000/api/admins/viewDoctors`, {
+    .post(`http://localhost:3000/api/admins/viewDoctors`,bod, {
       headers: {
-        "Access-Control-Allow-Origin": `*`,
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0MyIsImVtYWlsIjoidGVzdDNAZW1haWwuY29tIn0sImlhdCI6MTY2ODMxNzUwOCwiZXhwIjoxNjc2MDkzNTA4fQ.hPgrkhMBzkySl78wmc75uOrm4_kSf9UiLYDFBT1Ug-U ",
         "Content-Type": "application/json",
+        mode: "cors",
+        authorization: "Bearer " + sessionStorage.getItem("jwt"),
       },
     })
     .then(function (response) {
@@ -58,14 +86,22 @@ async function getDoctors() {
     });
 }
 
+
 async function getPatients() {
+
+
+  const bod = {
+    
+    "user_role":"ROLE.ADMIN"
+  
+  }
+ 
   await axios
-    .get(`http://localhost:3000/api/admins/viewPatients`, {
+    .post(`http://localhost:3000/api/admins/viewPatients`,bod, {
       headers: {
-        "Access-Control-Allow-Origin": `*`,
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0MyIsImVtYWlsIjoidGVzdDNAZW1haWwuY29tIn0sImlhdCI6MTY2ODMxNzUwOCwiZXhwIjoxNjc2MDkzNTA4fQ.hPgrkhMBzkySl78wmc75uOrm4_kSf9UiLYDFBT1Ug-U ",
         "Content-Type": "application/json",
+        mode: "cors",
+        authorization: "Bearer " + sessionStorage.getItem("jwt"),
       },
     })
     .then(function (response) {
@@ -134,13 +170,19 @@ async function getPatients() {
 // }
 
 async function getLabTechs() {
+
+  const bod = {
+    
+    "user_role":"ROLE.ADMIN"
+  
+  }
+
   await axios
-    .get(`http://localhost:3000/api/admins/viewLabTechs`, {
+    .post(`http://localhost:3000/api/admins/viewLabTechs`,bod, {
       headers: {
-        "Access-Control-Allow-Origin": `*`,
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0MyIsImVtYWlsIjoidGVzdDNAZW1haWwuY29tIn0sImlhdCI6MTY2ODMxNzUwOCwiZXhwIjoxNjc2MDkzNTA4fQ.hPgrkhMBzkySl78wmc75uOrm4_kSf9UiLYDFBT1Ug-U ",
         "Content-Type": "application/json",
+        mode: "cors",
+        authorization: "Bearer " + sessionStorage.getItem("jwt"),
       },
     })
     .then(function (response) {
@@ -210,10 +252,9 @@ async function deactivateDoctor(doctor_id) {
   await axios
     .patch(url, body, {
       headers: {
-        "Access-Control-Allow-Origin": `*`,
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0MyIsImVtYWlsIjoidGVzdDNAZW1haWwuY29tIn0sImlhdCI6MTY2ODMxNzUwOCwiZXhwIjoxNjc2MDkzNTA4fQ.hPgrkhMBzkySl78wmc75uOrm4_kSf9UiLYDFBT1Ug-U ",
         "Content-Type": "application/json",
+        mode: "cors",
+        authorization: "Bearer " + sessionStorage.getItem("jwt"),
       },
     })
     .then(function (response) {
@@ -244,10 +285,9 @@ async function deactivateLabTech(labtech_id) {
   await axios
     .patch(url, body, {
       headers: {
-        "Access-Control-Allow-Origin": `*`,
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0MyIsImVtYWlsIjoidGVzdDNAZW1haWwuY29tIn0sImlhdCI6MTY2ODMxNzUwOCwiZXhwIjoxNjc2MDkzNTA4fQ.hPgrkhMBzkySl78wmc75uOrm4_kSf9UiLYDFBT1Ug-U ",
         "Content-Type": "application/json",
+        mode: "cors",
+        authorization: "Bearer " + sessionStorage.getItem("jwt"),
       },
     })
     .then(function (response) {
