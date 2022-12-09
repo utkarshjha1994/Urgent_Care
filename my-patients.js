@@ -135,7 +135,7 @@ export function container() {
         .then((result) => {
         if (result.success === 1) {
           sessionStorage.setItem("myPatients", JSON.stringify(result.data))
-          // location.href = "medical-record.html";
+          location.href = "viewmed-historypatient.html";
         } else {
           alert(result.message);
         }
