@@ -6,9 +6,16 @@ var user = JSON.parse(getUser);
 
 console.log(user)
 
-document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
-document.getElementById("name1").innerHTML = user.doctor_name.toUpperCase();
-document.getElementById("speciality").innerHTML = user.doctor_speciality;
+document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
+document.getElementById("patientName").innerHTML = user.labtech_name.toUpperCase();
+document.getElementById("patientImage1").setAttribute("alt",user.labtech_name.toUpperCase())
+
+ // document.getElementById("speciality").innerHTML = user.labtech_speciality;
+ document.getElementById("patientImage").src =sessionStorage.getItem("userImage");
+
+//document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
+//document.getElementById("name1").innerHTML = user.doctor_name.toUpperCase();
+//document.getElementById("speciality").innerHTML = user.doctor_speciality;
 
 document.getElementById("logout1").addEventListener("click", (e) => {
   logoutRequest().then((result) => {
@@ -27,7 +34,6 @@ document.getElementById("logout1").addEventListener("click", (e) => {
 
 let empTab = document.getElementById("appointments");
 let result = "";
-let doctor_id = user.doctor_id;
 let arr = ["8 pm", 9, 10, 11, 12, 13, 14, 15, 16];
 let time_arr = [
   "8:00 AM",
@@ -52,12 +58,11 @@ var app = {
     authorization: "Bearer " + sessionStorage.getItem("jwt"),
   },
   body: JSON.stringify({
-    doctor_id: doctor_id,
-    user_role: "ROLE.DOCTOR",
+    user_role: "ROLE.LABTECH"
   }),
 };
 
-fetch("http://localhost:3000/api/doctors/viewDocAppt", app)
+fetch("http://localhost:3000/api/labtechs/getTests", app)
   .then((response) => {
     return response.json();
   })
@@ -82,23 +87,24 @@ fetch("http://localhost:3000/api/doctors/viewDocAppt", app)
     // Do something for an error here
   });
 
-function RenderData(result) {
+function RenderData(result) { 
+    
   console.log("render");
   let rowCnt = empTab.rows.length; // get the number of rows.
   console.log("result is " + result);
   result.forEach(myFunction);
   console.log(data);
   function myFunction(item) {
+      if(item.test_name!=null){
+        
+      
     console.log("item " + item.appt_id);
 
     var date = new Date(item.appt_date);
+    empTab = document.getElementById("appointments");
 
-    if (date.getTime() < new Date().getTime()) {
-      empTab = document.getElementById("app");
-      console.log(item.id);
-    } else {
-      empTab = document.getElementById("appointments");
-    }
+
+   
 
     let tr = empTab.insertRow(rowCnt); // table row.
     tr = empTab.insertRow(rowCnt);
@@ -107,14 +113,14 @@ function RenderData(result) {
     console.log("date" + date.getTime());
 
     //     else{
-    for (let c = 0; c < 7; c++) {
+    for (let c = 0; c < 5; c++) {
       let td = document.createElement("td"); // table definition.
       td = tr.insertCell(c);
       if (c == 0) {
         let h = document.createElement("h2");
         h.setAttribute("class", "table-avatar");
         let a = document.createElement("a");
-        a.innerHTML = "#SEPID"+item.patient_id;
+        a.innerHTML = "#APPTID"+item.appt_id;
         
         
         h.appendChild(a);
@@ -133,25 +139,23 @@ function RenderData(result) {
       }
 
       if (c == 2) {
-        var date = new Date(item.appt_date);
-        td.innerHTML =
-          
-        (date.getMonth() + 1) +
-        "-" +date.getDate() +
-        "-" +
-        date.getFullYear();
-        console.log(date.getTime());
-        let span = document.createElement("label");
-        span.setAttribute("class", "d-block text-info");
-
-        //  time = [""]
-        console.log("here2");
-
-        span.innerHTML = time_arr[item.slots];
-        td.appendChild(span);
+        let h = document.createElement("h2");
+        h.setAttribute("class", "table-avatar");
+        let a = document.createElement("a");
+        a.innerHTML = item.doctor_name;
+        h.appendChild(a);
+        td.appendChild(h);
       }
 
       if (c == 3) {
+        let h = document.createElement("h2");
+        h.setAttribute("class", "table-avatar");
+        let a = document.createElement("a");
+        a.innerHTML = item.test_name;
+        h.appendChild(a);
+        td.appendChild(h);
+      }
+      if (c == 4) {
         let div = document.createElement("div");
         div.setAttribute("class", "table-actiom");
         //  td.setAttribute('class','text-right')
@@ -186,4 +190,4 @@ function RenderData(result) {
   }
 }
 
-
+}
