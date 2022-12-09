@@ -25,7 +25,7 @@ else if(usertype=="ROLE.DOCTOR"){
 }
 
 else if(usertype=="ROLE.LABTECH"){
-  //document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
+  document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
   //document.getElementById("speciality").innerHTML = user.doctor_speciality;
   side_dash.setAttribute("href","labtech-dashboard.html")
   side_profile.setAttribute("href","doctor-profile.html")
