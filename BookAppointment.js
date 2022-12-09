@@ -137,10 +137,10 @@ function BookAppointment(){
         final_charges:response.data.total_charges,
         description:sessionStorage.getItem("bookingDoctorSpeciality"),
 
-        slots:e.options[e.selectedIndex].value
+        slots:slots.options[slots.selectedIndex].value
       
       }))
-      alert(JSON.stringify(response));
+    //  alert(JSON.stringify(response));
 
       window.location = "payment.html"
     }
