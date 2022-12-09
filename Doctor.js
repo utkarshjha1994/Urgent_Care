@@ -1,4 +1,5 @@
 
+import {logoutRequest} from './APIManager.js';
 if (sessionStorage.getItem("jwt") != null) {
   document.getElementById("loginDiv").style.display = 'none'
   document.getElementById("profileDiv").style.display = 'block'
@@ -13,6 +14,21 @@ document.getElementById("name1").innerHTML = user.patient_name.toUpperCase();
   document.getElementById("loginDiv").style.display = 'block'
   document.getElementById("profileDiv").style.display = 'none'
 }
+
+document.getElementById("logout1").addEventListener("click", (e) => {
+  logoutRequest().then((result) => {
+    if (result.success === 1) {
+      alert("You have been logged out. To access the portal please log in again.")
+      sessionStorage.clear()
+      window.location = "login.html"
+    } else {
+        alert(result.message);
+    }
+    })
+    .catch((error) => {
+      alert(error);
+    });
+});
 
 renderUsers();
 
@@ -32,21 +48,6 @@ async function getUsers() {
     }
   }
 const data = await renderUsers()
-
-document.getElementById("logout1").addEventListener("click", (e) => {
-  logoutRequest().then((result) => {
-    if (result.success === 1) {
-      alert("You have been logged out. To access the portal please log in again.")
-      sessionStorage.clear()
-      window.location = "login.html"
-    } else {
-        alert(result.message);
-    }
-    })
-    .catch((error) => {
-      alert(error);
-    });
-});
   
 export{data}
 
