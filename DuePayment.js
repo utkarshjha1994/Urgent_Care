@@ -28,7 +28,7 @@ test_name.innerHTML = payment_info.description
 
 pay.onclick = function(){myFunction()}
 
- console.log(body)
+ //console.log(body)
 
 let current_date = document.getElementById("date");
 let current_time = document.getElementById("time");
@@ -93,7 +93,7 @@ function myFunction(){
     var dvalue =   date.value;
  var mvalue  = month.value;
    // alert(dvalue)
-    console.log(new Date().getFullYear())
+    //console.log(new Date().getFullYear())
 
     
     var error = "";
@@ -101,7 +101,7 @@ function myFunction(){
     
     if(validateCardNumber(inputtxt.value))
         {
-            console.log(inputtxt.value)
+            //console.log(inputtxt.value)
         }
       else
         {
@@ -142,7 +142,7 @@ function myFunction(){
 
        // makePayment()
         if(error!=""){
-            console.log(error);
+            //console.log(error);
            alert(error);
 
         }
@@ -151,8 +151,8 @@ function myFunction(){
 
         }
 
-  //  console.log('clicked')
-  //  console.log(appointmentsState);
+  //  //console.log('clicked')
+  //  //console.log(appointmentsState);
 
 
 
@@ -162,7 +162,7 @@ function makePayment(){
     /*if(user.patient_insuranceNo==null){
      // window.location = "payment.html"
     }*/
-    console.log("body"+body)
+    //console.log("body"+body)
 
     const settings = {
       method: "POST", 
@@ -180,7 +180,7 @@ function makePayment(){
     fetch('http://localhost:3000/api/users/makeDuePayment', settings)
     .then(response => response.json())
     .then(response =>{ 
-      console.log("Response isn "+response.data)
+      //console.log("Response isn "+response.data)
       if(response.success == 1){
         alert("Payment Success");
         window.location = "patient-dashboard.html"

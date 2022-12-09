@@ -6,7 +6,7 @@ let date = document.getElementById('date');
 let slots = document.getElementById('slots');
 var getUser = sessionStorage.getItem("userDetails");
 var user = JSON.parse(getUser);
-console.log("Patient ID is "+user.patient_id)
+//console.log("Patient ID is "+user.patient_id)
 
 
 var todayDate = new Date();
@@ -23,7 +23,7 @@ var todayDate = new Date();
 
 date.setAttribute("min", '0');
 
-console.log(sessionStorage.getItem("bookingDoctorName"))
+//console.log(sessionStorage.getItem("bookingDoctorName"))
 let doctor_id = sessionStorage.getItem("bookingDoctorID")
 let doctor_name =  sessionStorage.getItem("bookingDoctorName")
 
@@ -42,7 +42,7 @@ dropdown.setAttribute('value',doctor_name);
   
 function book() {
   let e = slots
-  console.log("Length is"+e.options[e.selectedIndex].value);
+  //console.log("Length is"+e.options[e.selectedIndex].value);
   sessionStorage.setItem("Book",JSON.stringify({
     patient_id: user.patient_id,
     doctor_id: doctor_id,
@@ -63,7 +63,7 @@ function book() {
     BookAppointment();
       
       
-console.log("Our Data"+JSON.stringify({
+//console.log("Our Data"+JSON.stringify({
   patient_id: user.id,
   doctor_id: doctor_id,
   appt_date: date.value,
@@ -85,9 +85,9 @@ const inputHandler = function(e) {
     options.forEach(o => o.remove());
 
   slots.innerHTML = refresh
-  console.log(e.target.value)
+  //console.log(e.target.value)
   slots.disabled = false
-  console.log("value is"+slots.value)
+  //console.log("value is"+slots.value)
  
   showAvailableSlots(e.target.value)
 
@@ -127,7 +127,7 @@ function BookAppointment(){
   fetch('http://localhost:3000/api/users/bookAppt', settings)
   .then(response => response.json())
   .then(response =>{ 
-    console.log("Response isn "+response.data)
+    //console.log("Response isn "+response.data)
     if(response.success == 1){
       sessionStorage.setItem("Book",JSON.stringify({
         patient_id: user.patient_id,
@@ -170,7 +170,7 @@ function showAvailableSlots(item){
     
     "user_role":"ROLE.PATIENT"})
   }
-   console.log(defaultOptions) ;
+   //console.log(defaultOptions) ;
     fetch('http://localhost:3000/api/users/viewAvailableAppointments', defaultOptions)
   .then(response => response.json())
   .then(response =>{ 
@@ -181,7 +181,7 @@ function showAvailableSlots(item){
       slots.removeChild(document.getElementById(item.slots))
     }
 
-    console.log(response)
+    //console.log(response)
     if(response.success==1){
       //alert("Diagnosis Successfully Updated")
     }
@@ -205,7 +205,7 @@ function showAvailableSlots(item){
     if(flag == false){
       var options = document.querySelectorAll('#slots option');
     options.forEach(o => o.remove());
-    console.log("Error is"+error)
+    //console.log("Error is"+error)
     }
 
    

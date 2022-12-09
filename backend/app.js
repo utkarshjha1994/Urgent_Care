@@ -27,5 +27,5 @@ app.use(bodyParser.json());
 
 let port = process.env.APP_PORT || 5000;
 app.listen(port,() => {
-    console.log("Server started on Port :", port);
+    //console.log("Server started on Port :", port);
 });

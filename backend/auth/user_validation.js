@@ -1,7 +1,7 @@
 const checkUser = (permissions) => {
     return (req, res, next) => {
         const userRole = req.body.user_role;
-        console.log(userRole); //get user role from request.body
+        //console.log(userRole); //get user role from request.body
         if(permissions.includes(userRole)){
             next()
         }

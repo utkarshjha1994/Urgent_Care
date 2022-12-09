@@ -40,9 +40,9 @@ updateButton.addEventListener("click", (e) => {
     const email = submitForm.email.value
 
     const insurance = submitForm.insurance.value;
-    // console.log(insurance[0])
+    // //console.log(insurance[0])
     // if (insurance != '' && insurance[0].toLowerCase() != 'A' && insurance[0].toLowerCase() != 'D' && insurance[0].toLowerCase() != 'G') {
-    //   console.log(insurance)
+    //   //console.log(insurance)
     //   alert('Please enter valid insurance number!!')
     //   return
     // }

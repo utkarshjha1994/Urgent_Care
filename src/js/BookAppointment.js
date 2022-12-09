@@ -16,10 +16,10 @@ fetch('http://localhost:3000/Doctors')
     return response.json()
   })
   .then((data) => {
-    console.log(data.results);
+    //console.log(data.results);
     // Work with JSON data here
     data.results.forEach((item) => {
-      console.log(item);
+      //console.log(item);
          var option = document.createElement("option");
           option.text = item.name;
           option.id = item.id;;
@@ -30,7 +30,7 @@ fetch('http://localhost:3000/Doctors')
         
     //   }
     // } catch {
-    //   console.log("heree", error)
+    //   //console.log("heree", error)
     // }
     
 
@@ -80,9 +80,9 @@ var appointments1 = {
   
 /*  fetch('http://localhost:3000/appointments/book/', defaultOptions)
 .then(response => response.json())
-.then(response => console.log(JSON.stringify(response))).catch(error=>console.log(error))*/
+.then(response => //console.log(JSON.stringify(response))).catch(error=>//console.log(error))*/
 updateAppointments("123");
-// console.log(appointmentsState)
+// //console.log(appointmentsState)
 window.location = "../html/payment.html";
 
 }

@@ -61,7 +61,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     },
@@ -80,7 +80,7 @@ module.exports = {
                 return callBack(error);
             }
             else{
-                console.log(results);
+                //console.log(results);
                 return callBack(null, results);
             }
             //return callBack(null, results);
@@ -100,7 +100,7 @@ module.exports = {
         });
     },
     addDiagnosis: (data, callBack) => {
-        console.log(data)
+        //console.log(data)
         db.query("UPDATE appointments SET doctor_notes=?, test_name=?, pending_payment=?, test_status=? where appt_id=?",
         [
             data.doctor_notes,
@@ -149,7 +149,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     }

@@ -7,7 +7,7 @@ module.exports = {
         const body = req.body; //test_status=pending
         getTests(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -24,7 +24,7 @@ module.exports = {
         const body = req.body; //appt_id
         modifyTests(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -61,11 +61,11 @@ module.exports = {
         else{
             const salt = genSaltSync(10);
             body.password = hashSync(body.password, salt);
-            console.log(body)
+            //console.log(body)
             changePassword(body, (err, results) => {
-                //console.log("hi",combo)
+                ////console.log("hi",combo)
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     if(err.code == "ER_DUP_ENTRY"){
                         return res.status(500).json({
                             success: 0,
@@ -96,15 +96,15 @@ module.exports = {
     updateLabTechProfile: (req, res) => {
         const body = req.body; 
         //Validate fields [Server-side validation]
-        console.log("Hi",body)
+        //console.log("Hi",body)
 
         //phone validator
-        console.log(body.phone.length) 
+        //console.log(body.phone.length) 
         const isNumeric = (value) => {
             return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
           }
         isvalidphonenumber = isNumeric(body.phone)
-        console.log(isvalidphonenumber)
+        //console.log(isvalidphonenumber)
 
         if(!isvalidphonenumber){
             return res.status(500).json({
@@ -119,10 +119,10 @@ module.exports = {
 
 
         if( !body.gender && !body.dob && !body.phone && !body.address && !body.speciality ){ 
-            //console.log("hi")
+            ////console.log("hi")
             getUserDetailsFromDB(body, (err, results) => {
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     return res.status(500).json({
                         success: 0,
                         message: "Internal Server Error"
@@ -130,10 +130,10 @@ module.exports = {
                 }
                 else{
                     combo = results[0]
-                    console.log("hi",combo)
+                    //console.log("hi",combo)
                     updateDoctorProfile(combo, (err, results) => {
                         if(err){
-                            console.log(err);
+                            //console.log(err);
                             if(err.code == "ER_DUP_ENTRY"){ //Not required now!
                                 return res.status(500).json({
                                     success: 0,
@@ -164,10 +164,10 @@ module.exports = {
             });
         }
         else if(  body.gender && body.dob && body.phone && body.address && body.speciality  ){
-            console.log("Hi")
+            //console.log("Hi")
             updateLabTechProfile(body, (err, results) => {
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     if(err.code == "ER_DUP_ENTRY"){ //Not required now!
                         return res.status(500).json({
                             success: 0,

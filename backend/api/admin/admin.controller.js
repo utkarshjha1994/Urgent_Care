@@ -21,12 +21,12 @@ module.exports = {
         }
 
         //phone validator
-        console.log(body.phone.length) 
+        //console.log(body.phone.length) 
         const isNumeric = (value) => {
             return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
           }
         isvalidphonenumber = isNumeric(body.phone)
-        console.log(isvalidphonenumber)
+        //console.log(isvalidphonenumber)
 
         if(!isvalidphonenumber){
             return res.status(500).json({
@@ -74,7 +74,7 @@ module.exports = {
                 else if(results.length == 0){
                     addDoctor(body, (err, results) => {
                         if(err){
-                            console.log(err);
+                            //console.log(err);
                             if(err.code == "ER_DUP_ENTRY"){
                                 return res.status(500).json({
                                     success: 0,
@@ -148,7 +148,7 @@ module.exports = {
                 else if(results.length == 0){
                     addAdmin(body, (err, results) => {
                         if(err){
-                            console.log(err);
+                            //console.log(err);
                             if(err.code == "ER_DUP_ENTRY"){
                                 return res.status(500).json({
                                     success: 0,
@@ -192,12 +192,12 @@ module.exports = {
         }
 
         //phone validator
-        console.log(body.phone.length) 
+        //console.log(body.phone.length) 
         const isNumeric = (value) => {
             return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
           }
         isvalidphonenumber = isNumeric(body.phone)
-        console.log(isvalidphonenumber)
+        //console.log(isvalidphonenumber)
 
         if(!isvalidphonenumber){
             return res.status(500).json({
@@ -244,7 +244,7 @@ module.exports = {
                 else if(results.length == 0){
                     addLabTech(body, (err, results) => {
                         if(err){
-                            console.log(err);
+                            //console.log(err);
                             if(err.code == "ER_DUP_ENTRY"){
                                 return res.status(500).json({
                                     success: 0,
@@ -284,7 +284,7 @@ module.exports = {
         else{
             deactivateDoctor(body, (err, results) => {
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     return res.status(500).json({
                         success: 0,
                         message: "Internal Server Error"
@@ -315,7 +315,7 @@ module.exports = {
         else{
             deactivateLabTech(body, (err, results) => {
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     return res.status(500).json({
                         success: 0,
                         message: "Internal Server Error"
@@ -383,7 +383,7 @@ module.exports = {
                 else if(results.length == 0){
                     updateAdminProfile(body, (err, results) => {
                         if(err){
-                            console.log(err);
+                            //console.log(err);
                             if(err.code == "ER_DUP_ENTRY"){
                                 return res.status(500).json({
                                     success: 0,
@@ -412,7 +412,7 @@ module.exports = {
     viewPatients: (req,res) => {
         viewPatients((err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -427,7 +427,7 @@ module.exports = {
     viewDoctors: (req,res) => {
         viewDoctors((err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -442,7 +442,7 @@ module.exports = {
     viewLabTechs: (req,res) => {
         viewLabTechs((err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -468,16 +468,16 @@ module.exports = {
         //if our Urgent care does not fall into any insurance network then totalPayment = charges i.e., full charge (no rebate)
 
         let charges = body.charges;
-        console.log(charges);
+        //console.log(charges);
         let insurance_company = body.insuranceNo.substring(0,3);
-        console.log(insurance_company);
+        //console.log(insurance_company);
         req.body.insurance_company = insurance_company;
         body = req.body;
-        console.log(body);
+        //console.log(body);
 
         bookAppointment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -496,7 +496,7 @@ module.exports = {
         const body = req.body; //get new appt_date from user and appt_id
         modifyAppointment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"

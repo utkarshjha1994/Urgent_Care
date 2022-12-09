@@ -484,7 +484,7 @@
 
     const validateForm = (formControls) => {
       let formInputs = Object.keys(formControls);
-      console.log({ formInputs });
+      //console.log({ formInputs });
       let formValues = {};
       let formErrors = {};
       let formStatus = true;
@@ -513,7 +513,7 @@
      /*   if (inputName === "phone") {
           let pattern =
             /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm;
-          console.log({
+          //console.log({
             pattern: !pattern.test(formControls[inputName].value),
           });
           if (!pattern.test(formControls[inputName].value)) {
@@ -537,7 +537,7 @@
     };
 
     function addDoctor() {
-      console.log(document.getElementById("user_name").value)
+      //console.log(document.getElementById("user_name").value)
       const value =JSON.stringify({
   name:document.getElementById("user_name").value,
   email:document.getElementById("email").value,
@@ -552,7 +552,7 @@
       })
 
 
-      console.log("Value is "+value);
+      //console.log("Value is "+value);
 
 
     /*  const formValue = {
@@ -567,10 +567,10 @@
         password: id("password"),
         status: id("status"),
       };*/
-      //console.log(formValue)
+      ////console.log(formValue)
 
      // const { values, errors, status } = validateForm(formValue);
-     // console.log({ status, values, errors });
+     // //console.log({ status, values, errors });
      status = true
       
         // put api request code to save data
@@ -592,9 +592,9 @@
             );
           })
           .catch((error) => {
-            console.log({ error });
+            //console.log({ error });
             alert("Error!", "Detail not saved", "error");
-            console.log("Error:"+error);
+            //console.log("Error:"+error);
           });
       }
     

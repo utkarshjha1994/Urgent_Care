@@ -10,12 +10,12 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     },
     viewDoctorsBySpecialty: (data, callBack) => {
-        console.log(data.doctor_speciality)
+        //console.log(data.doctor_speciality)
         db.query("SELECT doctor_id, doctor_name, doctor_gender, doctor_speciality FROM doctors where doctor_estatus = ? and doctor_speciality = ?",
         [
             "Active",
@@ -25,7 +25,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     },
@@ -86,7 +86,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results); //get user_role from here
+            //console.log(results); //get user_role from here
             return callBack(null, results[0]);
         });
     },
@@ -99,7 +99,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results); //role also included
+            //console.log(results); //role also included
             return callBack(null, results[0]);
         });
     },
@@ -113,7 +113,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results); //role also included
+            //console.log(results); //role also included
             return callBack(null, results[0]);
         });
     },
@@ -127,7 +127,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results); //role also included
+            //console.log(results); //role also included
             return callBack(null, results[0]);
         });
     },
@@ -140,7 +140,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     },
@@ -210,7 +210,7 @@ module.exports = {
                 return callBack(error);
             }
             else{
-                console.log(results);
+                //console.log(results);
                 return callBack(null, results);
             };
                 //return callBack(null, results);
@@ -226,7 +226,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     },
@@ -234,14 +234,14 @@ module.exports = {
 
         //blank space validation
         x = data.insuranceNo.trim()
-        console.log(x)
+        //console.log(x)
         if(!data.insuranceNo || x==""){
             results1 = {"results":"Appointment Fees"}
             
                 results1.appointment_fees = data.charges;
                 results1.insurance_coverage = 0+"%";
                 results1.total_charges = data.charges;
-                console.log(results1)
+                //console.log(results1)
             
             return callBack(null, results1);
                 
@@ -257,16 +257,16 @@ module.exports = {
                     return callBack(error);
                 }
                 else{
-                    console.log(results[0]);
+                    //console.log(results[0]);
                     //total_charges = data.charges - results[0].coverage_amount;
                     //insurance covergae is in %
                     total_charges =  Number(data.charges) - (( Number(results[0].coverage_amount)* Number(data.charges))/100);
 
                     let insurance_coverage = results[0].coverage_amount+"%";
                     let total_charges_after_insurance_coverage = total_charges;
-                    console.log(data.charges);
-                    console.log(insurance_coverage);
-                    console.log(total_charges_after_insurance_coverage);
+                    //console.log(data.charges);
+                    //console.log(insurance_coverage);
+                    //console.log(total_charges_after_insurance_coverage);
 
                     results[0].appointment_fees = data.charges;
                     results[0].insurance_coverage = insurance_coverage;
@@ -283,7 +283,7 @@ module.exports = {
         //this is for when booking appointment
         //frontend sends the data calculated after hitting the bookAppt API
         //if no insurance number available with user, then send full charges under final_charges field in request body
-        console.log(data)
+        //console.log(data)
         db.query('INSERT INTO appointments(appt_date,patient_id,doctor_id,total_payment,pending_payment,slots) values(?,?,?,?,?,?)', 
         [
             data.appt_date,
@@ -318,9 +318,9 @@ module.exports = {
 
         //blank space validation
         x = data.insuranceNo.trim()
-        console.log(x)
+        //console.log(x)
         if(!data.insuranceNo || x==""){
-            console.log("Insurance number not available!");
+            //console.log("Insurance number not available!");
             db.query("SELECT pending_payment FROM appointments where appt_id=?",
             [
                 data.appt_id
@@ -330,8 +330,8 @@ module.exports = {
                     return callBack(error);
                 }
                 else{
-                    console.log("Hi",results1);
-                    console.log(results1[0]); //pending payment
+                    //console.log("Hi",results1);
+                    //console.log(results1[0]); //pending payment
                     results1[0].total_charges = results1[0].pending_payment;
 
                     return callBack(null, results1[0]);
@@ -360,18 +360,18 @@ module.exports = {
                             return callBack(error);
                         }
                         else{
-                            console.log("Hi",results);
-                            console.log(results1[0]); //pending payment
+                            //console.log("Hi",results);
+                            //console.log(results1[0]); //pending payment
 
                             total_charges = Number(results1[0].pending_payment) - ((Number(results[0].coverage_amount)*Number(results1[0].pending_payment))/100);
 
                             //total_charges = results1[0].pending_payment - results[0].coverage_amount;
-                            console.log(total_charges); //amount they will pay after insurance coverage
+                            //console.log(total_charges); //amount they will pay after insurance coverage
 
                             let insurance_coverage = results[0].coverage_amount+"%";
-                            console.log(insurance_coverage);
+                            //console.log(insurance_coverage);
                             let total_charges_after_insurance_coverage = total_charges;
-                            console.log(total_charges_after_insurance_coverage);
+                            //console.log(total_charges_after_insurance_coverage);
 
                             results1[0].insurance_coverage = insurance_coverage; //in %
                             results1[0].total_charges = total_charges_after_insurance_coverage;
@@ -401,18 +401,18 @@ module.exports = {
                 return callBack(error);
             }
             else{
-                console.log(results1[0]);//pending payment of user for an appointment and already paid amount for the appointment returned
+                //console.log(results1[0]);//pending payment of user for an appointment and already paid amount for the appointment returned
 
                 //frontend sends the data calculated after hitting the bookAppt API
                 //if no insurance number available with user, then send full charges under final_charges field in request body
                 let total_charges = data.paymentValue; //will be fetched from request body
-                console.log(total_charges);
+                //console.log(total_charges);
 
                 total_payment = results1[0].total_payment;
-                console.log(total_payment);
+                //console.log(total_payment);
                 
                 let final_total_payment = Number(total_payment) +  Number(total_charges);
-                console.log(final_total_payment);
+                //console.log(final_total_payment);
                 db.query('UPDATE appointments SET total_payment=?, pending_payment=? WHERE appt_id=?', 
                 [
                     final_total_payment,
@@ -440,7 +440,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     },

@@ -555,7 +555,7 @@ var getUser = sessionStorage.getItem("userDetails");
 var userRole = sessionStorage.getItem("userRole");
 var user = JSON.parse(getUser);
 
-console.log(user)
+//console.log(user)
 
 //document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
 //document.getElementById("patientName").innerHTML = user.labtech_name.toUpperCase();
@@ -570,7 +570,7 @@ document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase(
 
       const validateForm = (formControls) => {
         let formInputs = Object.keys(formControls);
-        console.log({ formInputs });
+        //console.log({ formInputs });
         let formValues = {};
         let formErrors = {};
         let formStatus = true;
@@ -599,7 +599,7 @@ document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase(
        /*   if (inputName === "phone") {
             let pattern =
               /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm;
-            console.log({
+            //console.log({
               pattern: !pattern.test(formControls[inputName].value),
             });
             if (!pattern.test(formControls[inputName].value)) {
@@ -623,7 +623,7 @@ document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase(
       };
 
       function addDoctor() {
-        console.log(document.getElementById("user_name").value)
+        //console.log(document.getElementById("user_name").value)
         const value =JSON.stringify({
     name:document.getElementById("user_name").value,
     email:document.getElementById("email").value,
@@ -638,7 +638,7 @@ document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase(
         })
 
 
-        console.log("Value is "+value);
+        //console.log("Value is "+value);
 
 
       /*  const formValue = {
@@ -653,10 +653,10 @@ document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase(
           password: id("password"),
           status: id("status"),
         };*/
-        //console.log(formValue)
+        ////console.log(formValue)
 
        // const { values, errors, status } = validateForm(formValue);
-       // console.log({ status, values, errors });
+       // //console.log({ status, values, errors });
        status = true
         
           // put api request code to save data
@@ -678,9 +678,9 @@ document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase(
               );
             })
             .catch((error) => {
-              console.log({ error });
+              //console.log({ error });
               alert("Error!", "Detail not saved", "error");
-              console.log("Error:"+error);
+              //console.log("Error:"+error);
             });
         }
       

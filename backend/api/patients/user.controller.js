@@ -6,7 +6,7 @@ module.exports = {
     viewDoctors: (req, res) => {
         viewDoctors((err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -20,10 +20,10 @@ module.exports = {
     },
     viewDoctorsBySpecialty: (req, res) => {
         const body = req.body;
-        //console.log(body)
+        ////console.log(body)
         viewDoctorsBySpecialty(body,(err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -58,12 +58,12 @@ module.exports = {
         }
 
         //phone validator
-        console.log(body.patient_phone.length) 
+        //console.log(body.patient_phone.length) 
         const isNumeric = (value) => {
             return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
           }
         isvalidphonenumber = isNumeric(body.patient_phone)
-        console.log(isvalidphonenumber)
+        //console.log(isvalidphonenumber)
 
         if(!isvalidphonenumber){
             return res.status(500).json({
@@ -77,7 +77,7 @@ module.exports = {
         }
 
 
-        //console.log(body.password.length);
+        ////console.log(body.password.length);
         else if( !body.name || !body.email || !body.password || !body.passwordConfirm || !body.patient_address || !body.patient_dob || !body.patient_gender || !body.patient_phone ){
             return res.status(500).json({
                 message: 'Please fill all the fields in order to register!',
@@ -103,7 +103,7 @@ module.exports = {
             });
         }
         else if(body.password.length > 12 || body.password.length < 8){
-            console.log(body.password.length);
+            //console.log(body.password.length);
             return res.status(500).json({
                 message: 'Password must be atleast 8 characters and at most 12 characters!',
                 //send form data back
@@ -128,7 +128,7 @@ module.exports = {
                 else if(results.length == 0){
                     createUser(body, (err, results) => {
                         if(err){
-                            console.log(err);
+                            //console.log(err);
                             if(err.code == "ER_DUP_ENTRY"){
                                 return res.status(500).json({
                                     success: 0,
@@ -160,7 +160,7 @@ module.exports = {
         //so frontend should prompt that user should login with new email id, which was updated by them!
         getUserByEmail(body.email, (err,results) => { //to get user role
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Database Connection error"
@@ -196,12 +196,12 @@ module.exports = {
                     //put cookie in browser
                     res.cookie('jwt', jsonwebtoken, cookieOptions);
 
-                    //console.log(results.user_role);
+                    ////console.log(results.user_role);
                     //Now, get logged-in user's details from respective tables as per user_role
                     if(results.user_role == "ROLE.PATIENT"){
                         getPatient(results.email, (err,results2) => { //to get user
                             if(err){
-                                console.log(err);
+                                //console.log(err);
                                 return res.status(500).json({
                                     success: 0,
                                     message: "Internal Server Error"
@@ -223,7 +223,7 @@ module.exports = {
                     else if(results.user_role == "ROLE.DOCTOR"){
                         getDoctor(results.email, (err,results2) => { //to get user
                             if(err){
-                                console.log(err);
+                                //console.log(err);
                                 return res.status(500).json({
                                     success: 0,
                                     message: "Internal Server Error"
@@ -244,7 +244,7 @@ module.exports = {
                     else if(results.user_role == "ROLE.LABTECH"){
                         getLabTechs(results.email, (err,results2) => { //to get user
                             if(err){
-                                console.log(err);
+                                //console.log(err);
                                 return res.status(500).json({
                                     success: 0,
                                     message: "Internal Server Error"
@@ -287,12 +287,12 @@ module.exports = {
         //server side validation for whether data is null, if null then fetch data from DB and store the same again
 
         //phone validator
-        console.log(body.patient_phone.length) 
+        //console.log(body.patient_phone.length) 
         const isNumeric = (value) => {
             return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
           }
         isvalidphonenumber = isNumeric(body.patient_phone)
-        console.log(isvalidphonenumber)
+        //console.log(isvalidphonenumber)
 
         if(!isvalidphonenumber){
             return res.status(500).json({
@@ -308,7 +308,7 @@ module.exports = {
         if( !body.patient_gender && !body.patient_dob && !body.patient_phone && !body.patient_address && !body.patient_insuranceNo ){ 
             getUserDetailsFromDB(body, (err, results) => {
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     return res.status(500).json({
                         success: 0,
                         message: "Internal Server Error"
@@ -316,10 +316,10 @@ module.exports = {
                 }
                 else{
                     combo = results[0]
-                    //console.log("hi",combo)
+                    ////console.log("hi",combo)
                     updatePatientProfile(combo, (err, results) => {
                         if(err){
-                            console.log(err);
+                            //console.log(err);
                             if(err.code == "ER_DUP_ENTRY"){ //Not required now!
                                 return res.status(500).json({
                                     success: 0,
@@ -351,10 +351,10 @@ module.exports = {
         }
         else if( body.patient_gender && body.patient_dob && body.patient_phone && body.patient_address || body.patient_insuranceNo ){
             //insuranceNo can be optional
-            console.log("Hi")
+            //console.log("Hi")
             updatePatientProfile(body, (err, results) => {
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     if(err.code == "ER_DUP_ENTRY"){ //Not required now!
                         return res.status(500).json({
                             success: 0,
@@ -407,11 +407,11 @@ module.exports = {
         else{
             const salt = genSaltSync(10);
             body.password = hashSync(body.password, salt);
-            console.log(body)
+            //console.log(body)
             changePassword(body, (err, results) => {
-                //console.log("hi",combo)
+                ////console.log("hi",combo)
                 if(err){
-                    console.log(err);
+                    //console.log(err);
                     if(err.code == "ER_DUP_ENTRY"){
                         return res.status(500).json({
                             success: 0,
@@ -443,7 +443,7 @@ module.exports = {
         const body = req.body;
         viewAvailableAppointments(body,(err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -459,7 +459,7 @@ module.exports = {
     bookAppointment: (req, res) => {
         let body = req.body; //get appt_date, charges, patient_id, doctor_id, insuranceNo, speciality
         let charges = body.charges;
-        console.log(charges);
+        //console.log(charges);
 
         //!!!!!front can hit this API when ---->!!!!
         //No insurance Number is provided by user at time of registration or updating the profile, 
@@ -480,14 +480,14 @@ module.exports = {
         //if our Urgent care does not fall into any insurance network then totalPayment = charges i.e., full charge (no rebate)
 
         let insurance_company = body.insuranceNo.substring(0,3);
-        console.log(insurance_company);
+        //console.log(insurance_company);
         req.body.insurance_company = insurance_company;
         body = req.body;
-        console.log(body);
+        //console.log(body);
 
         bookAppointment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -505,7 +505,7 @@ module.exports = {
     makePayment: (req, res) => {
         let body = req.body; 
         //only after make payment, appointment will be booked and inserted into DB!
-        console.log(body);
+        //console.log(body);
 
         //if no insurance number is provided by user at time of registration or updating the profile
         //then frontend will check this and send "full charges" through this API
@@ -515,7 +515,7 @@ module.exports = {
 
         makePayment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -539,14 +539,14 @@ module.exports = {
 
         let body = req.body; //get appt_id, insuranceNo, test_name
         let insurance_company = body.insuranceNo.substring(0,3);
-        console.log(insurance_company);
+        //console.log(insurance_company);
         req.body.insurance_company = insurance_company;
         body = req.body;
-        console.log(body);
+        //console.log(body);
 
         viewDueCharges(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -572,7 +572,7 @@ module.exports = {
 
         makeDuePayment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -591,7 +591,7 @@ module.exports = {
         const body = req.body;
         viewAppointment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -607,7 +607,7 @@ module.exports = {
         const body = req.body; //get new appt_date from user and appt_id
         modifyAppointment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"
@@ -629,7 +629,7 @@ module.exports = {
         const body = req.body; //get appt_id from user 
         deleteAppointment(body, (err, results) => {
             if(err){
-                console.log(err);
+                //console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Internal Server Error"

@@ -25,7 +25,7 @@ loginButton.addEventListener("click", (e) => {
         const patient_address = address + ', ' + city + ', ' + state + ', ' + zip
         registerUser(firstname, emailId, password, confirmpassword, patient_address, "1996-10-23", patient_gender, patient_phone)
         .then((result) => {
-          console.log(result)
+          //console.log(result)
           if (result.success != 1) {
             alert(result.message)
           } else {

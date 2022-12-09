@@ -4,7 +4,7 @@ var getUser = sessionStorage.getItem("userDetails");
 var userRole = sessionStorage.getItem("userRole");
 var user = JSON.parse(getUser);
 
-console.log(user)
+//console.log(user)
 
 document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
 document.getElementById("name1").innerHTML = user.doctor_name.toUpperCase();
@@ -41,7 +41,7 @@ let time_arr = [
   "4:00 PM",
   "5:00 PM",
 ];
-// console.log(arr[0]);
+// //console.log(arr[0]);
 
 var app = {
   method: "POST",
@@ -60,22 +60,23 @@ var app = {
 fetch("http://localhost:3000/api/doctors/viewDocAppt", app)
   .then((response) => {
     return response.json();
+
   })
   .then((data) => {
     result = data.data;
-    console.log("Returned Result is"+JSON.stringify(result));
+    //console.log("Returned Result is"+JSON.stringify(result));
     RenderData(result);
 
     // Work with JSON data here
     data.forEach((item) => {
-      console.log(item);
+      //console.log(item);
     });
     // try {
     //   function myFunction(item){
 
     //   }
     // } catch {
-    //   console.log("heree", error)
+    //   //console.log("heree", error)
     // }
   })
   .catch((err) => {
@@ -83,19 +84,19 @@ fetch("http://localhost:3000/api/doctors/viewDocAppt", app)
   });
 
 function RenderData(result) {
-  console.log("render");
+  //console.log("render");
   let rowCnt = empTab.rows.length; // get the number of rows.
-  console.log("result is " + result);
+  //console.log("result is " + result);
   result.forEach(myFunction);
-  console.log(data);
+  //console.log(data);
   function myFunction(item) {
-    console.log("item " + item.appt_id);
+    //console.log("item " + item.appt_id);
 
     var date = new Date(item.appt_date);
 
     if (date.getTime() < new Date().getTime()) {
       empTab = document.getElementById("app");
-      console.log(item.id);
+      //console.log(item.id);
     } else {
       empTab = document.getElementById("appointments");
     }
@@ -103,8 +104,8 @@ function RenderData(result) {
     let tr = empTab.insertRow(rowCnt); // table row.
     tr = empTab.insertRow(rowCnt);
     date.setHours(arr[item.slot]);
-    console.log("new date" + new Date().getTime());
-    console.log("date" + date.getTime());
+    //console.log("new date" + new Date().getTime());
+    //console.log("date" + date.getTime());
 
     //     else{
     for (let c = 0; c < 7; c++) {
@@ -140,12 +141,12 @@ function RenderData(result) {
         "-" +date.getDate() +
         "-" +
         date.getFullYear();
-        console.log(date.getTime());
+        //console.log(date.getTime());
         let span = document.createElement("label");
         span.setAttribute("class", "d-block text-info");
 
         //  time = [""]
-        console.log("here2");
+        //console.log("here2");
 
         span.innerHTML = time_arr[item.slots];
         td.appendChild(span);
@@ -163,13 +164,13 @@ function RenderData(result) {
         h.innerHTML = "View";
         //  appointment_details = "hello"
         // updateAppointments("item");
-        //  console.log("item is is sis "+sessionStorage.getItem("appointments"))
+        //  //console.log("item is is sis "+sessionStorage.getItem("appointments"))
 
         h.onclick = function () {
           view(item);
         };
         function view(item) {
-          console.log("i aa" + typeof item);
+          //console.log("i aa" + typeof item);
 
           sessionStorage.setItem("appointments", JSON.stringify(item));
 

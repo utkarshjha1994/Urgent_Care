@@ -10,7 +10,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results); //role also included
+            //console.log(results); //role also included
             return callBack(null, results);
         });
     },
@@ -25,7 +25,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results); //role also included
+            //console.log(results); //role also included
             return callBack(null, results);
         });
     },
@@ -89,7 +89,7 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results);
+            //console.log(results);
             return callBack(null, results);
         });
     },
@@ -108,7 +108,7 @@ module.exports = {
                 return callBack(error);
             }
             else{
-                console.log(results);
+                //console.log(results);
                 return callBack(null, results);
             }
             //return callBack(null, results);

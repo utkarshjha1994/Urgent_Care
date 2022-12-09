@@ -10,7 +10,7 @@ document.getElementById("name1").innerHTML = user.doctor_name.toUpperCase();
 document.getElementById("speciality").innerHTML = user.doctor_speciality;
 
 if (result.success === 1) {
-  console.log(result);
+  //console.log(result);
 } else {
   alert(result.message);
 }

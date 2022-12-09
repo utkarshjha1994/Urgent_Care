@@ -212,9 +212,9 @@ module.exports = {
                 return callBack(error);
             }
             else{
-                console.log(results);
-                console.log(data.charges);
-                console.log(results[0].coverage_amount);
+                //console.log(results);
+                //console.log(data.charges);
+                //console.log(results[0].coverage_amount);
                 total_payment_made = data.charges - results[0].coverage_amount;
                 db.query('INSERT INTO appointments(appt_date,patient_id,doctor_id,total_payment,pending_payment,slots) values(?,?,?,?,?,?)', 
                 [
