@@ -6,7 +6,7 @@ let date = document.getElementById('date');
 let slots = document.getElementById('slots');
 var getUser = sessionStorage.getItem("userDetails");
 var user = JSON.parse(getUser);
-console.log(user.patient_id)
+console.log("Patient ID is "+user.patient_id)
 
 
 var todayDate = new Date();
@@ -43,7 +43,7 @@ dropdown.setAttribute('value',doctor_name);
 function book() {
   let e = slots
   console.log("Length is"+e.options[e.selectedIndex].value);
-  sessionStorage.setItem("Booking",JSON.stringify({
+  sessionStorage.setItem("Book",JSON.stringify({
     patient_id: user.patient_id,
     doctor_id: doctor_id,
     appt_date: date.value,
@@ -129,18 +129,18 @@ function BookAppointment(){
   .then(response =>{ 
     console.log("Response isn "+response.data)
     if(response.success == 1){
-      sessionStorage.setItem("Booking",JSON.stringify({
-        patient_id: user.id,
+      sessionStorage.setItem("Book",JSON.stringify({
+        patient_id: user.patient_id,
         doctor_id: doctor_id,
         appt_date: date.value,
         user_role: "ROLE.PATIENT",
         final_charges:response.data.total_charges,
         description:sessionStorage.getItem("bookingDoctorSpeciality"),
 
-        slots:e.options[e.selectedIndex].value
+        slots:slots.options[slots.selectedIndex].value
       
       }))
-      alert(JSON.stringify(response));
+     // alert(JSON.stringify(response));
 
       window.location = "payment.html"
     }

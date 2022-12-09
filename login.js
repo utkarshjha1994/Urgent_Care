@@ -23,8 +23,14 @@ loginButton.addEventListener("click", (e) => {
           sessionStorage.setItem("userImage", result.image)
         if (result.userRole === 'ROLE.DOCTOR') {
           window.location = "doctor-dashboard.html";
-        } else {
+        } else if(result.userRole === 'ROLE.PATIENT') {
           window.location = "patient-dashboard.html";
+        }
+        else if(result.userRole === 'ROLE.LABTECH') {
+          window.location = "labtech-dashboard.html";
+        }
+        else{
+          window.location = "admin-dashboard.html"
         }
       } else {
         alert(result.message);
