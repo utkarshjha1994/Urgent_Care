@@ -240,7 +240,7 @@ async function deactivateLabTech(labtech_id) {
   const body = {
     doctor_id: labtech_id,
     user_role: "ROLE.ADMIN",
-  };
+  }; //
   await axios
     .patch(url, body, {
       headers: {
