@@ -13,7 +13,7 @@ if(usertype=="ROLE.PATIENT"){
 
 
   document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
-  side_profile.setAttribute("href","patient-profile.html")
+  side_profile.setAttribute("href","profile-settings.html")
 
 }
 
