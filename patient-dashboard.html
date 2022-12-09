@@ -1,14 +1,14 @@
 <!DOCTYPE html> 
 <html lang="en">
 	
-<!-- doccure/patient-profile.html  30 Nov 2019 04:12:09 GMT -->
+<!-- UGCARE/patient-profile.html  30 Nov 2019 04:12:09 GMT -->
 <head>
 		<meta charset="utf-8">
-		<title>Doccure</title>
+		<title>UGCARE</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 		
 		<!-- Favicons -->
-		<link href="assets/img/favicon.png" rel="icon">
+		<link   rel="icon">
 		
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -46,7 +46,7 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index-2.html" class="navbar-brand logo">
+						  <a class="navbar-brand logo">
 							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
 						</a>
 					</div>
@@ -100,7 +100,7 @@
 								</div>
 								<a class="dropdown-item" href="patient-dashboard.html">Dashboard</a>
 								<a class="dropdown-item" href="profile-settings.html">Profile Settings</a>
-								<a class="dropdown-item" id="logout1">Logout</a>
+								<a class="dropdown-item" href="login.html"id="logout1">Logout</a>
 							</div>
 						</li>
 						<!-- /User Menu -->
@@ -132,9 +132,6 @@
 				<div class="container-fluid">
 
 					<div class="row">
-
-						
-						
 							<!-- Profile Sidebar -->
 						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
 							<div class="profile-sidebar">
@@ -171,12 +168,6 @@
 													<span>Change Password</span>
 												</a>
 											</li>
-											<li>
-												<a >
-													<i class="fas fa-sign-out-alt"></i>
-													<span id="logout">Logout</span>
-												</a>
-											</li>
 										</ul>
 									</nav>
 								</div>
@@ -197,9 +188,7 @@
 											<li class="nav-item">
 												<a class="nav-link" href="#pres" data-toggle="tab"><span>Past Appointments</span></a>
 											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="#medical" data-toggle="tab"><span class="med-records">Doctors List</span></a>
-											</li>
+											
 											<li class="nav-item">
 												<a class="nav-link" href="#billing" data-toggle="tab"><span>Billing</span></a>
 											</li> 
@@ -215,12 +204,19 @@
 														<table class="table table-hover table-center mb-0" id="appointments">
 															<thead>
 																<tr>
-																	<th>Doctor_Id</th>
+																	<th>Doctor Id</th>
 																	<th>Doctor</th>
 																	<th>Appt Date</th>
 																	
-																	<th>Status</th>
 																	<th>Medical Records</th>
+																	<th>Delete</th>
+
+																	<th>Total Paid</th>
+																	<th>Payment Due</th>
+
+																	
+
+
 
 
 																	<th></th>
@@ -235,7 +231,7 @@
 										<!-- /Appointment Tab -->
 
 
-										<!-- Appointment Tab -->
+										<!-- Past Appointment Tab -->
 										<div id="pres" class="tab-pane fade ">
 											<div class="card card-table mb-0">
 												<div class="card-body">
@@ -247,8 +243,11 @@
 																	<th>Doctor</th>
 																	<th>Appt Date</th>
 																	
-																	<th>Status</th>
 																	<th>Medical Records</th>
+																	<th>Delete</th>
+																	<th>Total Paid</th>
+																	<th>Payment Due</th>
+																	
 
 
 																	<th></th>
@@ -972,5 +971,5 @@
 		
 	</body>
 
-<!-- doccure/patient-profile.html  30 Nov 2019 04:12:13 GMT -->
+<!-- UGCARE/patient-profile.html  30 Nov 2019 04:12:13 GMT -->
 </html>

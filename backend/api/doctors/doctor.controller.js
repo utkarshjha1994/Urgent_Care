@@ -62,6 +62,26 @@ module.exports = {
         const body = req.body; 
         //Validate fields [Server-side validation]
         console.log("Hi",body)
+
+        //phone validator
+        console.log(body.phone.length) 
+        const isNumeric = (value) => {
+            return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(value);
+          }
+        isvalidphonenumber = isNumeric(body.phone)
+        console.log(isvalidphonenumber)
+
+        if(!isvalidphonenumber){
+            return res.status(500).json({
+                message: 'Please enter Valid Phone Number!',
+                //send form data back
+                address: body.address,
+                dob: body.dob,
+                gender: body.gender,
+                phone: body.phone
+            });
+        }
+
         if( !body.gender && !body.dob && !body.phone && !body.address && !body.speciality ){ 
             //console.log("hi")
             getUserDetailsFromDB(body, (err, results) => {
@@ -99,7 +119,7 @@ module.exports = {
                         }
                         return res.status(200).json({
                             success: 1,
-                            message: "User Updated Successfully!",
+                            message: "Doctor Updated Successfully!",
                             result: results,
                             data: combo
                         });
@@ -160,6 +180,7 @@ module.exports = {
     },
     addDiagnosis: (req, res) => {
         const body = req.body;
+        console.log(body)
         addDiagnosis(body,(err, results) => {
             if(err){
                 console.log(err);
@@ -170,7 +191,8 @@ module.exports = {
             }
             return res.status(200).json({
                 success: 1,
-                data: results
+                data: results,
+                message:"Diagnosis Posted!"
             });
         });
     },

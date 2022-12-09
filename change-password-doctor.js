@@ -6,11 +6,9 @@ const saveButton = document.getElementById("save");
 var getUser = sessionStorage.getItem("userDetails");
 var user = JSON.parse(getUser);
 
-document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
-document.getElementById("patientName").innerHTML = user.patient_name.toUpperCase();
-document.getElementById("patientImage11").src = sessionStorage.getItem("userImage");
-document.getElementById("patientImage10").src = sessionStorage.getItem("userImage");
-document.getElementById("patientImage12").src = sessionStorage.getItem("userImage");
+document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
+document.getElementById("name1").innerHTML = user.doctor_name.toUpperCase();
+document.getElementById("speciality").innerHTML = user.doctor_speciality;
 
 saveButton.addEventListener("click", (e) => {
     // Prevent the default submission of the form

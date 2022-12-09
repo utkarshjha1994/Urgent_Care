@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
 	
-<!-- UGCARE/doctor-change-password.html  30 Nov 2019 04:12:36 GMT -->
+<!-- UGCARE/checkout.html  30 Nov 2019 04:12:16 GMT -->
 <head>
 		<meta charset="utf-8">
 		<title>UGCARE</title>
@@ -43,7 +43,7 @@
 								<span></span>
 							</span>
 						</a>
-						  <a class="navbar-brand logo">
+						<a href="index-2.html" class="navbar-brand logo">
 							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
 						</a>
 					</div>
@@ -58,11 +58,11 @@
 						</div>
 						<ul class="main-nav">
 							 
-							 
+							
 							<li class="login-link">
 								<a href="login.html">Login / Signup</a>
 							</li>
-						</ul>	 
+						</ul>		 
 					</div>		 
 					<ul class="nav header-navbar-rht">
 						<li class="nav-item contact-item">
@@ -74,36 +74,33 @@
 								<p class="contact-info-header"> +1 315 369 5943</p>
 							</div>
 						</li>
-						
-						<!-- User Menu -->
 						<li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span class="user-img">
-									<img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+									<img id="patientImage1" class="rounded-circle" width="31" alt="Ryan Taylor">
 								</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<div class="user-header">
 									<div class="avatar avatar-sm">
-										<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+										<img id="patientImage2" alt="User Image" class="avatar-img rounded-circle">
 									</div>
 									<div class="user-text">
-										<h6 id="name">Darren Elder</h6>
-										<p class="text-muted mb-0">Doctor</p>
+										<h6 id="patientName">Richard Wilson</h6>
+										<p class="text-muted mb-0">Patient</p>
 									</div>
 								</div>
-								<a class="dropdown-item" href="doctor-dashboard.html">Dashboard</a>
-								<a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a>
+								<a class="dropdown-item" href="patient-dashboard.html">Dashboard</a>
+								<a class="dropdown-item" href="profile-settings.html">Profile Settings</a>
 								<a class="dropdown-item" id="logout1">Logout</a>
 							</div>
 						</li>
-						<!-- /User Menu -->
-						
 					</ul>
 				</nav>
 			</header>
 			<!-- /Header -->
 			
+			<!-- Breadcrumb -->
 			<!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
@@ -112,108 +109,136 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									 
-									<li class="breadcrumb-item active" aria-current="page">Change Password</li>
+									<li class="breadcrumb-item active" aria-current="page">Profile</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Change Password</h2>
+							<h2 class="breadcrumb-title">Payment</h2>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /Breadcrumb -->
+			<!-- /Breadcrumb -->
 			
 			<!-- Page Content -->
 			<div class="content">
-				<div class="container-fluid">
+				<div class="container">
+
 					<div class="row">
-						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-						
-							<!-- Profile Sidebar -->
-							<div class="profile-sidebar">
-								<div class="widget-profile pro-widget-content">
-									<div class="profile-info-widget">
-										<a href="#" class="booking-doc-img">
-											<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
-										</a>
-										<div class="profile-det-info">
-											<h3 id="name1">Dr. Darren Elder</h3>
+						<div class="col-md-7 col-lg-8">
+							<div class="card">
+								<div class="card-body">
+								
+									<!-- Checkout Form -->
+									
+										
+										
+										<div class="payment-widget">
+											<h4 class="card-title">Payment Method</h4>
 											
-											<div class="patient-details">
-												<h5 id="speciality" class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+											<!-- Credit Card Payment -->
+											<div class="payment-list">
+												<label class="payment-radio credit-card-option">
+													<input type="radio" name="radio" id =  checked>
+													<span class="checkmark"></span>
+													Credit card
+												</label>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group card-label">
+															<label for="card_name">Name on Card</label>
+															<input class="form-control" id="owner" type="text">
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group card-label">	
+															<label for="card_number">Card Number</label>
+															<input class="form-control" id="card_no" placeholder="1234  5678  9876  5432" type="text">
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group card-label">
+															<label for="expiry_month">Expiry Month</label>
+															<input class="form-control" id="months" placeholder="MM" type="text">
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group card-label">
+															<label for="expiry_year">Expiry Year</label>
+															<input class="form-control" id="years" placeholder="YY" type="text">
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group card-label">
+															<label for="cvv">CVV</label>
+															<input class="form-control" id="cvv" type="text">
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- /Credit Card Payment -->
+											
+											
+											<!-- Terms Accept -->
+											<div class="terms-accept">
+												<div class="custom-checkbox">
+												   <input type="checkbox" id="terms_accept">
+												   <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
+												</div>
+											</div>
+											<!-- /Terms Accept -->
+											
+											<!-- Submit Section -->
+											<div class="submit-section mt-4">
+												<button  class="btn btn-primary submit-btn" id = "pay">Confirm and Pay</button>
+											</div>
+											<!-- /Submit Section -->
+											
+										</div>
+									<!-- /Checkout Form -->
+									
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="col-md-5 col-lg-4 theiaStickySidebar">
+						
+							<!-- Booking Summary -->
+							<div class="card booking-card">
+								<div class="card-header">
+									<h4 class="card-title">Booking Summary</h4>
+								</div>
+								<div class="card-body">
+								
+									
+									
+									<div class="booking-summary">
+										<div class="booking-item-wrap">
+											<ul class="booking-date">
+                                                <li>Test Name <span id = "test_name"></span></li>
+
+												<li>Date <span id = "date"></span></li>
+												<li>Time <span id="time"></span></li>
+											</ul>
+											
+											<div class="booking-total">
+												<ul class="booking-total-list">
+													<li>
+														<span>Total</span>
+														<span class="total-cost"id ="charges"></span>
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="dashboard-widget">
-									<nav class="dashboard-menu">
-										<ul>
-											<li>
-												<a href="doctor-dashboard.html">
-													<i class="fas fa-columns"></i>
-													<span>Dashboard</span>
-												</a>
-											</li>
-											
-											<li>
-												<a href="my-patients.html">
-													<i class="fas fa-user-injured"></i>
-													<span>My Patients</span>
-												</a>
-											</li>
-											   
-											   
-											
-											
-											<li>
-												<a href="doctor-profile-settings.html">
-													<i class="fas fa-user-cog"></i>
-													<span>Profile Settings</span>
-												</a>
-											</li>
-											   
-											<li class="active">
-												<a href="doctor-change-password.html">
-													<i class="fas fa-lock"></i>
-													<span>Change Password</span>
-												</a>
-											</li>
-											 
-										</ul>
-									</nav>
-								</div>
 							</div>
-							<!-- /Profile Sidebar -->
+							<!-- /Booking Summary -->
 							
 						</div>
-						<div class="col-md-7 col-lg-8 col-xl-9">
-							<div class="card">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12 col-lg-6">
-										
-											<!-- Change Password Form -->
-											<form id="changePass">
-												
-												<div class="form-group">
-													<label>New Password</label>
-													<input id="newPass" type="password" class="form-control" name="newPass">
-												</div>
-												<div class="form-group">
-													<label>Confirm Password</label>
-													<input id="confirmPass" type="password" class="form-control" name="confirmPass">
-												</div>
-												<div class="submit-section">
-													<button id="save" type="submit" class="btn btn-primary submit-btn">Save Changes</button>
-												</div>
-											</form>
-											<!-- /Change Password Form -->
-											
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
+
 				</div>
 
 			</div>		
@@ -261,6 +286,25 @@
 							</div>
 							
 							  
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-menu">
+									<h2 class="footer-title">For Doctors</h2>
+									<ul>
+										   
+										
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+										 
+										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+									</ul>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
 							
 								<!-- Footer Widget -->
 								<div class="footer-widget footer-contact">
@@ -328,21 +372,14 @@
 		<!-- /Main Wrapper -->
 	  
 		<!-- jQuery -->
-		<script src="assets/js/jquery.min.js"></script>
-		
-		<!-- Bootstrap Core JS -->
-		<script src="assets/js/popper.min.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		
+			
 		<!-- Sticky Sidebar JS -->
         <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
 		<!-- Custom JS -->
-		<script src="assets/js/script.js"></script>
-		<script type="module" src="change-password-doctor.js"></script>
+		<script src="DuePayment.js"></script>
 		
 	</body>
 
-<!-- UGCARE/doctor-change-password.html  30 Nov 2019 04:12:36 GMT -->
 </html>

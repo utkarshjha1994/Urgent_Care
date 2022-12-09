@@ -1,14 +1,14 @@
 <!DOCTYPE html> 
 <html lang="en">
 	
-<!-- doccure/search.html  30 Nov 2019 04:12:16 GMT -->
+<!-- UGCARE/search.html  30 Nov 2019 04:12:16 GMT -->
 <head>
 		<meta charset="utf-8">
-		<title>Doccure</title>
+		<title>UGCARE</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 		
 		<!-- Favicons -->
-		<link href="assets/img/favicon.png" rel="icon">
+		<link   rel="icon">
 		
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -53,7 +53,7 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index-2.html" class="navbar-brand logo">
+						  <a class="navbar-brand logo">
 							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
 						</a>
 					</div>
@@ -72,8 +72,9 @@
 								<a href="login.html">Login / Signup</a>
 							</li>
 						</ul>
-					</div>		 
-					<ul class="nav header-navbar-rht">
+					</div>	
+					<div id="loginDiv">	 
+					<ul class="nav header-navbar-rht" >
 						<li class="nav-item contact-item">
 							<div class="header-contact-img">
 								<i class="far fa-hospital"></i>							
@@ -87,6 +88,45 @@
 							<a class="nav-link header-login" href="login.html">login / Signup </a>
 						</li>
 					</ul>
+					</div>	
+					<div id="profileDiv">
+						<ul class="nav header-navbar-rht">
+							<li class="nav-item contact-item">
+								<div class="header-contact-img">
+									<i class="far fa-hospital"></i>							
+								</div>
+								<div class="header-contact-detail">
+									<p class="contact-header">Contact</p>
+									<p class="contact-info-header"> +1 315 369 5943</p>
+								</div>
+							</li>
+							
+							<!-- User Menu -->
+							<li class="nav-item dropdown has-arrow logged-item">
+								<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+									<span class="user-img">
+										<img id="patientImage3" class="rounded-circle" width="31" alt="Ryan Taylor">
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<div class="user-header">
+										<div class="avatar avatar-sm">
+											<img id="patientImage1" alt="User Image" class="avatar-img rounded-circle">
+										</div>
+										<div class="user-text">
+											<h6 id="name1">Richard Wilson</h6>
+											<p class="text-muted mb-0">Patient</p>
+										</div>
+									</div>
+									<a class="dropdown-item" href="patient-dashboard.html">Dashboard</a>
+									<a class="dropdown-item" href="profile-settings.html">Profile Settings</a>
+									<a class="dropdown-item" id="logout1">Logout</a>
+								</div>
+							</li>
+							<!-- /User Menu -->
+							
+						</ul>
+					</div>
 				</nav>
 			</header>
 			<!-- /Header -->
@@ -103,20 +143,7 @@
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-4 col-12 d-md-block d-none">
-							<div class="sort-by">
-								<span class="sort-title">Sort by</span>
-								<span class="sortby-fliter">
-									<select class="select">
-										<option>Select</option>
-										<option class="sorting">Rating</option>
-										<option class="sorting">Popular</option>
-										<option class="sorting">Latest</option>
-										<option class="sorting">Free</option>
-									</select>
-								</span>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -133,23 +160,23 @@
 							<div class="card search-filter">
 								<script type="module" >
 									import {container} from './doctorcard.js';
-									$('.nameinput').on('input', function() {
+									document.getElementById('nameinput').addEventListener('input', function() {
 											container()
 											});
-									$('.idinput').on('input', function() {
+									document.getElementById("idinput").addEventListener('input', function() {
 											container()
-											});	
-									$('.specialityinput').on('input', function() {
-											container()
-											});	
-									$(".malecheckbox").change(function() {
-									
-										container()
 									});
-									$(".femalecheckbox").change(function() {
-										container()
+									document.getElementById("specialityinput").addEventListener('input', function() {
+											container()
+									});
+									document.getElementById("malecheckbox").addEventListener('input', function() {
+											container()
+									});
+									document.getElementById("femalecheckbox").addEventListener('input', function() {
+											container()
+									});
 									
-								});	
+									
 								</script>
 								<div class="card-header">
 									<h4 class="card-title mb-0">Search Filter</h4>
@@ -277,7 +304,7 @@
 										</p>
 										<p class="mb-0">
 											<i class="fas fa-envelope"></i>
-											doccure@example.com
+											UGCARE@example.com
 										</p>
 									</div>
 								</div>
@@ -299,7 +326,7 @@
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
 									<div class="copyright-text">
-										<p class="mb-0"><a href="templateshub.net">Templates Hub</a></p>
+										<p class="mb-0"><a>Copyrights</a></p>
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-6">
@@ -354,5 +381,5 @@
 		
 	</body>
 
-<!-- doccure/search.html  30 Nov 2019 04:12:16 GMT -->
+<!-- UGCARE/search.html  30 Nov 2019 04:12:16 GMT -->
 </html>

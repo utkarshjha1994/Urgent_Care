@@ -226,40 +226,63 @@ module.exports = {
             if(error){
                 return callBack(error);
             }
-            console.log(results); //role also included
+            console.log(results);
             return callBack(null, results);
         });
     },
     bookAppointment: (data, callBack) => {
-        db.query('SELECT * FROM insuranceNW WHERE insurance_company = ? AND coverage_description = ?',
-        [
-            data.insurance_company,
-            data.description //doctor_speciality
-        ],
-        (error, results, fields) => {
-            if(error){
-                return callBack(error);
-            }
-            else{
-                console.log(results[0]);
-                total_charges = data.charges - results[0].coverage_amount;
 
-                let insurance_coverage = results[0].coverage_amount;
-                let total_charges_after_insurance_coverage = total_charges;
-                console.log(data.charges);
-                console.log(insurance_coverage);
-                console.log(total_charges_after_insurance_coverage);
+        //blank space validation
+        x = data.insuranceNo.trim()
+        console.log(x)
+        if(!data.insuranceNo || x==""){
+            results1 = {"results":"Appointment Fees"}
+            
+                results1.appointment_fees = data.charges;
+                results1.insurance_coverage = 0+"%";
+                results1.total_charges = data.charges;
+                console.log(results1)
+            
+            return callBack(null, results1);
+                
+        }
+        else{
+            db.query('SELECT * FROM insuranceNW WHERE insurance_company = ? AND coverage_description = ?',
+            [
+                data.insurance_company,
+                data.description //doctor_speciality
+            ],
+            (error, results, fields) => {
+                if(error){
+                    return callBack(error);
+                }
+                else{
+                    console.log(results[0]);
+                    //total_charges = data.charges - results[0].coverage_amount;
+                    //insurance covergae is in %
+                    total_charges =  Number(data.charges) - (( Number(results[0].coverage_amount)* Number(data.charges))/100);
 
-                results[0].insurance_coverage = insurance_coverage;
-                results[0].total_charges = total_charges_after_insurance_coverage;
-                results = results[0];
+                    let insurance_coverage = results[0].coverage_amount+"%";
+                    let total_charges_after_insurance_coverage = total_charges;
+                    console.log(data.charges);
+                    console.log(insurance_coverage);
+                    console.log(total_charges_after_insurance_coverage);
 
-                return callBack(null, results);
-            }
-        });
+                    results[0].appointment_fees = data.charges;
+                    results[0].insurance_coverage = insurance_coverage;
+                    results[0].total_charges = total_charges_after_insurance_coverage;
+                    results = results[0];
+
+                    return callBack(null, results);
+                }
+            });
+        }
+        
     },
     makePayment: (data, callBack) => {
         //this is for when booking appointment
+        //frontend sends the data calculated after hitting the bookAppt API
+        //if no insurance number available with user, then send full charges under final_charges field in request body
         console.log(data)
         db.query('INSERT INTO appointments(appt_date,patient_id,doctor_id,total_payment,pending_payment,slots) values(?,?,?,?,?,?)', 
         [
@@ -292,98 +315,124 @@ module.exports = {
     },
     viewDueCharges: (data, callBack) => {
         //want to return just the charges
-        db.query('SELECT * FROM insuranceNW where insurance_company = ? AND coverage_description = ?',
-        [
-            data.insurance_company,
-            data.description //test_name
-        ],
-        (error, results, fields) => {
-            if(error){
-                return callBack(error);
-            }
-            else{
-                db.query("SELECT pending_payment FROM appointments where appt_id=?",
-                [
-                    data.appt_id
-                ],
-                (error, results1, fields) => {
-                    if(error){
-                        return callBack(error);
-                    }
-                    else{
-                        console.log(results);
-                        console.log(results1[0]);
 
-                        total_charges = results1[0].pending_payment - results[0].coverage_amount;
-                        console.log(total_charges);
+        //blank space validation
+        x = data.insuranceNo.trim()
+        console.log(x)
+        if(!data.insuranceNo || x==""){
+            console.log("Insurance number not available!");
+            db.query("SELECT pending_payment FROM appointments where appt_id=?",
+            [
+                data.appt_id
+            ],
+            (error, results1, fields) => {
+                if(error){
+                    return callBack(error);
+                }
+                else{
+                    console.log("Hi",results1);
+                    console.log(results1[0]); //pending payment
+                    results1[0].total_charges = results1[0].pending_payment;
 
-                        let insurance_coverage = results[0].coverage_amount;
-                        console.log(insurance_coverage);
-                        let total_charges_after_insurance_coverage = total_charges;
-                        console.log(total_charges_after_insurance_coverage);
+                    return callBack(null, results1[0]);
+                }
+                
+            });
+        }
 
-                        results1[0].insurance_coverage = insurance_coverage;
-                        results1[0].total_charges = total_charges_after_insurance_coverage;
+        else{
+            db.query('SELECT * FROM insuranceNW where insurance_company = ? AND coverage_description = ?',
+            [
+                data.insurance_company,
+                data.description //test_name
+            ],
+            (error, results, fields) => {
+                if(error){
+                    return callBack(error);
+                }
+                else{
+                    db.query("SELECT pending_payment FROM appointments where appt_id=?",
+                    [
+                        data.appt_id
+                    ],
+                    (error, results1, fields) => {
+                        if(error){
+                            return callBack(error);
+                        }
+                        else{
+                            console.log("Hi",results);
+                            console.log(results1[0]); //pending payment
 
-                        return callBack(null, results1[0]);
-                    }
-                    
-                });
-                //return callBack(null, results);
-            }
-        });
+                            total_charges = Number(results1[0].pending_payment) - ((Number(results[0].coverage_amount)*Number(results1[0].pending_payment))/100);
+
+                            //total_charges = results1[0].pending_payment - results[0].coverage_amount;
+                            console.log(total_charges); //amount they will pay after insurance coverage
+
+                            let insurance_coverage = results[0].coverage_amount+"%";
+                            console.log(insurance_coverage);
+                            let total_charges_after_insurance_coverage = total_charges;
+                            console.log(total_charges_after_insurance_coverage);
+
+                            results1[0].insurance_coverage = insurance_coverage; //in %
+                            results1[0].total_charges = total_charges_after_insurance_coverage;
+
+                            return callBack(null, results1[0]);
+                        }
+                        
+                    });
+                    //return callBack(null, results);
+                }
+            });
+        }
+        
     },
     makeDuePayment: (data, callBack) => {
         //this is for when patient wants to clear his dues
-        db.query('SELECT * FROM insuranceNW where insurance_company = ? AND coverage_description = ?',
+
+        //frontend sends the data calculated after hitting the bookAppt API
+        //if no insurance number available with user, then send full charges under final_charges field in request body
+        
+        db.query("SELECT pending_payment, total_payment FROM appointments where appt_id=?",
         [
-            data.insurance_company,
-            data.description //test_name
+            data.appt_id
         ],
-        (error, results, fields) => {
+        (error, results1, fields) => {
             if(error){
                 return callBack(error);
             }
             else{
+                console.log(results1[0]);//pending payment of user for an appointment and already paid amount for the appointment returned
 
-                db.query("SELECT pending_payment, total_payment FROM appointments where appt_id=?",
+                //frontend sends the data calculated after hitting the bookAppt API
+                //if no insurance number available with user, then send full charges under final_charges field in request body
+                let total_charges = data.paymentValue; //will be fetched from request body
+                console.log(total_charges);
+
+                total_payment = results1[0].total_payment;
+                console.log(total_payment);
+                
+                let final_total_payment = Number(total_payment) +  Number(total_charges);
+                console.log(final_total_payment);
+                db.query('UPDATE appointments SET total_payment=?, pending_payment=? WHERE appt_id=?', 
                 [
+                    final_total_payment,
+                    0, //assuming that patient pays full pending amount, if not then can get another field from frontend mentioning amount paid
                     data.appt_id
                 ],
-                (error, results1, fields) => {
+                (error, results,fields) => {
                     if(error){
                         return callBack(error);
                     }
-                    else{
-                        console.log(results);
-                        console.log(results1[0]);
-
-                        total_charges = results1[0].pending_payment - results[0].coverage_amount;
-                        console.log(total_charges);
-                        total_payment = results1[0].total_payment + total_charges;
-                        console.log(total_payment);
-                        db.query('UPDATE appointments SET total_payment=?, pending_payment=? WHERE appt_id=?', 
-                        [
-                            total_payment,
-                            0, //assuming that patient pays full pending amount, if not then can get another field from frontend mentioning amount paid
-                            data.appt_id
-                        ],
-                        (error, results,fields) => {
-                            if(error){
-                                return callBack(error);
-                            }
-                            return callBack(null, results);
-                        });
-
-                        //return callBack(null, results1[0]);
-                    }
-                    
+                    return callBack(null, results);
                 });
+                //return callBack(null, results1[0]);
             }
+            
         });
+       
     },
     viewAppointment: (data, callBack) => {
-        db.query("SELECT * FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=?",
+        db.query("SELECT appointments.*, doctors.doctor_name, doctors.doctor_gender, doctors.doctor_email, doctors.doctor_phone, doctors.doctor_speciality, patients.* FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=?",
         [
             data.patient_id
         ],

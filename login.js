@@ -26,7 +26,6 @@ loginButton.addEventListener("click", (e) => {
         } else {
           window.location = "patient-dashboard.html";
         }
-        
       } else {
         alert(result.message);
       }

@@ -1,10 +1,25 @@
-document.getElementById("patientImage12").src =
-  sessionStorage.getItem("userImage");
+
   var getUser = sessionStorage.getItem("userDetails");
+  console.log(getUser)
 var user = JSON.parse(getUser);
-  document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
 
 let usertype = sessionStorage.getItem("userRole")
+
+if(usertype=="ROLE.PATIENT"){
+  document.getElementById("patientImage1").src =sessionStorage.getItem("userImage");
+  document.getElementById("patientImage2").src =sessionStorage.getItem("userImage");
+  document.getElementById("img2").src =sessionStorage.getItem("userImage");
+
+
+  document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
+
+}
+
+else if(usertype=="ROLE.DOCTOR"){
+  document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
+  document.getElementById("speciality").innerHTML = user.doctor_speciality;
+
+}
 
 //usertype = "ROLE.DOCTOR"
 
@@ -12,12 +27,12 @@ let usertype = sessionStorage.getItem("userRole")
 let params = window.location.search.substring(1).split('&');
 //console.log("what is this"+sessionStorage.getItem("appointments"));
 let item = JSON.parse(sessionStorage.getItem("appointments"));
-//console.log((item));
+console.log((item));
 //let appointments = sessionStorge.getItem('appointments');
 let patient  = params[0].split('=');
 console.log(item.patient_id);
 let  patient_id = document.getElementById("patient_id");
-patient_id.setAttribute('value',"#SEUC"+item.patient_id);
+patient_id.setAttribute('value',"#SEPID"+item.patient_id);
 
 
 let first_name = document.getElementById("first");
@@ -43,7 +58,7 @@ let dob = document.getElementById("patient_dob");
 
 dob.setAttribute('value',item.patient_dob)
 let doctor_id = document.getElementById("doctor_id");
-doctor_id.setAttribute('value',"SEUCEMPDOC"+item.doctor_id);
+doctor_id.setAttribute('value',"#SEDID"+item.doctor_id);
 let doctor_name = document.getElementById("doctor_name");
 
 doctor_name.setAttribute('value',item.doctor_name.toUpperCase());
@@ -130,7 +145,7 @@ function updatePrescription(){
     console.log(response.success)
     if(response.success==1){
       alert("Diagnosis Successfully Updated")
-      window.location = "patient-dashboard.html";
+      window.location = "doctor-dashboard.html";
     }
     else{
       alert("Diagnosis Update Failed, Please Try Again")
