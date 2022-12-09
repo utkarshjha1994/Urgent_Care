@@ -2,7 +2,7 @@ const db = require("../../config/DBconnection");
 
 module.exports = {
     getTests: (data, callBack) => {
-        db.query("SELECT appointments.test_name, appointments.appt_id, appointments.patient_id, appointments.doctor_id, appointments.test_status, appointments.test_report, doctors.doctor_name, doctors.doctor_gender, doctors.doctor_phone, doctors.doctor_email, doctors.doctor_speciality, patients.patient_name, patients.patient_gender, patients.patient_dob, patients.patient_email, patients.patient_phone, patients.patient_address FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id WHERE appointments.test_status=?",
+        db.query("SELECT appointments.test_name, appointments.appt_id, appointments.patient_id, appointments.doctor_id, appointments.test_status, appointments.test_report, appointments.doctor_notes, appointments.appt_date, doctors.doctor_name, doctors.doctor_gender, doctors.doctor_phone, doctors.doctor_email, doctors.doctor_speciality, patients.patient_name, patients.patient_gender, patients.patient_dob, patients.patient_email, patients.patient_phone, patients.patient_address FROM appointments INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id INNER JOIN patients ON appointments.patient_id=patients.patient_id WHERE appointments.test_status=?",
         [
             "Pending"
         ],
