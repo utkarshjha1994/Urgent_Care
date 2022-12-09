@@ -25,10 +25,10 @@ let month = document.getElementById("months");
 
 
 pay.onclick = function(){myFunction()}
- let body = sessionStorage.getItem("Booking")
+ let body = sessionStorage.getItem("Book")
 
  console.log(body)
-let booking_details = JSON.parse(sessionStorage.getItem("Booking"))
+let booking_details = JSON.parse(sessionStorage.getItem("Book"))
 
 let doctor = document.getElementById("doctor_name");
 let current_date = document.getElementById("date");
@@ -165,7 +165,7 @@ function makePayment(){
     /*if(user.patient_insuranceNo==null){
      // window.location = "payment.html"
     }*/
-    console.log("body"+body)
+    console.log("body     "+body)
 
     const settings = {
       method: "POST", 
@@ -183,7 +183,7 @@ function makePayment(){
     fetch('http://localhost:3000/api/users/makePayment', settings)
     .then(response => response.json())
     .then(response =>{ 
-      console.log("Response isn "+response.data)
+      console.log("Response isn "+JSON.stringify(response))
       if(response.success == 1){
         alert("Booking Success");
         window.location = "patient-dashboard.html"
