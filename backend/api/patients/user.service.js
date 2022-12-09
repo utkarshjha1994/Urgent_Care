@@ -2,7 +2,7 @@ const db = require("../../config/DBconnection");
 
 module.exports = {
     viewDoctors: callBack => {
-        db.query("SELECT doctor_id, doctor_name, doctor_gender, doctor_speciality FROM doctors where doctor_estatus = ?",
+        db.query("SELECT doctor_id, doctor_name, doctor_gender, doctor_speciality, doctor_address FROM doctors where doctor_estatus = ?",
         [
             "Active"
         ],
@@ -298,7 +298,7 @@ module.exports = {
                 return callBack(error);
             }
             else{
-                db.query('SELECT appt_id FROM appointments where patient_id=? ORDER BY appt_id DESC LIMIT 1', 
+                db.query('SELECT appointments.appt_id, appointments.appt_date, appointments.slots, patients.patient_phone FROM appointments INNER JOIN patients ON appointments.patient_id=patients.patient_id where appointments.patient_id=? ORDER BY appointments.appt_id DESC LIMIT 1', 
                 [
                     data.patient_id
                 ],

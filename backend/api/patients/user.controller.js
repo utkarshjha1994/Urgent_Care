@@ -1,6 +1,13 @@
 const { viewDoctors, viewDoctorsBySpecialty, createUser, checkIfEmailExists, getUserByEmail, getPatient, getDoctor, getLabTechs, getUserDetailsFromDB, changePassword, updatePatientProfile, viewAvailableAppointments, bookAppointment, makePayment, viewDueCharges, makeDuePayment, viewAppointment, modifyAppointment, deleteAppointment } = require("./user.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
+const { nodemailer } = require("nodemailer");
+const { randomstring } = require("randomstring");
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
+
 
 module.exports = {
     viewDoctors: (req, res) => {
@@ -282,6 +289,34 @@ module.exports = {
             }
         });
     },
+    forgotPassword: (req, res) => {
+        const body = req.body;
+        console.log(body);
+
+        getUserByEmail(body.email, (err,results) => { //to get user role
+            if(err){
+                console.log(err);
+                return res.status(500).json({
+                    success: 0,
+                    message: "Database Connection error"
+                });
+            }
+            else if(!results){
+                return res.status(500).json({
+                    success: 0,
+                    message: "User Not Found!"
+                });
+            }
+            else if(results){
+
+                return res.status(200).json({
+                    success: 1,
+                    user: results,
+                    message: "User Found"
+                });
+            }
+        });
+    },
     updatePatientProfile: (req, res) => {
         const body = req.body; 
         //server side validation for whether data is null, if null then fetch data from DB and store the same again
@@ -522,6 +557,32 @@ module.exports = {
                 });
             }
             else{
+
+                //Testing if i can send message from app to device
+                //console.log(typeof(results))
+                //console.log(results[0].appt_id)
+                let appt_time_arr = ["8:00AM","9:00AM","10:00AM","11:00AM","12:00PM","1:00PM","2:00PM","3:00PM","4:00PM","5:00PM",]
+                let appt_time = appt_time_arr[results[0].slots];
+                console.log(appt_time)
+
+                let appt_date = results[0].appt_date;
+                console.log(appt_date)
+                let appt_date_val1 = results[0].appt_date;
+                console.log(appt_date_val1)
+
+                var date = new Date(appt_date_val1);
+                appt_date = (date.getMonth() + 1) +"-" +date.getDate() +"-" +date.getFullYear();
+                console.log(appt_date)
+
+                console.log(results[0].patient_phone)
+
+                client.messages
+                .create({
+                    from: "+13854621263",
+                    to: results[0].patient_phone,
+                    body: "UGCare - Appointment is Booked! Your Appointment ID is: "+results[0].appt_id+". Your appointment is booked for: "+appt_date+" at: "+appt_time
+                }).then((res) => console.log("Message has been sent!")).catch((err) => console.log(err));
+
                 return res.status(200).json({
                     success: 1,
                     data: results,
