@@ -2,9 +2,10 @@
   var getUser = sessionStorage.getItem("userDetails");
   console.log(getUser)
 var user = JSON.parse(getUser);
+var  side_dash = document.getElementById("side_dash")
+var  side_profile = document.getElementById("side_profile")
 
 let usertype = sessionStorage.getItem("userRole")
-
 if(usertype=="ROLE.PATIENT"){
   document.getElementById("patientImage1").src =sessionStorage.getItem("userImage");
   document.getElementById("patientImage2").src =sessionStorage.getItem("userImage");
@@ -12,14 +13,25 @@ if(usertype=="ROLE.PATIENT"){
 
 
   document.getElementById("name").innerHTML = user.patient_name.toUpperCase();
+  side_profile.setAttribute("href","profile-settings.html")
 
 }
 
 else if(usertype=="ROLE.DOCTOR"){
   document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
-  document.getElementById("speciality").innerHTML = user.doctor_speciality;
-
+  //document.getElementById("speciality").innerHTML = user.doctor_speciality;
+  side_dash.setAttribute("href","doctor-dashboard.html")
+ // side_profile.setAttribute("href","doctor-profile.html")
 }
+
+else if(usertype=="ROLE.LABTECH"){
+  document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
+  //document.getElementById("speciality").innerHTML = user.doctor_speciality;
+  side_dash.setAttribute("href","labtech-dashboard.html")
+  side_profile.setAttribute("href","doctor-profile.html")
+}
+
+
 
 //usertype = "ROLE.DOCTOR"
 
@@ -53,10 +65,19 @@ patient_phone.setAttribute('value',item.patient_phone);
 let gender = document.getElementById("patient_gender");
 gender.setAttribute('value',item.patient_gender);
 let appt = document.getElementById("patient_appt");
-appt.setAttribute('value',item.appt_date);
+let a = (new Date(item.appt_date).getMonth()+1) +
+          "-" +
+          (new Date(item.appt_date).getDate()) +
+          "-" +
+          new Date(item.appt_date).getFullYear();
+appt.setAttribute('value',a);
 let dob = document.getElementById("patient_dob");
-
-dob.setAttribute('value',item.patient_dob)
+let d = (new Date(item.patient_dob).getMonth()+1) +
+          "-" +
+          (new Date(item.patient_dob).getDate()) +
+          "-" +
+          new Date(item.patient_dob).getFullYear();
+dob.setAttribute('value',d)
 let doctor_id = document.getElementById("doctor_id");
 doctor_id.setAttribute('value',"#SEDID"+item.doctor_id);
 let doctor_name = document.getElementById("doctor_name");
@@ -66,6 +87,7 @@ doctor_name.setAttribute('value',item.doctor_name.toUpperCase());
 let doctor_notes = document.getElementById("doctor_notes");
 let test_name = document.getElementById("test_name");
 let test_result = document.getElementById("test_result");
+let test_status = document.getElementById("test_status")
 if(test_result!=null){
   test_result.innerHTML = item.test_report;
 
@@ -96,6 +118,11 @@ if(usertype == "ROLE.DOCTOR"&& test_nam=="Select"){
 
 }
 
+if(usertype=="ROLE.LABTECH"){
+  test_result.readOnly = false;
+  test_status.disabled = false;
+}
+
 
 function update(){
 
@@ -116,8 +143,62 @@ function update(){
     
 
   }
+
+  else if(usertype == "ROLE.LABTECH"){
+    if(test_status.options[test_status.selectedIndex].value == "Completed"){
+      if(test_result.value.length == 0){
+        alert("Enter Test Result")
+      }
+      else{
+        updateTestResult();
+      }
+    }
+    else if(test_status.options[test_status.selectedIndex].value == "Pending"){
+      alert("Please complete the test and then save")
+    }
+  }
     
 }
+
+
+function updateTestResult(){
+  var defaultOptions = {
+    method: "PUT", 
+    mode: "cors",
+    headers: {
+        "Content-Type": "application/json",
+        mode:"cors",
+    authorization: "Bearer " + sessionStorage.getItem("jwt"),
+
+    },
+    body: JSON.stringify({"appt_id":item.appt_id,
+    
+    "user_role":"ROLE.LABTECH",
+    "test_report":test_result.value
+  })
+  }
+   console.log(defaultOptions) ;
+    fetch('http://localhost:3000/api/labtechs/modifyTests', defaultOptions)
+  .then(response => response.json())
+  .then(response =>{ 
+    data =  JSON.stringify(response)
+    console.log(data)
+    if(response.success==1){
+      alert("Test Result Successfully Updated")
+      window.location = "labtech-dashboard.html";
+    }
+    else{
+      alert("Test Result Update Failed, Please Try Again")
+    }
+    
+  
+  }).catch(error=>{
+    alert("Test Result Update Failed, Please Try Again")
+    console.log(error)
+  })
+}
+
+
 
 function updatePrescription(){
 
