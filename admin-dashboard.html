@@ -116,16 +116,18 @@
                     />
                   </div>
                   <div class="user-text">
-                    <h6 id="patientName">AdminName</h6>
+                    <h6 id="patientName">Admin</h6>
                     <p class="text-muted mb-0">Admin</p>
                   </div>
                 </div>
-                <a class="dropdown-item" href="patient-dashboard.html"
+                <a class="dropdown-item" href="admin-dashboard.html"
                   >Dashboard</a
                 >
-                <a class="dropdown-item" href="profile-settings.html"
+                <a class="dropdown-item" href="admin-settings.html"
                   >Profile Settings</a
                 >
+                <a class="dropdown-item" href="doctor-new.html">Add Doctor</a>
+                <a class="dropdown-item" href="lab-technician-new.html">Add Lab Technician</a>
                 <a class="dropdown-item" id="logout1">Logout</a>
               </div>
             </li>
@@ -174,7 +176,7 @@
                         />
                       </a>
                       <div class="profile-det-info">
-                        <h3 id="name">Admin Name</h3>
+                        <h3 id="name">Admin</h3>
                       </div>
                     </div>
                   </div>
@@ -182,12 +184,23 @@
                     <nav class="dashboard-menu">
                       <ul>
                         <li class="active">
-                          <a href="patient-dashboard.html">
+                          <a href="admin-dashboard.html">
                             <i class="fas fa-columns"></i>
                             <span>Dashboard</span>
                           </a>
                         </li>
-
+                        <li>
+                          <a href="doctor-new.html">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Add Doctor</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="lab-technician-new.html">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Add Lab Technician</span>
+                          </a>
+                        </li>
                         <li>
                           <a href="profile-settings.html">
                             <i class="fas fa-user-cog"></i>
@@ -536,7 +549,7 @@
     <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 
     <!-- Custom JS -->
-    <!-- <script type="module" src="PatientDashboard.js"></script> -->
+     <script  src="admin-dashboard.js"></script> 
     
   </body>
 
