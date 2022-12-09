@@ -143,7 +143,7 @@ function RenderData(result) {
             var body = JSON.stringify({
               appt_id:item.appt_id,
               user_role:"ROLE.PATIENT",
-              insuranceNo:"GHI-347532",
+              paymentValue:"10",
               description:item.test_name
             })
 
@@ -170,9 +170,9 @@ function RenderData(result) {
       if (c == 2) {
         var date = new Date(item.appt_date);
         td.innerHTML =
-          date.getDate() +
-          "-" +
+          
           (date.getMonth() + 1) +
+          "-" +date.getDate() +
           "-" +
           date.getFullYear();
         console.log(date.getTime());
