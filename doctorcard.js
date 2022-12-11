@@ -182,7 +182,13 @@ export function container() {
     // apt.addClass('btn', 'btn-primary')
     //   apt.setAttribute("href", "booking.html?"+JSON.stringify(data));
     apt.addEventListener("click", function () {
-      book();
+      let userDetails = sessionStorage.getItem("userDetails")
+          if (userDetails === null) {
+            alert("To book an appointment, please log in!")
+            window.location = "login.html"
+          } else {
+            book();
+          }
     });
     apt.innerHTML = "Book an Appointment";
 

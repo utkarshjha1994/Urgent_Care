@@ -81,7 +81,7 @@ const updateUserRequest = (patient_id, email, patient_phone, insurance, gender, 
     email: email, 
     patient_insuranceNo: insurance
   };
-console.log(data)
+// console.log(g(data)
   return fetch(url, {
     headers: {
       "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),
@@ -171,7 +171,7 @@ const updateDoctorRequest = (name, phone) => {
     address: user.address,
     phone: phone
   };
-console.log(data)
+// console.log(g(data)
   return fetch(url, {
     headers: {
       "authorization": 'Bearer ' + sessionStorage.getItem("jwt"),

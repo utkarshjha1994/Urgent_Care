@@ -46,8 +46,8 @@
   <body>
     <!-- Main Wrapper -->
     <div class="main-wrapper">
-      <!-- Header -->
-      <header class="header">
+       <!-- Header -->
+       <header class="header">
         <nav class="navbar navbar-expand-lg header-nav">
           <div class="navbar-header">
             <a id="mobile_btn" href="javascript:void(0);">
@@ -71,13 +71,6 @@
               </a>
             </div>
             <ul class="main-nav">
-              <li class="active">
-                <a href="index-2.html">Home</a>
-              </li>
-              <li class="active">
-                <a href="search.html">Search</a>
-              </li>
-
               <li class="login-link">
                 <a href="login.html">Login / Signup</a>
               </li>
@@ -120,7 +113,7 @@
                     />
                   </div>
                   <div class="user-text">
-                    <h6 id="patientName">AdminName</h6>
+                    <h6 id="patientName">Admin</h6>
                     <p class="text-muted mb-0">Admin</p>
                   </div>
                 </div>
@@ -131,9 +124,7 @@
                   >Profile Settings</a
                 >
                 <a class="dropdown-item" href="doctor-new.html">Add Doctor</a>
-                <a class="dropdown-item" href="lab-technician-new.html"
-                  >Add Lab Technician</a
-                >
+                <a class="dropdown-item" href="lab-technician-new.html">Add Lab Technician</a>
                 <a class="dropdown-item" id="logout1">Logout</a>
               </div>
             </li>
@@ -144,7 +135,7 @@
       <!-- /Header -->
 
       <!-- Breadcrumb -->
-      <div class="breadcrumb-bar">
+      <!-- <div class="breadcrumb-bar">
         <div class="container-fluid">
           <div class="row align-items-center">
             <div class="col-md-12 col-12">
@@ -162,7 +153,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- /Breadcrumb -->
 
       <!-- Page Content -->
@@ -183,7 +174,7 @@
                       />
                     </a>
                     <div class="profile-det-info">
-                      <h3 id="name">Admin Name</h3>
+                      <h3 id="name">Admin</h3>
                     </div>
                   </div>
                 </div>
@@ -202,7 +193,7 @@
                           <span>Add Doctor</span>
                         </a>
                       </li>
-                      <li>
+                      <li >
                         <a href="lab-technician-new.html">
                           <i class="fas fa-user-cog"></i>
                           <span>Add Lab Technician</span>
@@ -220,12 +211,7 @@
                           <span>Change Password</span>
                         </a>
                       </li>
-                      <li>
-                        <a>
-                          <i class="fas fa-sign-out-alt"></i>
-                          <span id="logout">Logout</span>
-                        </a>
-                      </li>
+                      
                     </ul>
                   </nav>
                 </div>
@@ -243,7 +229,7 @@
                       <h3 class="page-title">Add New Doctor</h3>
                       <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                          <a href="index.html">Dashboard</a>
+                          <a href="admin-dashboard.html">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item">Doctors</li>
                         <li class="breadcrumb-item active">Add New Doctor</li>
@@ -264,9 +250,8 @@
                               <input
                                 type="text"
                                 class="form-control"
-                                id="name"
+                                id="user_name"
                                 placeholder="Name"
-                                pattern="/[a-zA-Z]/g"
                               />
                             </div>
                             <div class="form-group col-md-4">
@@ -344,31 +329,20 @@
                               <label for="speciality">Speciality</label>
                               <select id="speciality" class="form-control">
                                 <option selected>Choose...</option>
-                                <option>MBBS</option>
-                                <option value="COVID Test">
-                                  COVID Test specialist
+                                <option value="family medicine physician">
+                                  family medicine physician
                                 </option>
-                                <option value="Flu Test">
-                                  Flu Test specialist
+                                <option value="sports medicine physician">
+                                  sports medicine physician
                                 </option>
-                                <option value="Blood Test">
-                                  Blood Test specialist
+                                <option value="emergency sports physician">
+                                  emergency sports physician
                                 </option>
-                                <option value="STD Test">
-                                  STD Test specialist
+                                <option value="internal medicine physician">
+                                  internal medicine physician
                                 </option>
-                                <option value="Urinalysis Test">
-                                  Urinalysis Test specialist
-                                </option>
-                                <option value="Strep Test">
-                                  Strep Test specialist
-                                </option>
-                                <option value="PT-INR Test">
-                                  PT-INR Test specialist
-                                </option>
-                                <option value="Drug Test">
-                                  Drug Test specialist
-                                </option>
+  
+                                
                               </select>
                             </div>
                           </div>
@@ -570,13 +544,27 @@
     <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 
     <script>
+
+var getUser = sessionStorage.getItem("userDetails");
+var userRole = sessionStorage.getItem("userRole");
+var user = JSON.parse(getUser);
+
+//// // console.log(g(g(user)
+
+//document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
+//document.getElementById("patientName").innerHTML = user.labtech_name.toUpperCase();
+document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase())
+
+ // document.getElementById("speciality").innerHTML = user.labtech_speciality;
+ document.getElementById("patientImage").src =sessionStorage.getItem("userImage");//
+ document.getElementById("patientImage2").src =sessionStorage.getItem("userImage");//
       // BEING CREATE DOCTOR AND SAVE INTO SERVER
 
       let id = (id) => document.getElementById(id);
 
       const validateForm = (formControls) => {
         let formInputs = Object.keys(formControls);
-        console.log({ formInputs });
+        //// // console.log(g(g({ formInputs });
         let formValues = {};
         let formErrors = {};
         let formStatus = true;
@@ -602,10 +590,10 @@
               formStatus = false;
             }
           }
-          if (inputName === "phone") {
+       /*   if (inputName === "phone") {
             let pattern =
               /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm;
-            console.log({
+            //// // console.log(g(g({
               pattern: !pattern.test(formControls[inputName].value),
             });
             if (!pattern.test(formControls[inputName].value)) {
@@ -616,7 +604,7 @@
               formControls[inputName].classList.remove("is-invalid");
               formErrors[inputName] = null;
             }
-          }
+          }*/
           if (inputName === "password") {
             if (formControls[inputName].value.length < 8) {
               formControls[inputName].classList.add("is-invalid");
@@ -629,7 +617,25 @@
       };
 
       function addDoctor() {
-        const formValue = {
+        //// // console.log(g(g(document.getElementById("user_name").value)
+        const value =JSON.stringify({
+    name:document.getElementById("user_name").value,
+    email:document.getElementById("email").value,
+    password:document.getElementById("password").value,
+    passwordConfirm:document.getElementById("passwordConfirm").value,
+    gender:document.getElementById("gender").value,
+    dob:document.getElementById("dob").value,
+    phone:document.getElementById("phone").value,
+    address:document.getElementById("address").value,
+    speciality: document.getElementById("speciality").value,
+    user_role:"ROLE.ADMIN"
+        })
+
+
+        //// // console.log(g(g("Value is "+value);
+
+
+      /*  const formValue = {
           name: id("name"),
           email: id("email"),
           phone: id("phone"),
@@ -640,34 +646,38 @@
           passwordConfirm: id("passwordConfirm"),
           password: id("password"),
           status: id("status"),
-        };
+        };*/
+        ////// // console.log(g(g(formValue)
 
-        const { values, errors, status } = validateForm(formValue);
-        console.log({ status, values, errors });
-        if (status) {
+       // const { values, errors, status } = validateForm(formValue);
+       // //// // console.log(g(g({ status, values, errors });
+       status = true
+        
           // put api request code to save data
-          fetch("http://localhost:3000/Add/Doctors", {
+          fetch("http://localhost:3000/api/admins/addDoctor", {
             method: "POST", // or 'PUT'
             headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values),
+        "Content-Type": "application/json",
+        mode: "cors",
+        authorization: "Bearer " + sessionStorage.getItem("jwt"),
+      },
+            body: value,
           })
             .then((response) => response.json())
             .then((data) => {
-              swal("Good job!", "Doctor detail has been saved", "success").then(
-                () => {
-                  window.location.reload();
-                }
-              );
+              alert("Good job!, Doctor detail has been saved, success")
+              if(data.success == 1){
+                window.location = "admin-dashboard.html"
+              }
             })
             .catch((error) => {
-              console.log({ error });
-              swal("Error!", "Detail not saved", "error");
-              console.error("Error:", error);
+              //// // console.log(g(g({ error });
+              alert("Error!", "Detail not saved", "error");
+              //// // console.log(g(g("Error:"+error);
             });
         }
-      }
+      
+        
       // BEING CREATE DOCTOR AND SAVE INTO SERVER
     </script>
     <!-- Custom JS -->

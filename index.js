@@ -25,7 +25,7 @@ import {
     isPatientLoggedIn, clearUserDetails, jwt
 } from "../js/StateManagement.js";
 
-console.log(isPatientLoggedIn())
+// console.log(g(isPatientLoggedIn())
 var isLoggedIn = isPatientLoggedIn()
 
 // function myFunction() {

@@ -22,8 +22,15 @@ loginButton.addEventListener("click", (e) => {
           sessionStorage.setItem("userDetails", JSON.stringify(result.user));
           sessionStorage.setItem("userImage", result.image)
         if (result.userRole === 'ROLE.DOCTOR') {
-          window.location = "doctor-dashboard.html";
+          let userDetails = sessionStorage.getItem("userDetails")
+          if (userDetails == 'undefined') {
+            alert("Your account has been deactivated! Please contact your admin.")
+          } else {
+            window.location = "doctor-dashboard.html";
+          }
+          
         } else if(result.userRole === 'ROLE.PATIENT') {
+          alert("Welcome back!")
           window.location = "patient-dashboard.html";
         }
         else if(result.userRole === 'ROLE.LABTECH') {

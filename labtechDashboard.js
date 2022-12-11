@@ -4,14 +4,14 @@ var getUser = sessionStorage.getItem("userDetails");
 var userRole = sessionStorage.getItem("userRole");
 var user = JSON.parse(getUser);
 
-console.log(user)
 
 document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
 document.getElementById("patientName").innerHTML = user.labtech_name.toUpperCase();
-document.getElementById("patientImage1").setAttribute("alt",user.labtech_name.toUpperCase())
 
  // document.getElementById("speciality").innerHTML = user.labtech_speciality;
- document.getElementById("patientImage").src =sessionStorage.getItem("userImage");
+ document.getElementById("patientImage").src = sessionStorage.getItem("userImage");
+ document.getElementById("patientImage1").src = sessionStorage.getItem("userImage");
+ document.getElementById("patientImage2").src = sessionStorage.getItem("userImage");
 
 //document.getElementById("name").innerHTML = user.doctor_name.toUpperCase();
 //document.getElementById("name1").innerHTML = user.doctor_name.toUpperCase();
@@ -47,7 +47,7 @@ let time_arr = [
   "4:00 PM",
   "5:00 PM",
 ];
-// console.log(arr[0]);
+// //// console.log(g(arr[0]);
 
 var app = {
   method: "POST",
@@ -62,25 +62,32 @@ var app = {
   }),
 };
 
+
+
 fetch("http://localhost:3000/api/labtechs/getTests", app)
   .then((response) => {
     return response.json();
   })
   .then((data) => {
     result = data.data;
-    console.log("Returned Result is"+JSON.stringify(result));
+    //// console.log(g("Returned Result is"+JSON.stringify(result));
     RenderData(result);
+
+
+    // console.log(g("Request is \n\n" + JSON.stringify(app))
+    // console.log(g("result is \n\n" + JSON.stringify(data))
+
 
     // Work with JSON data here
     data.forEach((item) => {
-      console.log(item);
+      //// console.log(g(item);
     });
     // try {
     //   function myFunction(item){
 
     //   }
     // } catch {
-    //   console.log("heree", error)
+    //   //// console.log(g("heree", error)
     // }
   })
   .catch((err) => {
@@ -89,16 +96,16 @@ fetch("http://localhost:3000/api/labtechs/getTests", app)
 
 function RenderData(result) { 
     
-  console.log("render");
+  //// console.log(g("render");
   let rowCnt = empTab.rows.length; // get the number of rows.
-  console.log("result is " + result);
+  //// console.log(g("result is " + result);
   result.forEach(myFunction);
-  console.log(data);
+  //// console.log(g(data);
   function myFunction(item) {
       if(item.test_name!=null){
         
       
-    console.log("item " + item.appt_id);
+    //// console.log(g("item " + item.appt_id);
 
     var date = new Date(item.appt_date);
     empTab = document.getElementById("appointments");
@@ -109,8 +116,8 @@ function RenderData(result) {
     let tr = empTab.insertRow(rowCnt); // table row.
     tr = empTab.insertRow(rowCnt);
     date.setHours(arr[item.slot]);
-    console.log("new date" + new Date().getTime());
-    console.log("date" + date.getTime());
+    //// console.log(g("new date" + new Date().getTime());
+    //// console.log(g("date" + date.getTime());
 
     //     else{
     for (let c = 0; c < 5; c++) {
@@ -167,13 +174,13 @@ function RenderData(result) {
         h.innerHTML = "View";
         //  appointment_details = "hello"
         // updateAppointments("item");
-        //  console.log("item is is sis "+sessionStorage.getItem("appointments"))
+        //  //// console.log(g("item is is sis "+sessionStorage.getItem("appointments"))
 
         h.onclick = function () {
           view(item);
         };
         function view(item) {
-          console.log("i aa" + typeof item);
+          //// console.log(g("i aa" + typeof item);
 
           sessionStorage.setItem("appointments", JSON.stringify(item));
 

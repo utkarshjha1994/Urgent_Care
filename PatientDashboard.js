@@ -42,7 +42,7 @@ let time_arr = [
   "4:00 PM",
   "5:00 PM",
 ];
-// console.log(arr[0]);
+// // console.log(g(arr[0]);
 
 var app = {
   method: "POST",
@@ -64,19 +64,19 @@ fetch("http://localhost:3000/api/users/viewAppt", app)
   })
   .then((data) => {
     result = data.data;
-    console.log("Returned Result is"+result);
+    // console.log(g("Returned Result is"+result);
     RenderData(result);
 
     // Work with JSON data here
     data.forEach((item) => {
-      console.log(item);
+      // console.log(g(item);
     });
     // try {
     //   function myFunction(item){
 
     //   }
     // } catch {
-    //   console.log("heree", error)
+    //   // console.log(g("heree", error)
     // }
   })
   .catch((err) => {
@@ -84,19 +84,19 @@ fetch("http://localhost:3000/api/users/viewAppt", app)
   });
 
 function RenderData(result) {
-  console.log("render");
+  // console.log(g("render");
   let rowCnt = empTab.rows.length; // get the number of rows.
-  console.log("result is " + result);
+  // console.log(g("result is " + result);
   result.forEach(myFunction);
-  console.log(data);
+  // console.log(g(data);
   function myFunction(item) {
-    console.log("item " + item.appt_id);
+    // console.log(g("item " + item.appt_id);
 
     var date = new Date(item.appt_date);
 
     if (date.getTime() < new Date().getTime()) {
       empTab = document.getElementById("app");
-      console.log(item.id);
+      // console.log(g(item.id);
     } else {
       empTab = document.getElementById("appointments");
     }
@@ -104,8 +104,8 @@ function RenderData(result) {
     let tr = empTab.insertRow(rowCnt); // table row.
     tr = empTab.insertRow(rowCnt);
     date.setHours(arr[item.slot]);
-    console.log("new date" + new Date().getTime());
-    console.log("date" + date.getTime());
+    // console.log(g("new date" + new Date().getTime());
+    // console.log(g("date" + date.getTime());
 
     //     else{
     for (let c = 0; c < 7; c++) {
@@ -175,12 +175,12 @@ function RenderData(result) {
           "-" +date.getDate() +
           "-" +
           date.getFullYear();
-        console.log(date.getTime());
+        // console.log(g(date.getTime());
         let span = document.createElement("label");
         span.setAttribute("class", "d-block text-info");
 
         //  time = [""]
-        console.log("here2");
+        // console.log(g("here2");
 
         span.innerHTML = time_arr[item.slots];
         td.appendChild(span);
@@ -198,13 +198,13 @@ function RenderData(result) {
         h.innerHTML = "View";
         //  appointment_details = "hello"
         // updateAppointments("item");
-        //  console.log("item is is sis "+sessionStorage.getItem("appointments"))
+        //  // console.log(g("item is is sis "+sessionStorage.getItem("appointments"))
 
         h.onclick = function () {
           view(item);
         };
         function view(item) {
-          console.log("i aa" + typeof item);
+          // console.log(g("i aa" + typeof item);
 
           sessionStorage.setItem("appointments", JSON.stringify(item));
 
@@ -228,7 +228,7 @@ function RenderData(result) {
        // h.innerHTML = "Delete";
         //  appointment_details = "hello"
         // updateAppointments("item");
-        //  console.log("item is is sis "+sessionStorage.getItem("appointments"))
+        //  // console.log(g("item is is sis "+sessionStorage.getItem("appointments"))
 
         h.onclick = function () {
           if(date.getTime() > new Date().getTime())

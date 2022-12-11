@@ -1,38 +1,47 @@
+import {logoutRequest} from './APIManager.js'
 var getUser = sessionStorage.getItem("userDetails");
 var userRole = sessionStorage.getItem("userRole");
 var user = JSON.parse(getUser);
 
-console.log(user)
+//console.log(user)
 
-//document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
-//document.getElementById("patientName").innerHTML = user.labtech_name.toUpperCase();
-document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase())
+// document.getElementById("name").innerHTML = user.labtech_name.toUpperCase();
+// document.getElementById("patientName").innerHTML = user.labtech_name.toUpperCase();
+// document.getElementById("patientImage1").setAttribute("alt","admin".toUpperCase())
 
- // document.getElementById("speciality").innerHTML = user.labtech_speciality;
- document.getElementById("patientImage").src =sessionStorage.getItem("userImage");//
- document.getElementById("patientImage2").src =sessionStorage.getItem("userImage");//
-
-
-
+// document.getElementById("speciality").innerHTML = user.labtech_speciality;
+document.getElementById("patientImage").src =
+  sessionStorage.getItem("userImage");
+document.getElementById("patientImage1").src =
+  sessionStorage.getItem("userImage");
+document.getElementById("patientImage2").src =
+  sessionStorage.getItem("userImage");
+  document.getElementById("logout1").addEventListener("click", (e) => {
+    logoutRequest().then((result) => {
+      if (result.success === 1) {
+        alert("You have been logged out. To access the portal please log in again.")
+        sessionStorage.clear()
+        window.location = "login.html"
+      } else {
+          alert(result.message);
+      }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  });
 
 getDoctors();
 getPatients();
 getLabTechs();
 
-
-
-
 async function getDoctors() {
-
-
   const bod = {
-    
-    "user_role":"ROLE.ADMIN"
-  
-  }
+    user_role: "ROLE.ADMIN",
+  };
 
   await axios
-    .post(`http://localhost:3000/api/admins/viewDoctors`,bod, {
+    .post(`http://localhost:3000/api/admins/viewDoctors`, bod, {
       headers: {
         "Content-Type": "application/json",
         mode: "cors",
@@ -40,13 +49,15 @@ async function getDoctors() {
       },
     })
     .then(function (response) {
-      //   console.log(response.data.data);
+      console.log("Request Body is \n\n" + JSON.stringify(bod));
+      console.log("result is \n\n" + JSON.stringify(response));
+      //   //console.log(response.data.data);
       var table = "";
       for (var i = 0; i < response.data.data.length; i++) {
-        // console.log(response.data[i]);
+        // //console.log(response.data[i]);
         table += `
               <tr>
-                  <td>${response.data.data[i].doctor_id}</td>
+                  <td>#SEDID${response.data.data[i].doctor_id}</td>
                   <td>${response.data.data[i].doctor_name}</td>
                   <td>${response.data.data[i].doctor_gender}</td>
                   <td>${response.data.data[i].doctor_speciality}</td>
@@ -75,29 +86,24 @@ async function getDoctors() {
         }
         table += "</tr>";
       }
-      //   console.log("table" + doctor_table);
+      //   //console.log("table" + doctor_table);
       document.getElementById("doctor-table").innerHTML = table;
     })
     .catch(function (error) {
-      console.log(error);
+      //console.log(error);
     })
     .finally(function () {
       // always executed
     });
 }
 
-
 async function getPatients() {
-
-
   const bod = {
-    
-    "user_role":"ROLE.ADMIN"
-  
-  }
- 
+    user_role: "ROLE.ADMIN",
+  };
+
   await axios
-    .post(`http://localhost:3000/api/admins/viewPatients`,bod, {
+    .post(`http://localhost:3000/api/admins/viewPatients`, bod, {
       headers: {
         "Content-Type": "application/json",
         mode: "cors",
@@ -105,13 +111,13 @@ async function getPatients() {
       },
     })
     .then(function (response) {
-      //   console.log(response.data.data);
+      //   //console.log(response.data.data);
       var table = "";
       for (var i = 0; i < response.data.data.length; i++) {
-        // console.log(response.data[i]);
+        // //console.log(response.data[i]);
         table += `
               <tr>
-                  <td>${response.data.data[i].patient_id}</td>
+                  <td>#SEPID${response.data.data[i].patient_id}</td>
                   <td>${response.data.data[i].patient_name}</td>
                   <td>${response.data.data[i].patient_gender}</td>
                   <td>${response.data.data[i].patient_email}</td>
@@ -119,11 +125,11 @@ async function getPatients() {
               </tr>
           `;
       }
-      //   console.log("table" + table);
+      //   //console.log("table" + table);
       document.getElementById("patient-table").innerHTML = table;
     })
     .catch(function (error) {
-      console.log(error);
+      //console.log(error);
     })
     .finally(function () {
       // always executed
@@ -141,10 +147,10 @@ async function getPatients() {
 //       },
 //     })
 //     .then(function (response) {
-//       console.log(response.data.data);
+//       //console.log(response.data.data);
 //       var table = "";
 //       for (var i = 0; i < response.data.data.length; i++) {
-//         console.log(response.data[i]);
+//         //console.log(response.data[i]);
 //         var date = response.data.data[i].appt_date.split("T");
 //         var day = date[0];
 //         var time = date[1].substring(0, 8);
@@ -158,11 +164,11 @@ async function getPatients() {
 //               </tr>
 //           `;
 //       }
-//       //   console.log("table" + table);
+//       //   //console.log("table" + table);
 //       document.getElementById("appointment-table").innerHTML = table;
 //     })
 //     .catch(function (error) {
-//       console.log(error);
+//       //console.log(error);
 //     })
 //     .finally(function () {
 //       // always executed
@@ -170,15 +176,12 @@ async function getPatients() {
 // }
 
 async function getLabTechs() {
-
   const bod = {
-    
-    "user_role":"ROLE.ADMIN"
-  
-  }
+    user_role: "ROLE.ADMIN",
+  };
 
   await axios
-    .post(`http://localhost:3000/api/admins/viewLabTechs`,bod, {
+    .post(`http://localhost:3000/api/admins/viewLabTechs`, bod, {
       headers: {
         "Content-Type": "application/json",
         mode: "cors",
@@ -186,13 +189,13 @@ async function getLabTechs() {
       },
     })
     .then(function (response) {
-      //   console.log(response.data.data);
+      //   //console.log(response.data.data);
       var table = "";
       for (var i = 0; i < response.data.data.length; i++) {
-        // console.log(response.data[i]);
+        // //console.log(response.data[i]);
         table += `
               <tr>
-                  <td>${response.data.data[i].labtech_id}</td>
+                  <td>#SELID${response.data.data[i].labtech_id}</td>
                   <td>${response.data.data[i].labtech_name}</td>
                   <td>${response.data.data[i].labtech_gender}</td>
                   <td>${response.data.data[i].labtech_speciality}</td>
@@ -221,11 +224,11 @@ async function getLabTechs() {
         }
         table += "</tr>";
       }
-      //   console.log("table" + table);
+      //   //console.log("table" + table);
       document.getElementById("lab-table").innerHTML = table;
     })
     .catch(function (error) {
-      console.log(error);
+      //console.log(error);
     })
     .finally(function () {
       // always executed
@@ -235,11 +238,11 @@ async function getLabTechs() {
 function updateDoctorStatus(t) {
   if (t.is(":checked")) {
     //activate
-    console.log(t[0].id.split("_")[2]);
+    //console.log(t[0].id.split("_")[2]);
   } else {
     //deactivate
     deactivateDoctor(t[0].id.split("_")[2]);
-    console.log("deactivate");
+    //console.log("deactivate");
   }
 }
 
@@ -258,21 +261,21 @@ async function deactivateDoctor(doctor_id) {
       },
     })
     .then(function (response) {
-      console.log(response);
+      //console.log(response);
     })
     .catch(function (error) {
-      console.log(error);
+      //console.log(error);
     });
 }
 
 function updateLabStatus(t) {
   if (t.is(":checked")) {
     //activate
-    console.log(t[0].id.split("_")[2]);
+    //console.log(t[0].id.split("_")[2]);
   } else {
     //deactivate
     deactivateDoctor(t[0].id.split("_")[2]);
-    console.log("deactivate");
+    //console.log("deactivate");
   }
 }
 
@@ -291,9 +294,9 @@ async function deactivateLabTech(labtech_id) {
       },
     })
     .then(function (response) {
-      console.log(response);
+      //console.log(response);
     })
     .catch(function (error) {
-      console.log(error);
+      //console.log(error);
     });
 }

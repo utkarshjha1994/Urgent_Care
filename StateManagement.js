@@ -12,7 +12,7 @@ function updatePatientDetails(patientDetails) {
 
 function updateJWT(jwtNew) {
   jwt = jwtNew;
-  console.log(jwt);
+  // console.log(g(jwt);
 }
 
 function clearUserDetails() {

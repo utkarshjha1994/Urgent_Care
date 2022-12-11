@@ -27,7 +27,7 @@ let month = document.getElementById("months");
 pay.onclick = function(){myFunction()}
  let body = sessionStorage.getItem("Book")
 
- console.log(body)
+ // console.log(g(body)
 let booking_details = JSON.parse(sessionStorage.getItem("Book"))
 
 let doctor = document.getElementById("doctor_name");
@@ -43,7 +43,7 @@ dat.getFullYear();
 current_time.innerHTML = dat.getHours()+":"+dat.getMinutes()
 
 //alert(booking_details);
-console.log("Booking Details is "+"$"+booking_details.final_charges);
+// console.log(g("Booking Details is "+"$"+booking_details.final_charges);
 
 let ch = document.getElementById("charges")
 ch.innerHTML = "$"+booking_details.final_charges
@@ -96,7 +96,7 @@ function myFunction(){
     var dvalue =   date.value;
  var mvalue  = month.value;
    // alert(dvalue)
-    console.log(new Date().getFullYear())
+    // console.log(g(new Date().getFullYear())
 
     
     var error = "";
@@ -104,7 +104,7 @@ function myFunction(){
     
     if(validateCardNumber(inputtxt.value))
         {
-            console.log(inputtxt.value)
+            // console.log(g(inputtxt.value)
         }
       else
         {
@@ -145,7 +145,7 @@ function myFunction(){
 
        // makePayment()
         if(error!=""){
-            console.log(error);
+            // console.log(g(error);
            alert(error);
 
         }
@@ -154,8 +154,8 @@ function myFunction(){
 
         }
 
-  //  console.log('clicked')
-  //  console.log(appointmentsState);
+  //  // console.log(g('clicked')
+  //  // console.log(g(appointmentsState);
 
 
 
@@ -165,7 +165,7 @@ function makePayment(){
     /*if(user.patient_insuranceNo==null){
      // window.location = "payment.html"
     }*/
-    console.log("body     "+body)
+    // console.log(g("body     "+body)
 
     const settings = {
       method: "POST", 
@@ -183,7 +183,7 @@ function makePayment(){
     fetch('http://localhost:3000/api/users/makePayment', settings)
     .then(response => response.json())
     .then(response =>{ 
-      console.log("Response isn "+JSON.stringify(response))
+      // console.log(g("Response isn "+JSON.stringify(response))
       if(response.success == 1){
         alert("Booking Success");
         window.location = "patient-dashboard.html"

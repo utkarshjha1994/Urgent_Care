@@ -17,12 +17,12 @@ var patients = JSON.parse(getmyPatients);
 RenderData(patients);
 
 function RenderData(result) {
-  console.log("render");
+  // console.log(g("render");
   let empTab = document.getElementById("appointments");
   let rowCnt = empTab.rows.length; // get the number of rows.
   
   result.forEach(myFunction);
-  console.log(data);
+  // console.log(g(data);
   function myFunction(item) {
     
     let tr = empTab.insertRow(rowCnt); // table row.

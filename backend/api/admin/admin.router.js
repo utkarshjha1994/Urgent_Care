@@ -9,9 +9,9 @@ router.post("/addLabTech", checkToken, checkUser(["ROLE.ADMIN"]), addLabTech);
 router.patch("/deactivateDoctor", checkToken, checkUser(["ROLE.ADMIN"]), deactivateDoctor); 
 router.patch("/deactivateLabTech", checkToken, checkUser(["ROLE.ADMIN"]), deactivateLabTech); 
 router.patch("/updateAdminProfile", checkToken, checkUser(["ROLE.ADMIN"]), updateAdminProfile);
-router.get("/viewPatients", checkToken, checkUser(["ROLE.ADMIN"]), viewPatients);
-router.get("/viewDoctors", checkToken, checkUser(["ROLE.ADMIN"]), viewDoctors);
-router.get("/viewLabTechs", checkToken, checkUser(["ROLE.ADMIN"]), viewLabTechs);
+router.post("/viewPatients", checkToken, checkUser(["ROLE.ADMIN"]), viewPatients);
+router.post("/viewDoctors", checkToken, checkUser(["ROLE.ADMIN"]), viewDoctors);
+router.post("/viewLabTechs", checkToken, checkUser(["ROLE.ADMIN"]), viewLabTechs);
 router.post("/bookApptAdmin", checkToken, checkUser(["ROLE.ADMIN"]), bookAppointment);
 router.post("/modifyApptAdmin", checkToken, checkUser(["ROLE.ADMIN"]), modifyAppointment);
 

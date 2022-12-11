@@ -1,6 +1,6 @@
 
   var getUser = sessionStorage.getItem("userDetails");
-  console.log(getUser)
+  //// console.log(g(getUser)
 var user = JSON.parse(getUser);
 var  side_dash = document.getElementById("side_dash")
 var  side_profile = document.getElementById("side_profile")
@@ -37,12 +37,12 @@ else if(usertype=="ROLE.LABTECH"){
 
 
 let params = window.location.search.substring(1).split('&');
-//console.log("what is this"+sessionStorage.getItem("appointments"));
+////// console.log(g("what is this"+sessionStorage.getItem("appointments"));
 let item = JSON.parse(sessionStorage.getItem("appointments"));
-console.log((item));
+//// console.log(g((item));
 //let appointments = sessionStorge.getItem('appointments');
 let patient  = params[0].split('=');
-console.log(item.patient_id);
+//// console.log(g(item.patient_id);
 let  patient_id = document.getElementById("patient_id");
 patient_id.setAttribute('value',"#SEPID"+item.patient_id);
 
@@ -177,12 +177,17 @@ function updateTestResult(){
     "test_report":test_result.value
   })
   }
-   console.log(defaultOptions) ;
+
+  //// console.log(g("Request Body is   "+defaultOptions);
+   ////// console.log(g(defaultOptions) ;
     fetch('http://localhost:3000/api/labtechs/modifyTests', defaultOptions)
   .then(response => response.json())
   .then(response =>{ 
     data =  JSON.stringify(response)
-    console.log(data)
+
+    // console.log(g("Request is \n\n" + JSON.stringify(app))
+    // console.log(g("result is \n\n" + JSON.stringify(response))
+    //// console.log(g("Resonse returned from server is "+data)
     if(response.success==1){
       alert("Test Result Successfully Updated")
       window.location = "labtech-dashboard.html";
@@ -194,7 +199,7 @@ function updateTestResult(){
   
   }).catch(error=>{
     alert("Test Result Update Failed, Please Try Again")
-    console.log(error)
+    //// console.log(g("Error Message from sever " +error)
   })
 }
 
@@ -218,12 +223,15 @@ function updatePrescription(){
     "chargesForTest":"10",
     "user_role":"ROLE.DOCTOR"})
   }
-   console.log(defaultOptions) ;
+   //// console.log(g(defaultOptions) ;
     fetch('http://localhost:3000/api/doctors/addDiagnosis', defaultOptions)
   .then(response => response.json())
   .then(response =>{ 
     data =  JSON.stringify(response)
-    console.log(response.success)
+
+    // console.log(g("Request is \n\n" + JSON.stringify(app))
+    // console.log(g("result is \n\n" + JSON.stringify(response))
+    //// console.log(g("Resonse returned from server is "+data)
     if(response.success==1){
       alert("Diagnosis Successfully Updated")
       window.location = "doctor-dashboard.html";
@@ -235,7 +243,7 @@ function updatePrescription(){
   
   }).catch(error=>{
     alert("Diagnosis Update Failed, Please Try Again")
-    console.log(error)
+    //// console.log(g(error)
   })
 }
 

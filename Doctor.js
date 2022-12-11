@@ -34,7 +34,7 @@ renderUsers();
 
 async function renderUsers() {
     let result = await getUsers();
-    console.log(result.data)
+    // console.log(g(result.data)
     return result.data
 }
 
